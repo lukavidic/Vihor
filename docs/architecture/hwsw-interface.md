@@ -64,25 +64,25 @@ Raspodjela je usklađena sa datasheetom (tabela funkcija pinova). PIC ima 21 I/O
 |---|---|---|---|---|---|
 | 1 | MCLR | Reset / programiranje | ulaz | | Pull-up, programski konektor |
 | 2 | RA0 | Mjerenje napona kondenzatora topa | ulaz (ADC) | AN0, RP26 | Razdjelnik napona + zaštitna Zener dioda |
-| 3 | RA1 | Mjerenje napona baterije VBAT | ulaz (ADC) | AN1, RP27 | Razdjelnik napona; ako IR modul bude analogni, treba drugi ADC pin (**TBD**) |
+| 3 | RA1 | Napon baterije (JoyCar kontakt P2, jumper BAT) | ulaz (ADC) | AN1, RP27 | JoyCar već ima djelitelj napona na P2; provjeriti opseg (**TBD**) |
 | 4 | RB0 | Programiranje (PGD1) | ulaz/izlaz | AN2, RP0 | Rezervisano za programer |
 | 5 | RB1 | Programiranje (PGC1) | ulaz/izlaz | AN3, RP1 | Rezervisano za programer |
-| 6 | RB2 | Rezerva | **TBD** | AN4, RP2, SDA2 | Slobodan pin (oslobođen jer JoyCar ide preko I2C) |
-| 7 | RB3 | Rezerva | **TBD** | AN5, RP3, SCL2 | Slobodan pin |
+| 6 | RB2 | JoyCar kontakt P0 (LED farovi), opciono | izlaz | AN4, RP2, SDA2 | Opciono, inače rezerva |
+| 7 | RB3 | JoyCar kontakt P16 (zujalica), opciono | izlaz | AN5, RP3, SCL2 | Opciono, inače rezerva |
 | 9 | RA2 | LED (status) | izlaz | OSCI | Interni oscilator (FRC), pin je slobodan |
 | 10 | RA3 | Top: punjenje (omogući punjenje) | izlaz | OSCO | Rezervisano za top, samo digitalni izlaz |
 | 11 | RB4 | Top: rezerva | **TBD** | SOSCI, RP4 | Rezervisano za top |
 | 12 | RA4 | Top: ispaljivanje (okidanje) | izlaz | SOSCO | Rezervisano za top, preko izolacije/drivera, samo digitalni izlaz |
 | 14 | RB5 | Dugme START/STOP | ulaz | RP5, 5 V tolerantan | Prekid INT1 preko RP5 |
-| 15 | RB6 | HC-SR04 #1 (prepreke): TRIG | izlaz | RP6, 5 V tolerantan | |
-| 16 | RB7 | HC-SR04 #1 (prepreke): ECHO | ulaz | RP7, INT0, 5 V tolerantan | Prekid INT0 na ivici signala, 5 V signal direktno |
-| 17 | RB8 | I2C SCL1: JoyCar ploča | izlaz | RP8, SCL1, 5 V tolerantan | PWM kontroler (0x70) i IO ekspander (0x38) |
-| 18 | RB9 | I2C SDA1: JoyCar ploča | ulaz/izlaz | RP9, SDA1 | Isto kao SCL, pin **nije** 5 V tolerantan |
-| 21 | RB10 | HC-SR04 #2 (meta): TRIG | izlaz | RP10, 5 V tolerantan | |
+| 15 | RB6 | HC-SR04 #1: TRIG (JoyCar kontakt P8) | izlaz | RP6, 5 V tolerantan | Senzor na US zaglavlju JoyCar ploče |
+| 16 | RB7 | HC-SR04 #1: ECHO (JoyCar kontakt P12) | ulaz | RP7, INT0, 5 V tolerantan | Prekid INT0 na ivici signala, 5 V signal direktno |
+| 17 | RB8 | I2C SCL1: JoyCar kontakt P19 | izlaz | RP8, SCL1, 5 V tolerantan | PWM kontroler (0x70) i IO ekspander (0x38) |
+| 18 | RB9 | I2C SDA1: JoyCar kontakt P20 | ulaz/izlaz | RP9, SDA1 | Isto kao SCL, pin **nije** 5 V tolerantan |
+| 21 | RB10 | HC-SR04 #2: TRIG | izlaz | RP10, 5 V tolerantan | Vlastito ožičenje i napajanje 5 V |
 | 22 | RB11 | HC-SR04 #2 (meta): ECHO | ulaz | RP11, 5 V tolerantan | 5 V signal direktno, prekid se mapira preko PPS-a |
 | 23 | RB12 | UART1 RX ← ESP8266 TX | ulaz | RP12 | |
 | 24 | RB13 | UART1 TX → ESP8266 RX | izlaz | RP13 | |
-| 25 | RB14 | Rezerva | **TBD** | RP14 | Slobodan pin |
+| 25 | RB14 | JoyCar kontakt P1 (servo 1), opciono | izlaz | RP14 | Opciono, inače rezerva |
 | 26 | RB15 | Rezerva | **TBD** | RP15 | Slobodan pin |
 | 13, 28 | VDD, AVDD | Napajanje 3.3 V | | | Uz svaki pin kondenzator 100 nF |
 | 8, 19, 27 | VSS, AVSS | Masa | | | |
@@ -155,7 +155,6 @@ Kompenzacija različite brzine motora u primjeru koda: vrijednost se množi fakt
 | Pull-up otpornici na JoyCar ploči | TBD |
 | Potvrda čipa PWM kontrolera (PCA9633) i smjerova motora | TBD, test na vozilu |
 | Napaja li se naša ploča sa JoyCar ploče (izlazi 3V3, 5V i V_BAT na zaglavlju) i koliku struju daju | TBD |
-| Konektor prema JoyCar ploči (tip i raspored pinova) | TBD |
  
 ### 4.4 IO ekspander (adresa 0x38): senzori na JoyCar ploči
  
@@ -178,6 +177,31 @@ Mogućnosti:
 - **Senzori prepreke** (bit 5 i 6) daju digitalnu informaciju (prepreka da ili ne), pa se mogu koristiti kao dodatna detekcija prepreka bez dodatnih pinova na našoj ploči. Domet treba provjeriti (**TBD**), jer se radi o infracrvenim senzorima kratkog dometa.
 - **Senzori brzine** (bit 0 i 1) daju impulse pri okretanju točkova. Čitanje preko I2C-a je ograničeno brzinom magistrale, pa je za precizno brojanje impulsa potrebno ispitati dovoljnu učestalost očitavanja (**TBD**).
 - Bit 7 (EOUT7) je slobodan digitalni izlaz, koji se može koristiti za vlastite potrebe (**TBD**).
+---
+ 
+### 4.5 Konektor prema JoyCar ploči i mapiranje micro:bit pinova
+ 
+Naša ploča zamjenjuje micro:bit: ulazi u **ivični utor** (konektor za micro:bit) na JoyCar ploči. Prema šemi iz uputstva (stranica 48), JoyCar koristi sljedeće micro:bit kontakte:
+ 
+| micro:bit kontakt | JoyCar funkcija | Naš PIC pin | Status |
+|---|---|---|---|
+| P0 | LED farovi (FL, FR, RL, RR) | RB2 | Opciono |
+| P1 | Servo 1 | RB14 | Opciono |
+| P2 | Servo 2 ili mjerenje baterije (ADC), bira se jumperom BAT/P2 | RA1 | Koristimo za napon baterije |
+| P8 | US senzor: TRIG | RB6 | Koristimo (HC-SR04 #1) |
+| P12 | US senzor: ECHO | RB7 | Koristimo (HC-SR04 #1) |
+| P13, P14, P15 | SPI (SCK, MISO, MOSI) | nije povezano | Ne koristimo |
+| P16 | Zujalica | RB3 | Opciono |
+| P19, P20 | I2C: SCL i SDA (PWM kontroler 0x70, IO ekspander 0x38) | RB8, RB9 | Koristimo |
+| 3V | Napajanje 3.3 V | | Vidi napomene o napajanju (provjeriti smjer) |
+| GND | Masa | | |
+ 
+Napomene:
+- **Nisu svi kontakti obavezni.** Naša ploča treba imati kontakte (zlatne prste) samo za signale koje koristimo (P2, P8, P12, P19, P20, 3V, GND, a opciono P0, P1, P16). Raspored i razmak kontakata mora odgovarati micro:bitu (25 kontakata), pa se prepisuje sa stvarnog micro:bita ili njegovog crteža. Debljina ploče je 1.6 mm.
+- **JoyCar ima samo jedno US zaglavlje** (P8 TRIG, P12 ECHO), pa se na njega spaja jedan HC-SR04. Drugi HC-SR04 se spaja direktno na našu ploču (RB10 i RB11) i napaja sa JoyCar zaglavlja (5V i GND).
+- **ECHO signal** sa US zaglavlja (P12) ide u PIC na RB7, koji je 5 V tolerantan. Ako JoyCar zaglavlje daje 5 V signal, to je u redu, a ako daje 3.3 V, takođe.
+- **Napon baterije (P2):** JoyCar mjeri bateriju preko jumpera BAT/P2. Jumper mora ostati na BAT (ne na servo 2), da bi PIC čitao napon baterije na pinu RA1 (ADC). Opseg napona na P2 provjeriti multimetrom (**TBD**).
+- **Dodatni signali iz zaglavlja** (V_BAT, 5V, 3v3, GND) nisu na micro:bit utoru: spajaju se žicama ili posebnim konektorom na JoyCar zaglavlje (za napajanje ESP8266, drugog HC-SR04 i topa).
 ---
  
 ## 5. Konektor za top (rezervisano)
