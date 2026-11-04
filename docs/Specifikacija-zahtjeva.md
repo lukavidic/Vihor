@@ -1,7 +1,7 @@
 # Specifikacija zahtjeva (Requirements specification)
  
 **Projekat:** Autonomna mobilna platforma sa integrisanim elektromagnetskim topom
-**Verzija:** 0.4 (nacrt)
+**Verzija:** 0.5 (nacrt)
 **Napomena:** Vrijednosti označene sa **TBD** potrebno je potvrditi sa predmetnim profesorom ili mjerenjem u toku razvoja.
  
 ---
@@ -13,9 +13,9 @@ Dokument definiše funkcionalne i nefunkcionalne zahtjeve za autonomno vozilo za
  
 ### 1.2 Opis sistema
 Sistem se sastoji od:
-- **vozila** zasnovanog na JoyCar platformi, sa vlastitom upravljačkom pločom (PCB),
-- **elektromagnetskog topa**, **mete** i **ToF senzora za metu**, koji su zajedno fiksirani na vozilu u istom smjeru i okreću se zajedno sa vozilom,
-- **dva fiksna ToF senzora**: jedan na visini mete za detekciju suparničke mete, a drugi nisko na šasiji za detekciju prepreka,
+- **vozila** zasnovanog na JoyCar platformi (motori i JoyCar ploča sa drajverima motora), sa vlastitom upravljačkom pločom (PCB) koja JoyCar ploči zadaje komande kretanja,
+- **elektromagnetskog topa**, **mete** i **senzora udaljenosti za metu**, koji su zajedno fiksirani na vozilu u istom smjeru i okreću se zajedno sa vozilom,
+- **dva fiksna senzora udaljenosti** (ultrazvučni HC-SR04, a za metu eventualno IR modul): jedan na visini mete za detekciju suparničke mete, a drugi nisko na šasiji za detekciju prepreka,
 - **WiFi modula** za komunikaciju,
 - **PC/mobilne aplikacije** za pokretanje, zaustavljanje i prijem log poruka.
 Vozilo autonomno pozicionira sebe i gađa **pokretnu metu** koja se nalazi na suparničkom autonomnom vozilu istog tipa.
@@ -23,7 +23,7 @@ Vozilo autonomno pozicionira sebe i gađa **pokretnu metu** koja se nalazi na su
 ### 1.3 Definicije
 | Pojam | Značenje |
 |---|---|
-| ToF | Time-of-Flight, senzor za mjerenje udaljenosti |
+| Senzor udaljenosti | Senzor za mjerenje udaljenosti (ultrazvučni HC-SR04 ili IR modul; u zadatku se naziva ToF senzor) |
 | Coilgun | Elektromagnetski top, zavojnica koja ubrzava feromagnetni projektil |
 | Meta | Detekciona površina na suparničkom vozilu, viša od prepreka na polju |
 | Log poruka | Tekstualna poruka koju vozilo šalje aplikaciji |
@@ -41,18 +41,18 @@ Vozilo autonomno pozicionira sebe i gađa **pokretnu metu** koja se nalazi na su
 | ID | Zahtjev |
 |---|---|
 | FR-01 | Vozilo se kreće autonomno nakon komande START i zaustavlja se na komandu STOP. |
-| FR-02 | Vozilo upravlja motorima JoyCar platforme (naprijed, nazad, skretanje, zaustavljanje). |
+| FR-02 | Ploča upravlja kretanjem vozila (naprijed, nazad, skretanje, zaustavljanje) slanjem komandi na logičkom nivou JoyCar ploči, koja sadrži drajvere motora (**TBD** interfejs). |
  
 ### 2.2 Detekcija prepreka i kontrola kolizije
 | ID | Zahtjev |
 |---|---|
-| FR-03 | Vozilo ima dva fiksna ToF senzora, svaki sa jednom namjenom: **nisko postavljen senzor** za detekciju prepreka i **senzor na visini mete** za detekciju mete. Meta je viša od prepreka, pa senzor za metu ne reaguje na prepreke. |
-| FR-04 | Kada nisko postavljeni ToF detektuje prepreku bližu od praga (**TBD** mm), vozilo se zaustavlja ili je zaobilazi. Izbjegavanje prepreke ima prioritet nad komandama kretanja koje dolaze iz traženja mete. |
+| FR-03 | Vozilo ima dva fiksna senzora udaljenosti, svaki sa jednom namjenom: **nisko postavljen senzor** za detekciju prepreka i **senzor na visini mete** za detekciju mete. Meta je viša od prepreka, pa senzor za metu ne reaguje na prepreke. |
+| FR-04 | Kada nisko postavljeni senzor detektuje prepreku bližu od praga (**TBD** mm), vozilo se zaustavlja ili je zaobilazi. Izbjegavanje prepreke ima prioritet nad komandama kretanja koje dolaze iz traženja mete. |
  
 ### 2.3 Detekcija i praćenje mete
 | ID | Zahtjev |
 |---|---|
-| FR-05 | Vozilo traži pokretnu metu (suparničko vozilo) okretanjem u mjestu ili kretanjem (**TBD**) i detektuje je ToF senzorom za metu. |
+| FR-05 | Vozilo traži pokretnu metu (suparničko vozilo) okretanjem u mjestu ili kretanjem (**TBD**) i detektuje je senzorom udaljenosti za metu. |
 | FR-06 | Kada je meta detektovana, vozilo se okreće i pozicionira tako da je meta u liniji topa. Top i senzor za metu su fiksirani u istom smjeru, pa je poravnanje senzora ujedno i poravnanje topa. |
  
 ### 2.4 Elektromagnetski top
@@ -71,13 +71,13 @@ Vozilo autonomno pozicionira sebe i gađa **pokretnu metu** koja se nalazi na su
 ### 2.6 Stanja sistema
 Sistem radi kao **dvije nezavisne mašine stanja**, koje rade istovremeno. Komanda START pokreće obje, a STOP ih vraća u stanje IDLE.
  
-**Vozilo (šasija)**, koristi nisko postavljeni ToF:
+**Vozilo (šasija)**, koristi nisko postavljeni senzor udaljenosti:
  
 `IDLE → DRIVE ⇄ AVOID`
  
 - DRIVE: vozilo se kreće.
 - AVOID: prepreka je bliža od praga, pa se vozilo zaustavlja ili je zaobilazi, a zatim se vraća u DRIVE.
-**Meta i top**, koristi ToF za metu:
+**Meta i top**, koristi senzor udaljenosti za metu:
  
 `IDLE → SEARCH → TRACK → FIRE → SEARCH`
  
@@ -110,12 +110,12 @@ Obje mašine upravljaju istim motorima. Stanje AVOID ima prioritet: dok je aktiv
 ### 3.4 Hardverska ograničenja
 | ID | Zahtjev |
 |---|---|
-| NFR-06 | **Hardver:** ploča se uklapa u JoyCar platformu (dimenzije, napon baterije, konektori), dvoslojna je i izrađena u KiCadu. Napajanje logike je odvojeno od motora i topa. Oba ToF senzora dijele I2C magistralu, uz različite adrese (npr. preko XSHUT pina). |
+| NFR-06 | **Hardver:** ploča se uklapa u JoyCar platformu (dimenzije, konektori), dvoslojna je i izrađena u KiCadu. Napajanje je iz 4 × 1.5 V AA baterija (oko 4–6.4 V), pa ploča ima regulator za 3.3 V logiku (i 5 V za ultrazvučne senzore), a napajanje topa je odvojeno. Komunikacija sa JoyCar pločom i nivoi signala (3.3 V / 5 V) usklađuju se prema njenoj dokumentaciji (**TBD**). |
  
 ### 3.5 Softverska ograničenja i održivost
 | ID | Zahtjev |
 |---|---|
-| NFR-07 | **Firmver:** modularan (WiFi, ToF, motori, top, mašina stanja), dokumentovan Doxygen komentarima. |
+| NFR-07 | **Firmver:** modularan (WiFi, senzori udaljenosti, motori, top, mašina stanja), dokumentovan Doxygen komentarima. |
 | NFR-08 | **Aplikacija:** radi na standardnom PC-u (**TBD**) i prikazuje samo START, STOP i prozor sa logovima. |
 | NFR-09 | **Održivost:** projekat je u Git repozitoriju, a podešavanja (WiFi, IP, pragovi) u jednoj konfiguracionoj datoteci. |
  
@@ -172,15 +172,13 @@ flowchart LR
     UC8 -. uključuje .-> UC6
 ```
  
----
  
-
-## 6. Praćenje (traceability)
+## 7. Praćenje (traceability)
  
 | Funkcionalnost iz zadatka | Zahtjevi |
 |---|---|
 | Autonomno vozilo na JoyCar platformi | FR-01, FR-02 |
 | Pozicioniranje i gađanje pokretne mete | FR-05, FR-06, FR-08 |
 | Elektromagnetski top | FR-07, FR-08 |
-| Upravljanje vozilom, kontrola kolizije, ToF | FR-02, FR-03, FR-04 |
+| Upravljanje vozilom, kontrola kolizije, senzori udaljenosti | FR-02, FR-03, FR-04 |
 | WiFi: START/STOP i log poruke | FR-09, FR-10, FR-11 |
