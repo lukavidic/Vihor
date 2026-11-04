@@ -1,7 +1,7 @@
 # Interfejs sistema (HW/SW)
  
 **Projekat:** Autonomna mobilna platforma sa integrisanim elektromagnetskim topom
-**Verzija:** 0.6 (nacrt)
+**Verzija:** 0.7 (nacrt)
 **Svrha:** Zajednički dogovor hardverskog i softverskog tima: napajanje, pinovi mikrokontrolera, konektori i komunikacioni protokol. Svaka promjena pinova ili protokola ide prvo kroz izmjenu ovog dokumenta, uz saglasnost oba tima.
  
 Vrijednosti označene sa **TBD** treba potvrditi (profesor, JoyCar dokumentacija, datasheet).
@@ -75,7 +75,7 @@ Raspodjela je usklađena sa datasheetom (tabela funkcija pinova). PIC ima 21 I/O
  
 Napomene o pinovima:
 - **5 V tolerantni ulazi** su prema datasheetu samo RB5, RB6, RB7, RB8, RB10 i RB11. ECHO signali HC-SR04 (5 V) zato su na RB7 i RB11 i mogu ići direktno, uz zaštitni serijski otpornik (npr. 1 kΩ). Ostali pinovi nisu 5 V tolerantni.
-- **Remapirani (RP) pinovi** su RB0–RB15 (RP0–RP15), RA0 (RP26) i RA1 (RP27). Pinovi **RA2, RA3 i RA4 nemaju RP funkciju**, pa su dodijeljeni isključivo digitalnim signalima (LED, punjenje i okidanje topa). JoyCar se komanduje preko I2C (RB8 i RB9), pa su pinovi RB2, RB3, RB14 i RB15 slobodni i ostavljeni kao rezerva.
+- **Remapirani (RP) pinovi** su RB0–RB15 (RP0–RP15), RA0 (RP26) i RA1 (RP27). Pinovi **RA2, RA3 i RA4 nemaju RP funkciju**, pa su dodijeljeni isključivo digitalnim signalima (LED, punjenje i okidanje topa). JoyCar se komanduje preko I2C (RB8 i RB9). Pinovi RB2 i RB3 su zauzeti za IR Distance Click (OUT i EN), a RB14 i RB15 su opcioni signali JoyCar-a (LED farovi i zujalica), koji se mogu ostaviti kao rezerva.
 - **Oscilator:** pinovi RA2 (OSCI), RA3 (OSCO), RA4 (SOSCO) i RB4 (SOSCI) su I/O samo ako se koristi interni oscilator (FRC) i ako je sekundarni oscilator isključen u konfiguraciji.
 - **Analogni pinovi** (AN0–AN9) se moraju podesiti kao digitalni (ANSx = 0) kada se koriste kao I/O.
 - Dva ultrazvučna senzora ne smiju mjeriti istovremeno (međusobne smetnje), pa ih firmver čita naizmjenično.
@@ -199,7 +199,7 @@ Naša ploča zamjenjuje micro:bit: ulazi u **ivični utor** (konektor za micro:b
  
 Napomene:
 - **Nisu svi kontakti obavezni.** Naša ploča treba imati kontakte (zlatne prste) samo za signale koje koristimo (P2, P8, P12, P19, P20, 3V, GND, a opciono P0, P1, P16). Raspored i razmak kontakata mora odgovarati micro:bitu (25 kontakata), pa se prepisuje sa stvarnog micro:bita ili njegovog crteža. Debljina ploče je 1.6 mm.
-- **JoyCar ima samo jedno US zaglavlje** (P8 TRIG, P12 ECHO), pa se na njega spaja jedan HC-SR04. Drugi HC-SR04 se spaja direktno na našu ploču (RB10 i RB11) i napaja sa JoyCar zaglavlja (5V i GND).
+- **JoyCar ima samo jedno US zaglavlje** (P8 TRIG, P12 ECHO), pa se na njega spaja jedan HC-SR04. Drugi HC-SR04 (RB10 i RB11) je opcija i nije potreban ako se za metu koristi IR Distance Click.
 - **ECHO signal** sa US zaglavlja (P12) ide u PIC na RB7, koji je 5 V tolerantan. Ako JoyCar zaglavlje daje 5 V signal, to je u redu, a ako daje 3.3 V, takođe.
 - **Napon baterije (P2):** JoyCar mjeri bateriju preko jumpera BAT/P2. Jumper mora ostati na BAT (ne na servo 2), da bi PIC čitao napon baterije na pinu RA1 (ADC). Opseg napona na P2 provjeriti multimetrom (**TBD**).
 - **Dodatni signali iz zaglavlja** (V_BAT, 5V, 3v3, GND) nisu na micro:bit utoru: spajaju se žicama ili posebnim konektorom na JoyCar zaglavlje (za napajanje ESP8266, drugog HC-SR04 i topa).
@@ -272,14 +272,3 @@ Primjeri:
  
 ---
  
-## 8. Otvorene stavke
- 
-| # | Stavka | Ko saznaje |
-|---|---|---|
-| 1 | Konačna potvrda MCU-a (PIC24FJ64GA702 ili sličan) | Profesor |
-| 2 | Potvrda da će se za metu koristiti IR Distance Click, kalibracija i izbjegavanje smetnji (sunce, drugi IR izvori) | Profesor, HW tim (test) |
-| 3 | Nivo I2C, pull-up, napajanje sa JoyCar ploče, konektor i smjerovi motora (test) | HW tim, JoyCar uputstvo |
-| 4 | Napon i struja topa | Kad se top dobije |
-| 5 | ~~Da li su pinovi PIC-a za ECHO 5 V tolerantni~~ Riješeno: RB7 i RB11 su 5 V tolerantni | |
-| 6 | Koliko struje daju pinovi 3v3 i 5V na JoyCar zaglavlju i pad napona baterije pod opterećenjem (motori, punjenje topa, WiFi) | HW tim, mjerenje |
-| 7 | Prag napona baterije za zaustavljanje i prekid punjenja topa | HW + SW tim |
