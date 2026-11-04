@@ -1,7 +1,7 @@
 # Interfejs sistema (HW/SW)
  
 **Projekat:** Autonomna mobilna platforma sa integrisanim elektromagnetskim topom
-**Verzija:** 0.1 (nacrt)
+**Verzija:** 0.6 (nacrt)
 **Svrha:** Zajednički dogovor hardverskog i softverskog tima: napajanje, pinovi mikrokontrolera, konektori i komunikacioni protokol. Svaka promjena pinova ili protokola ide prvo kroz izmjenu ovog dokumenta, uz saglasnost oba tima.
  
 Vrijednosti označene sa **TBD** treba potvrditi (profesor, JoyCar dokumentacija, datasheet).
@@ -17,43 +17,28 @@ Vrijednosti označene sa **TBD** treba potvrditi (profesor, JoyCar dokumentacija
 | Senzor za prepreke | HC-SR04 (ultrazvučni) | Potvrđeno |
 | Senzor za metu | IR Distance Click (MikroE, Sharp GP2Y0A60SZ0F, analogni izlaz, 10–150 cm), moguća alternativa HC-SR04 | Potvrditi sa profesorom |
 | Motori | JoyCar, sa JoyCar pločom koja sadrži PWM kontroler | I2C, adresa 0x70 (vidi odjeljak 4) |
-| Napajanje | 4 × 1.5 V AA baterije | Potvrđeno |
+| Napajanje | 4 × 1.5 V AA baterije, naponi 3v3, 5V i V_BAT sa zaglavlja JoyCar ploče | Potvrđeno, bez vlastitih regulatora |
 | Top | Elektromagnetski top | Još nije dostupan, rezervisani pinovi |
  
 ---
  
 ## 2. Napajanje
  
-**Jedini izvor napajanja za cijeli sistem su 4 × 1.5 V AA baterije** (motori i JoyCar ploča, logika, senzori, WiFi i top).
+Izvor napajanja za cijeli sistem su **4 × 1.5 V AA baterije** na JoyCar ploči. Naša ploča **nema vlastite regulatore**: sve napone uzima sa zaglavlja JoyCar ploče (pinovi **3v3, 5V, V_BAT i GND**), koji su izmjereni i imaju odgovarajuće vrijednosti.
  
-| Napon | Izvor | Potrošači | Procjena struje |
-|---|---|---|---|
-| VBAT, oko 4.0–6.4 V (4 × AA, zavisno od napunjenosti) | Baterije | JoyCar ploča i motori (direktno iz VBAT), ulaz svih regulatora na našoj ploči | Motori: **TBD** (nominalno i blokirano) |
-| 3.3 V | LDO sa malim padom napona (npr. AP2112, MCP1700) ili buck | PIC, ESP8266, IR modul (ako je 3.3 V) | PIC oko 30 mA, ESP8266 do oko 300 mA (vršno), ukupno planirati ≥ 500 mA |
-| 5 V | Boost konvertor (ako je potreban) | HC-SR04 (radi na 5 V, oko 15 mA po senzoru) | oko 30–40 mA |
-| Napon topa | Boost konvertor/punjač kondenzatora na našoj ploči, iz VBAT | Kondenzatori i zavojnica topa | Ograničena struja punjenja, **TBD** |
+| Napon | Izvor | Potrošači |
+|---|---|---|
+| 3.3 V | JoyCar zaglavlje (pin 3v3) | PIC, ESP8266, IR Distance Click |
+| 5 V | JoyCar zaglavlje (pin 5V) | HC-SR04 (ako se koristi) |
+| V_BAT (oko 4.5–9 V, sa 4 × AA oko 6 V) | JoyCar zaglavlje (pin V_BAT) | Punjač kondenzatora topa |
+| GND | JoyCar zaglavlje | Zajednička masa |
  
-### 2.1 Ograničenja baterije
- 
-- 4 × AA daju malo napona kad se isprazne (oko 4 V), pa regulator za 3.3 V mora imati mali pad napona (npr. AP2112, MCP1700). Klasični LM1117 ima pad oko 1.2 V i bio bi na granici.
-- AA baterije imaju veliku unutrašnju otpornost (ukupno oko 1 Ω za četiri alkalne). Pri velikoj struji (pokretanje ili blokiranje motora, punjenje topa, WiFi šiljci) napon baterije pada, pa se PIC i ESP8266 mogu resetovati (brownout). Zajedničko napajanje je zato najveći rizik sistema.
-### 2.2 Mjere zaštite: hardver
- 
-- Veliki kondenzator (npr. 470–1000 µF) na VBAT, dodatnih 100–470 µF uz ESP8266 i 100 nF uz svaki pin napajanja.
-- Punjač topa ima ograničenu struju punjenja (oko 0.3–0.5 A, **TBD**), da ne sruši napon baterije.
-- Logika (3.3 V) ima vlastiti regulator dovoljnog kapaciteta, a razvod motora i topa je fizički odvojen od logike, uz mase spojene u jednoj tački.
-- Mjerenje napona baterije (ADC, pin RA1) za zaštitu.
-- Preklopnik (ili konektor) za isključenje cijelog napajanja.
-- Opciono: dioda ili preklopnik za razdvajanje, ako se pokaže da motori ruše napon.
-### 2.3 Mjere zaštite: firmver
- 
-- Top se puni samo kad motori nisu pod velikim opterećenjem (npr. dok vozilo stoji u TRACK).
-- Punjenje se prekida ako napon baterije padne ispod praga (**TBD**).
-- Pri niskom naponu baterije vozilo se zaustavlja, šalje `WARN` log, a top se razoružava.
-### 2.4 Testiranje prije konačnog dizajna
- 
-- Izmjeriti pad napona baterije pod opterećenjem (motori JoyCar-a, WiFi, punjenje topa).
-- Uporediti sa punjivim NiMH AA baterijama (niža unutrašnja otpornost, oko 4.8 V) i svježim alkalnim.
+Napomene:
+- Pinovi 3v3, 5V, V_BAT i GND nisu na ivičnom konektoru (micro:bit utoru), pa se na našu ploču spajaju **posebnim konektorom ili žicama** sa zaglavlja JoyCar ploče.
+- Uz napajanje PIC-a i ESP8266 ide kondenzator 100 nF uz svaki pin napajanja, te veći kondenzator (npr. 100–470 µF) uz ESP8266, jer povlači strujne šiljke pri slanju.
+- Za sve naponske nivoe treba **provjeriti koliko struje JoyCar daje** (ESP8266 do oko 300 mA vršno), uz stvarno opterećenje.
+- Na JoyCar ploči postoji prekidač ON/OFF koji isključuje cijeli sistem. Napon baterije se može mjeriti preko kontakta P2 (jumper BAT/P2, vidi odjeljak 4.5).
+- Top se puni iz V_BAT. Punjenje velikom strujom može spustiti napon baterije i resetovati PIC, pa se punjenje radi ograničenom strujom i samo kad vozilo stoji (firmver), uz zaštitu pri niskom naponu baterije.
 ---
  
 ## 3. Tabela pinova mikrokontrolera (PIC24FJ64GA702, SOIC-28)
@@ -296,6 +281,5 @@ Primjeri:
 | 3 | Nivo I2C, pull-up, napajanje sa JoyCar ploče, konektor i smjerovi motora (test) | HW tim, JoyCar uputstvo |
 | 4 | Napon i struja topa | Kad se top dobije |
 | 5 | ~~Da li su pinovi PIC-a za ECHO 5 V tolerantni~~ Riješeno: RB7 i RB11 su 5 V tolerantni | |
-| 6 | Potrošnja struje i pad napona baterije pod opterećenjem (motori, punjenje topa, WiFi) sa 4 × AA, odabir NiMH ili alkalnih | HW tim, mjerenje |
+| 6 | Koliko struje daju pinovi 3v3 i 5V na JoyCar zaglavlju i pad napona baterije pod opterećenjem (motori, punjenje topa, WiFi) | HW tim, mjerenje |
 | 7 | Prag napona baterije za zaustavljanje i prekid punjenja topa | HW + SW tim |
- 
