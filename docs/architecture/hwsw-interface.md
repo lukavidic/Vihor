@@ -16,7 +16,7 @@ Vrijednosti označene sa **TBD** treba potvrditi (profesor, JoyCar dokumentacija
 | WiFi modul | ESP8266 (ESP-01), AT komande preko UART-a | Potvrđeno |
 | Senzor za prepreke | HC-SR04 (ultrazvučni) | Potvrđeno |
 | Senzor za metu | HC-SR04 ili IR modul (npr. IR distance click) | **TBD** (profesor) |
-| Motori | JoyCar, sa JoyCar pločom koja sadrži drajvere | Interfejs **TBD** |
+| Motori | JoyCar, sa JoyCar pločom koja sadrži PWM kontroler | I2C, adresa 0x70 (vidi odjeljak 4) |
 | Napajanje | 4 × 1.5 V AA baterije | Potvrđeno |
 | Top | Elektromagnetski top | Još nije dostupan, rezervisani pinovi |
  
@@ -67,8 +67,8 @@ Raspodjela je usklađena sa datasheetom (tabela funkcija pinova). PIC ima 21 I/O
 | 3 | RA1 | Mjerenje napona baterije VBAT | ulaz (ADC) | AN1, RP27 | Razdjelnik napona; ako IR modul bude analogni, treba drugi ADC pin (**TBD**) |
 | 4 | RB0 | Programiranje (PGD1) | ulaz/izlaz | AN2, RP0 | Rezervisano za programer |
 | 5 | RB1 | Programiranje (PGC1) | ulaz/izlaz | AN3, RP1 | Rezervisano za programer |
-| 6 | RB2 | JoyCar komanda 1 | izlaz | AN4, RP2, SDA2 | **TBD**, pin se može remapirati (PWM, UART) ili koristiti kao I2C2 |
-| 7 | RB3 | JoyCar komanda 2 | izlaz | AN5, RP3, SCL2 | **TBD**, pin se može remapirati ili koristiti kao I2C2 |
+| 6 | RB2 | Rezerva | **TBD** | AN4, RP2, SDA2 | Slobodan pin (oslobođen jer JoyCar ide preko I2C) |
+| 7 | RB3 | Rezerva | **TBD** | AN5, RP3, SCL2 | Slobodan pin |
 | 9 | RA2 | LED (status) | izlaz | OSCI | Interni oscilator (FRC), pin je slobodan |
 | 10 | RA3 | Top: punjenje (omogući punjenje) | izlaz | OSCO | Rezervisano za top, samo digitalni izlaz |
 | 11 | RB4 | Top: rezerva | **TBD** | SOSCI, RP4 | Rezervisano za top |
@@ -76,43 +76,108 @@ Raspodjela je usklađena sa datasheetom (tabela funkcija pinova). PIC ima 21 I/O
 | 14 | RB5 | Dugme START/STOP | ulaz | RP5, 5 V tolerantan | Prekid INT1 preko RP5 |
 | 15 | RB6 | HC-SR04 #1 (prepreke): TRIG | izlaz | RP6, 5 V tolerantan | |
 | 16 | RB7 | HC-SR04 #1 (prepreke): ECHO | ulaz | RP7, INT0, 5 V tolerantan | Prekid INT0 na ivici signala, 5 V signal direktno |
-| 17 | RB8 | I2C SCL1 (rezerva) | **TBD** | RP8, SCL1, 5 V tolerantan | Ako IR modul ili JoyCar koriste I2C |
-| 18 | RB9 | I2C SDA1 (rezerva) | **TBD** | RP9, SDA1 | Ako IR modul ili JoyCar koriste I2C, **nije** 5 V tolerantan |
+| 17 | RB8 | I2C SCL1: JoyCar ploča | izlaz | RP8, SCL1, 5 V tolerantan | PWM kontroler (0x70) i IO ekspander (0x38) |
+| 18 | RB9 | I2C SDA1: JoyCar ploča | ulaz/izlaz | RP9, SDA1 | Isto kao SCL, pin **nije** 5 V tolerantan |
 | 21 | RB10 | HC-SR04 #2 (meta): TRIG | izlaz | RP10, 5 V tolerantan | |
 | 22 | RB11 | HC-SR04 #2 (meta): ECHO | ulaz | RP11, 5 V tolerantan | 5 V signal direktno, prekid se mapira preko PPS-a |
 | 23 | RB12 | UART1 RX ← ESP8266 TX | ulaz | RP12 | |
 | 24 | RB13 | UART1 TX → ESP8266 RX | izlaz | RP13 | |
-| 25 | RB14 | JoyCar komanda 3 | izlaz | RP14 | **TBD**, pin se može remapirati (PWM, UART) |
-| 26 | RB15 | JoyCar komanda 4 | izlaz | RP15 | **TBD**, pin se može remapirati (PWM, UART) |
+| 25 | RB14 | Rezerva | **TBD** | RP14 | Slobodan pin |
+| 26 | RB15 | Rezerva | **TBD** | RP15 | Slobodan pin |
 | 13, 28 | VDD, AVDD | Napajanje 3.3 V | | | Uz svaki pin kondenzator 100 nF |
 | 8, 19, 27 | VSS, AVSS | Masa | | | |
 | 20 | VCAP | Kondenzator za jezgru | | | Prema datasheetu (npr. 10 µF) |
  
 Napomene o pinovima:
 - **5 V tolerantni ulazi** su prema datasheetu samo RB5, RB6, RB7, RB8, RB10 i RB11. ECHO signali HC-SR04 (5 V) zato su na RB7 i RB11 i mogu ići direktno, uz zaštitni serijski otpornik (npr. 1 kΩ). Ostali pinovi nisu 5 V tolerantni.
-- **Remapirani (RP) pinovi** su RB0–RB15 (RP0–RP15), RA0 (RP26) i RA1 (RP27). Pinovi **RA2, RA3 i RA4 nemaju RP funkciju**, pa su dodijeljeni isključivo digitalnim signalima (LED, punjenje i okidanje topa). Zato JoyCar komande (koje mogu tražiti PWM, UART ili I2C) idu na RB2, RB3, RB14 i RB15.
+- **Remapirani (RP) pinovi** su RB0–RB15 (RP0–RP15), RA0 (RP26) i RA1 (RP27). Pinovi **RA2, RA3 i RA4 nemaju RP funkciju**, pa su dodijeljeni isključivo digitalnim signalima (LED, punjenje i okidanje topa). JoyCar se komanduje preko I2C (RB8 i RB9), pa su pinovi RB2, RB3, RB14 i RB15 slobodni i ostavljeni kao rezerva.
 - **Oscilator:** pinovi RA2 (OSCI), RA3 (OSCO), RA4 (SOSCO) i RB4 (SOSCI) su I/O samo ako se koristi interni oscilator (FRC) i ako je sekundarni oscilator isključen u konfiguraciji.
 - **Analogni pinovi** (AN0–AN9) se moraju podesiti kao digitalni (ANSx = 0) kada se koriste kao I/O.
 - Dva ultrazvučna senzora ne smiju mjeriti istovremeno (međusobne smetnje), pa ih firmver čita naizmjenično.
-- JoyCar komande su samo rezervacija: tačan broj pinova (npr. 2 PWM + 2 smjera, ili I2C/UART) ovisi o JoyCar ploči.
+- I2C linije (RB8 i RB9) zahtijevaju pull-up otpornike (obično 2.2–4.7 kΩ na 3.3 V). Provjeriti postoje li već na JoyCar ploči, da se ne dupliraju.
 - ESP8266 pin EN (CH_PD) ide preko otpornika na 3.3 V.
 ---
  
 ## 4. Interfejs prema JoyCar ploči (motori)
  
-**Status: TBD, treba istražiti dokumentaciju JoyCar-a.**
+JoyCar ploča je namijenjena za BBC micro:bit, koji je I2C **master**, a ostali uređaji na ploči su **slave**. Naša ploča (PIC) preuzima ulogu mastera. Prema uputstvu, na ploči postoje dva I2C uređaja:
  
-JoyCar ima ploču sa drajverima motora, a naša ploča joj zadaje komande na logičkom nivou. Potrebno saznati:
+| Uređaj | I2C adresa | Namjena |
+|---|---|---|
+| PWM kontroler | **0x70** | Upravljanje motorima (registri 0x02–0x05) |
+| IO ekspander | **0x38** | Infracrveni senzori na JoyCar ploči (zaglavlja OBSTCL L/R i LINE TRK L/M/R) |
+ 
+### 4.1 Inicijalizacija PWM kontrolera (I2C adresa 0x70)
+ 
+Iz primjera koda za micro:bit (Python) vidi se tačan redoslijed I2C poruka. I2C magistrala radi na **400 kHz**. Pri startu se šalju dvije poruke na adresu 0x70:
+ 
+| Redoslijed | Bajtovi (registar, vrijednost) | Značenje |
+|---|---|---|
+| 1 | `0x00, 0x01` | Registar MODE1 = 0x01: normalan rad (bez sleep moda), uključen odgovor na all-call adresu |
+| 2 | `0xE8, 0xAA` | Registar LEDOUT (0x08) sa uključenim auto-inkrementom (0xE0 + 0x08), vrijednost 0xAA: sva četiri izlaza rade pod pojedinačnom PWM kontrolom |
+ 
+Struktura registara odgovara 4-kanalnom PWM/LED kontroleru **PCA9633** (ili kompatibilnom), čija je all-call adresa 0x70. To je zaključak iz koda i nije potvrđeno u uputstvu, pa provjeriti čip na ploči i njegov datasheet.
+ 
+### 4.2 Komandovanje motorima
+ 
+Brzina svakog izlaza se zadaje jednom I2C porukom `[registar, vrijednost]`, gdje je vrijednost PWM **0–255**:
+ 
+| Parametar | Registar | Motor | Smjer |
+|---|---|---|---|
+| PWM0 | 0x02 | desni | nazad |
+| PWM1 | 0x03 | desni | naprijed |
+| PWM2 | 0x04 | lijevi | nazad |
+| PWM3 | 0x05 | lijevi | naprijed |
+ 
+Za jedan korak upravljanja šalju se četiri poruke: `[0x02, PWM0]`, `[0x03, PWM1]`, `[0x04, PWM2]`, `[0x05, PWM3]`. Kombinacije iz primjera koda:
+ 
+| Manevar | PWM0 | PWM1 | PWM2 | PWM3 | Napomena |
+|---|---|---|---|---|---|
+| Naprijed | 0 | v | 0 | v | oba motora naprijed |
+| Nazad | v | 0 | v | 0 | oba motora nazad |
+| Okret ulijevo u mjestu | 0 | v | v | 0 | desni naprijed, lijevi nazad |
+| Okret udesno u mjestu | v | 0 | 0 | v | desni nazad, lijevi naprijed |
+| Stop | 0 | 0 | 0 | 0 | jako kočenje |
+| Meko kočenje | 255 | 255 | 255 | 255 | iz uputstva |
+ 
+Skretanje u vožnji: spoljašnji točak ide brzinom `v`, a unutrašnji brzinom `0.7 · v · (r / 5)`, gdje je `r` radijus od 1 do 5. Npr. skretanje ulijevo naprijed: `PWM1 = v`, `PWM3 = unutrašnja brzina`.
+ 
+Napomena o nedoslijednosti u izvoru: komentar u primjeru koda kaže da su PWM0 i PWM1 lijevi motor, ali primjeri vožnje (npr. skretanje ulijevo smanjuje PWM3) i kompenzacija (`biasR` se primjenjuje na PWM0 i PWM1) odgovaraju gornjoj tabeli, gdje su PWM0 i PWM1 desni motor. Tabela uputstva ("Lijevo" pokreće samo jedan kanal) također se razlikuje od primjera koda. **Smjerove treba provjeriti na stvarnom vozilu** prije fiksiranja u firmveru.
+ 
+Kompenzacija različite brzine motora u primjeru koda: vrijednost se množi faktorom `(100 − bias) / 100` (zasebno za desni i lijevi motor). Preuzeti u firmver kao dvije konstante.
+ 
+### 4.3 Šta još treba saznati
  
 | Pitanje | Odgovor |
 |---|---|
-| Način komandovanja (PWM + smjer, I2C, UART ili drugo) | TBD |
-| Logički nivo ulaza (3.3 V ili 5 V) | TBD |
-| Potreban broj pinova | TBD |
-| Napaja li se JoyCar ploča iz iste baterije | TBD |
-| Konektor (tip, raspored) | TBD |
-| Pretvarač nivoa 3.3 V ↔ 5 V potreban | TBD |
+| Brzina I2C magistrale | 400 kHz (iz primjera koda) |
+| Logički nivo I2C linija (3.3 V ili 5 V) | TBD (micro:bit je 3.3 V) |
+| Pull-up otpornici na JoyCar ploči | TBD |
+| Potvrda čipa PWM kontrolera (PCA9633) i smjerova motora | TBD, test na vozilu |
+| Napaja li se naša ploča sa JoyCar ploče (izlazi 3V3, 5V i V_BAT na zaglavlju) i koliku struju daju | TBD |
+| Konektor prema JoyCar ploči (tip i raspored pinova) | TBD |
  
+### 4.4 IO ekspander (adresa 0x38): senzori na JoyCar ploči
+ 
+IO ekspander na JoyCar ploči prikuplja signale svih senzora i vraća ih kao **jedan bajt**. Svaki bit odgovara jednom pinu ekspandera, a bit je 1 (True) kada senzor detektuje.
+ 
+| Bit | Pin ekspandera | Senzor |
+|---|---|---|
+| 0 | PIN 0 | Senzor brzine, lijevi |
+| 1 | PIN 1 | Senzor brzine, desni |
+| 2 | PIN 2 | Senzor linije, lijevi |
+| 3 | PIN 3 | Senzor linije, srednji |
+| 4 | PIN 4 | Senzor linije, desni |
+| 5 | PIN 5 | Senzor prepreke, lijevi (Hindernis) |
+| 6 | PIN 6 | Senzor prepreke, desni (Hindernis) |
+| 7 | PIN 7 | Opcioni digitalni izlaz EOUT7 (slobodan za vlastite projekte) |
+ 
+Primjer: bajt `1 0 1 1 0 1 1 1` (bit 7 do bit 0) znači da su detektovani: senzor brzine L i R, senzor linije L i R, senzor prepreke L i bit 7 je postavljen, a srednji senzor linije i desni senzor prepreke ne detektuju.
+ 
+Mogućnosti:
+- **Senzori prepreke** (bit 5 i 6) daju digitalnu informaciju (prepreka da ili ne), pa se mogu koristiti kao dodatna detekcija prepreka bez dodatnih pinova na našoj ploči. Domet treba provjeriti (**TBD**), jer se radi o infracrvenim senzorima kratkog dometa.
+- **Senzori brzine** (bit 0 i 1) daju impulse pri okretanju točkova. Čitanje preko I2C-a je ograničeno brzinom magistrale, pa je za precizno brojanje impulsa potrebno ispitati dovoljnu učestalost očitavanja (**TBD**).
+- Bit 7 (EOUT7) je slobodan digitalni izlaz, koji se može koristiti za vlastite potrebe (**TBD**).
 ---
  
 ## 5. Konektor za top (rezervisano)
@@ -135,12 +200,13 @@ Napomene:
  
 ## 6. I2C
  
-Koristi se samo ako IR modul ili JoyCar ploča to traže.
+PIC je I2C master na modulu I2C1 (RB8 = SCL1, RB9 = SDA1). Magistrala je zajednička za JoyCar ploču i IR modul (ako je I2C).
  
 | Uređaj | Adresa | Napomena |
 |---|---|---|
-| IR distance click (ako je I2C) | **TBD** | Provjeriti u datasheetu |
-| JoyCar ploča (ako je I2C) | **TBD** | |
+| JoyCar PWM kontroler | 0x70 | Motori (vjerovatno PCA9633) |
+| JoyCar IO ekspander | 0x38 | Senzori JoyCar ploče (brzina, linija, prepreke), jedan bajt |
+| IR modul za metu (ako je I2C) | **TBD** | Provjeriti u datasheetu, ne smije se poklapati sa 0x70 i 0x38 |
  
 HC-SR04 ne koristi I2C.
  
@@ -188,9 +254,8 @@ Primjeri:
 |---|---|---|
 | 1 | Konačna potvrda MCU-a (PIC24FJ64GA702 ili sličan) | Profesor |
 | 2 | Tačan model IR modula za metu i njegov interfejs | Profesor |
-| 3 | Interfejs prema JoyCar ploči (pinovi, nivoi, napajanje) | HW tim, JoyCar dokumentacija |
+| 3 | Nivo I2C, pull-up, napajanje sa JoyCar ploče, konektor i smjerovi motora (test) | HW tim, JoyCar uputstvo |
 | 4 | Napon i struja topa | Kad se top dobije |
 | 5 | ~~Da li su pinovi PIC-a za ECHO 5 V tolerantni~~ Riješeno: RB7 i RB11 su 5 V tolerantni | |
-| 6 | Konačno mapiranje RPn pinova za JoyCar komande (zavisi od interfejsa JoyCar ploče) | HW + SW tim |
-| 7 | Potrošnja struje i pad napona baterije pod opterećenjem (motori, punjenje topa, WiFi) sa 4 × AA, odabir NiMH ili alkalnih | HW tim, mjerenje |
-| 8 | Prag napona baterije za zaustavljanje i prekid punjenja topa | HW + SW tim |
+| 6 | Potrošnja struje i pad napona baterije pod opterećenjem (motori, punjenje topa, WiFi) sa 4 × AA, odabir NiMH ili alkalnih | HW tim, mjerenje |
+| 7 | Prag napona baterije za zaustavljanje i prekid punjenja topa | HW + SW tim |
