@@ -15,7 +15,7 @@ Vrijednosti označene sa **TBD** treba potvrditi (profesor, JoyCar dokumentacija
 | Mikrokontroler | PIC24FJ64GA702 (SOIC-28) | Gotovo potvrđeno, moguć sličan (npr. GA002) |
 | WiFi modul | ESP8266 (ESP-01), AT komande preko UART-a | Potvrđeno |
 | Senzor za prepreke | HC-SR04 (ultrazvučni) | Potvrđeno |
-| Senzor za metu | HC-SR04 ili IR modul (npr. IR distance click) | **TBD** (profesor) |
+| Senzor za metu | IR Distance Click (MikroE, Sharp GP2Y0A60SZ0F, analogni izlaz, 10–150 cm), moguća alternativa HC-SR04 | Potvrditi sa profesorom |
 | Motori | JoyCar, sa JoyCar pločom koja sadrži PWM kontroler | I2C, adresa 0x70 (vidi odjeljak 4) |
 | Napajanje | 4 × 1.5 V AA baterije | Potvrđeno |
 | Top | Elektromagnetski top | Još nije dostupan, rezervisani pinovi |
@@ -67,8 +67,8 @@ Raspodjela je usklađena sa datasheetom (tabela funkcija pinova). PIC ima 21 I/O
 | 3 | RA1 | Napon baterije (JoyCar kontakt P2, jumper BAT) | ulaz (ADC) | AN1, RP27 | JoyCar već ima djelitelj napona na P2; provjeriti opseg (**TBD**) |
 | 4 | RB0 | Programiranje (PGD1) | ulaz/izlaz | AN2, RP0 | Rezervisano za programer |
 | 5 | RB1 | Programiranje (PGC1) | ulaz/izlaz | AN3, RP1 | Rezervisano za programer |
-| 6 | RB2 | JoyCar kontakt P0 (LED farovi), opciono | izlaz | AN4, RP2, SDA2 | Opciono, inače rezerva |
-| 7 | RB3 | JoyCar kontakt P16 (zujalica), opciono | izlaz | AN5, RP3, SCL2 | Opciono, inače rezerva |
+| 6 | RB2 | IR Distance Click: OUT (analogni izlaz) | ulaz (ADC) | AN4, RP2, SDA2 | Senzor za metu; napajanje 3.3 V (jumperi PWR SEL na 3V3) |
+| 7 | RB3 | IR Distance Click: EN (uključenje senzora) | izlaz | AN5, RP3, SCL2 | Digitalni izlaz |
 | 9 | RA2 | LED (status) | izlaz | OSCI | Interni oscilator (FRC), pin je slobodan |
 | 10 | RA3 | Top: punjenje (omogući punjenje) | izlaz | OSCO | Rezervisano za top, samo digitalni izlaz |
 | 11 | RB4 | Top: rezerva | **TBD** | SOSCI, RP4 | Rezervisano za top |
@@ -78,12 +78,12 @@ Raspodjela je usklađena sa datasheetom (tabela funkcija pinova). PIC ima 21 I/O
 | 16 | RB7 | HC-SR04 #1: ECHO (JoyCar kontakt P12) | ulaz | RP7, INT0, 5 V tolerantan | Prekid INT0 na ivici signala, 5 V signal direktno |
 | 17 | RB8 | I2C SCL1: JoyCar kontakt P19 | izlaz | RP8, SCL1, 5 V tolerantan | PWM kontroler (0x70) i IO ekspander (0x38) |
 | 18 | RB9 | I2C SDA1: JoyCar kontakt P20 | ulaz/izlaz | RP9, SDA1 | Isto kao SCL, pin **nije** 5 V tolerantan |
-| 21 | RB10 | HC-SR04 #2: TRIG | izlaz | RP10, 5 V tolerantan | Vlastito ožičenje i napajanje 5 V |
-| 22 | RB11 | HC-SR04 #2 (meta): ECHO | ulaz | RP11, 5 V tolerantan | 5 V signal direktno, prekid se mapira preko PPS-a |
+| 21 | RB10 | HC-SR04 #2: TRIG (opciono) | izlaz | RP10, 5 V tolerantan | Samo ako se za metu koristi i ultrazvučni senzor |
+| 22 | RB11 | HC-SR04 #2: ECHO (opciono) | ulaz | RP11, 5 V tolerantan | 5 V signal direktno, prekid se mapira preko PPS-a |
 | 23 | RB12 | UART1 RX ← ESP8266 TX | ulaz | RP12 | |
 | 24 | RB13 | UART1 TX → ESP8266 RX | izlaz | RP13 | |
-| 25 | RB14 | JoyCar kontakt P1 (servo 1), opciono | izlaz | RP14 | Opciono, inače rezerva |
-| 26 | RB15 | Rezerva | **TBD** | RP15 | Slobodan pin |
+| 25 | RB14 | JoyCar kontakt P0 (LED farovi), opciono | izlaz | RP14 | Opciono, inače rezerva |
+| 26 | RB15 | JoyCar kontakt P16 (zujalica), opciono | izlaz | RP15 | Opciono, inače rezerva |
 | 13, 28 | VDD, AVDD | Napajanje 3.3 V | | | Uz svaki pin kondenzator 100 nF |
 | 8, 19, 27 | VSS, AVSS | Masa | | | |
 | 20 | VCAP | Kondenzator za jezgru | | | Prema datasheetu (npr. 10 µF) |
@@ -96,6 +96,22 @@ Napomene o pinovima:
 - Dva ultrazvučna senzora ne smiju mjeriti istovremeno (međusobne smetnje), pa ih firmver čita naizmjenično.
 - I2C linije (RB8 i RB9) zahtijevaju pull-up otpornike (obično 2.2–4.7 kΩ na 3.3 V). Provjeriti postoje li već na JoyCar ploči, da se ne dupliraju.
 - ESP8266 pin EN (CH_PD) ide preko otpornika na 3.3 V.
+### 3.1 Senzor za metu: IR Distance Click
+ 
+Modul proizvođača MikroElektronika, sa senzorom **Sharp GP2Y0A60SZ0F** (infracrveni, mjerenje trijangulacijom, talasna dužina 870 nm).
+ 
+| Svojstvo | Vrijednost |
+|---|---|
+| Interfejs | **Analogni izlaz** (OUT) i pin za uključenje (EN). Nema I2C ni SPI. |
+| Opseg | 10–150 cm |
+| Napajanje | 3.3 V ili 5 V, bira se jumperima PWR SEL (svi jumperi moraju biti na istoj strani) |
+| Izlaz | Napon obrnuto proporcionalan udaljenosti (nelinearno), pa je potrebna kalibraciona tabela |
+ 
+Povezivanje na PIC:
+- **OUT** ide na analogni ulaz **RB2 (AN4)**. Modul se napaja sa **3.3 V** (jumperi PWR SEL na 3V3), da izlaz ne pređe 3.3 V (ADC PIC-a).
+- **EN** ide na digitalni izlaz **RB3**.
+- Snop je uzak, pa je modul pogodniji za određivanje smjera prema meti od ultrazvučnog senzora, a HC-SR04 ostaje za prepreke (JoyCar US zaglavlje, kontakti P8 i P12).
+- Pošto se za metu koristi IR modul, **drugi HC-SR04 (RB10, RB11) nije potreban** i ostaje samo kao opcija.
 ---
  
 ## 4. Interfejs prema JoyCar ploči (motori)
@@ -185,13 +201,13 @@ Naša ploča zamjenjuje micro:bit: ulazi u **ivični utor** (konektor za micro:b
  
 | micro:bit kontakt | JoyCar funkcija | Naš PIC pin | Status |
 |---|---|---|---|
-| P0 | LED farovi (FL, FR, RL, RR) | RB2 | Opciono |
-| P1 | Servo 1 | RB14 | Opciono |
+| P0 | LED farovi (FL, FR, RL, RR) | RB14 | Opciono |
+| P1 | Servo 1 | nije povezano | Ne koristimo |
 | P2 | Servo 2 ili mjerenje baterije (ADC), bira se jumperom BAT/P2 | RA1 | Koristimo za napon baterije |
 | P8 | US senzor: TRIG | RB6 | Koristimo (HC-SR04 #1) |
 | P12 | US senzor: ECHO | RB7 | Koristimo (HC-SR04 #1) |
 | P13, P14, P15 | SPI (SCK, MISO, MOSI) | nije povezano | Ne koristimo |
-| P16 | Zujalica | RB3 | Opciono |
+| P16 | Zujalica | RB15 | Opciono |
 | P19, P20 | I2C: SCL i SDA (PWM kontroler 0x70, IO ekspander 0x38) | RB8, RB9 | Koristimo |
 | 3V | Napajanje 3.3 V | | Vidi napomene o napajanju (provjeriti smjer) |
 | GND | Masa | | |
@@ -224,13 +240,12 @@ Napomene:
  
 ## 6. I2C
  
-PIC je I2C master na modulu I2C1 (RB8 = SCL1, RB9 = SDA1). Magistrala je zajednička za JoyCar ploču i IR modul (ako je I2C).
+PIC je I2C master na modulu I2C1 (RB8 = SCL1, RB9 = SDA1). Magistrala je zajednička za JoyCar ploču (PWM kontroler i IO ekspander).
  
 | Uređaj | Adresa | Napomena |
 |---|---|---|
 | JoyCar PWM kontroler | 0x70 | Motori (vjerovatno PCA9633) |
 | JoyCar IO ekspander | 0x38 | Senzori JoyCar ploče (brzina, linija, prepreke), jedan bajt |
-| IR modul za metu (ako je I2C) | **TBD** | Provjeriti u datasheetu, ne smije se poklapati sa 0x70 i 0x38 |
  
 HC-SR04 ne koristi I2C.
  
@@ -277,9 +292,10 @@ Primjeri:
 | # | Stavka | Ko saznaje |
 |---|---|---|
 | 1 | Konačna potvrda MCU-a (PIC24FJ64GA702 ili sličan) | Profesor |
-| 2 | Tačan model IR modula za metu i njegov interfejs | Profesor |
+| 2 | Potvrda da će se za metu koristiti IR Distance Click, kalibracija i izbjegavanje smetnji (sunce, drugi IR izvori) | Profesor, HW tim (test) |
 | 3 | Nivo I2C, pull-up, napajanje sa JoyCar ploče, konektor i smjerovi motora (test) | HW tim, JoyCar uputstvo |
 | 4 | Napon i struja topa | Kad se top dobije |
 | 5 | ~~Da li su pinovi PIC-a za ECHO 5 V tolerantni~~ Riješeno: RB7 i RB11 su 5 V tolerantni | |
 | 6 | Potrošnja struje i pad napona baterije pod opterećenjem (motori, punjenje topa, WiFi) sa 4 × AA, odabir NiMH ili alkalnih | HW tim, mjerenje |
 | 7 | Prag napona baterije za zaustavljanje i prekid punjenja topa | HW + SW tim |
+ 
