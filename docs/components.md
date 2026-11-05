@@ -22,8 +22,8 @@ Vrijednosti označene sa **TBD** treba potvrditi.
 | Kućište | SOIC-28 |
 | Napon | 3.3 V |
 | Interfejsi | I2C, UART, ADC, GPIO |
-| Status | Gotovo potvrđeno (**TBD** potvrda profesora) |
-| Dokumentacija | datasheet: **TBD** link |
+| Status | Potvrđeno |
+| Dokumentacija | datasheet: (https://ww1.microchip.com/downloads/aemDocuments/documents/MCU16/ProductDocuments/DataSheets/PIC24FJ256GA705-Family-Data-Sheet-DS30010118E.pdf) |
 
 ### 1.2 WiFi modul: ESP-01 (ESP8266)
 
@@ -35,7 +35,7 @@ Vrijednosti označene sa **TBD** treba potvrditi.
 | Napon | 3.3 V, vršno do oko 300 mA |
 | Interfejs | UART, 115200 baud, AT komande |
 | Status | Potvrđeno |
-| Dokumentacija | datasheet: **TBD** link |
+| Dokumentacija | datasheet: (https://www.alldatasheet.com/datasheet-pdf/view/1179098/ETC2/ESP-01.html) |
 
 ### 1.3 Senzor za prepreke: HC-SR04
 
@@ -48,6 +48,7 @@ Vrijednosti označene sa **TBD** treba potvrditi.
 | Interfejs | TRIG (ulaz), ECHO (izlaz, 5 V signal) |
 | Priključak | JoyCar US zaglavlje (P8 TRIG, P12 ECHO) |
 | Status | Potvrđeno |
+| Dokumentacija | datasheet: (https://cdn.sparkfun.com/datasheets/Sensors/Proximity/HCSR04.pdf) |
 
 ### 1.4 Senzor za metu: IR Distance Click
 
@@ -61,6 +62,7 @@ Vrijednosti označene sa **TBD** treba potvrditi.
 | Napon | 3.3 V (jumperi PWR SEL na 3V3) |
 | Interfejs | Analogni izlaz OUT, pin EN |
 | Status | Potvrditi sa profesorom |
+| Dokumentacija | datasheet: (https://download.mikroe.com/documents/datasheets/GP2Y0A60SZxF.pdf) |
 
 ### 1.5 JoyCar platforma
 
