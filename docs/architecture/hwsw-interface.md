@@ -1,7 +1,7 @@
 # Interfejs sistema (HW/SW)
  
 **Projekat:** Autonomna mobilna platforma sa integrisanim elektromagnetskim topom
-**Verzija:** 0.7 (nacrt)
+**Verzija:** 0.8 (nacrt)
 **Svrha:** Zajednički dogovor hardverskog i softverskog tima: napajanje, pinovi mikrokontrolera, konektori i komunikacioni protokol. Svaka promjena pinova ili protokola ide prvo kroz izmjenu ovog dokumenta, uz saglasnost oba tima.
  
 Vrijednosti označene sa **TBD** treba potvrditi (profesor, JoyCar dokumentacija, datasheet).
@@ -43,7 +43,7 @@ Napomene:
  
 ## 3. Tabela pinova mikrokontrolera (PIC24FJ64GA702, SOIC-28)
  
-Raspodjela je usklađena sa datasheetom (tabela funkcija pinova). PIC ima 21 I/O pin (RA0–RA4 i RB0–RB15), a u ovoj raspodjeli su svi zauzeti ili rezervisani, pa **nema slobodnog prostora** za nove funkcije. Ako se pojavi potreba za još pinova, treba razmisliti o većem PIC-u iz iste porodice.
+Raspodjela je usklađena sa datasheetom (tabela funkcija pinova). PIC ima 21 I/O pin (RA0–RA4 i RB0–RB15), a u ovoj raspodjeli su svi zauzeti ili rezervisani. Jedine prave rezerve su pinovi označeni kao opcioni (RB10, RB11, RB14, RB15), pa ako se pojavi potreba za više pinova, treba razmisliti o većem PIC-u iz iste porodice.
  
 | Fizički pin | Port | Funkcija | Smjer | Posebne mogućnosti pina | Napomena |
 |---|---|---|---|---|---|
@@ -271,4 +271,4 @@ Primjeri:
 | poruka | slobodan tekst ili `KLJUČ=vrijednost` parovi |
  
 ---
- 
+
