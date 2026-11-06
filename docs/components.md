@@ -1,10 +1,10 @@
 # Spisak komponenti
 
 **Projekat:** Autonomna mobilna platforma sa integrisanim elektromagnetskim topom
-**Verzija:** 0.1 (nacrt)
-**Svrha:** Pregled svih komponenti sistema sa slikom, namjenom i osnovnim podacima. Detalji o pinovima i povezivanju su u [interface.md](interface.md), a o napajanju i blokovima u [hardware.md](architecture/hardware.md).
+**Verzija:** 0.2 (nacrt)
+**Svrha:** Pregled svih komponenti sistema sa slikom, namjenom i osnovnim podacima. Detalji o pinovima i povezivanju su u [hwsw-interface.md](architecture/hwsw-interface.md), a o napajanju i blokovima u [hardware.md](architecture/hardware.md).
 
-**Slike:** fotografije se stavljaju u folder `docs/images/` pod nazivom iz kolone "Slika". Dok slika ne postoji, polje ostaje prazno. Najbolje su fotografije stvarnih dijelova koje imamo.
+**Slike:** fotografije se stavljaju u folder `docs/images/` pod nazivom koji je naveden u oznaci slike uz komponentu. Dok slika ne postoji, prikazuje se prazan okvir. Najbolje su fotografije stvarnih dijelova koje imamo.
 
 Vrijednosti označene sa **TBD** treba potvrditi.
 
@@ -94,7 +94,7 @@ Vrijednosti označene sa **TBD** treba potvrditi.
 | Svojstvo | Vrijednost |
 |---|---|
 | Namjena | Ispaljivanje projektila |
-| Signali | CHARGE, FIRE, VCAP_SENSE (vidi `interface.md`, odjeljak 5) |
+| Signali | CHARGE, FIRE, VCAP_SENSE (vidi `hwsw-interface.md`, odjeljak 5) |
 | Status | **Još nije isporučen**, rezervisan konektor i pinovi |
 
 ---
