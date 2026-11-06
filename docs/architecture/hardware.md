@@ -1,8 +1,8 @@
 # Hardverska arhitektura
 
 **Projekat:** Autonomna mobilna platforma sa integrisanim elektromagnetskim topom
-**Verzija:** 0.1 (nacrt)
-**Svrha:** Opis hardverskih blokova ploče, njihovih veza, napajanja i konektora. Tačne pinove, I2C adrese i protokol definiše dokument [interface.md](interface.md) i ovdje se ne ponavljaju.
+**Verzija:** 0.2 (nacrt)
+**Svrha:** Opis hardverskih blokova ploče, njihovih veza, napajanja i konektora. Tačne pinove, I2C adrese i protokol definiše dokument [hwsw-interface.md](hwsw-interface.md) i ovdje se ne ponavljaju.
 
 Vrijednosti označene sa **TBD** treba potvrditi mjerenjem ili datasheetom.
 
@@ -66,7 +66,7 @@ flowchart TB
 | Izvor | 4 × AA baterije | 4–6.4 V | zaglavlje | Napajanje svega |
 | Top | Elektromagnetski top | **TBD** | CHARGE, FIRE, VCAP_SENSE | Gađanje (još nije dostupan) |
 
-Detalji i razlozi izbora su u `interface.md`, odjeljak 1 i 3.1.
+Detalji i razlozi izbora su u `hwsw-interface.md`, odjeljak 1 i 3.1.
 
 ---
 
@@ -110,7 +110,7 @@ Vrijednosti su okvirne, prema tipičnim podacima iz datasheeta, i treba ih provj
 
 ## 5. Pinovi
 
-Potpuna tabela pinova (PIC24FJ64GA702, SOIC-28) nalazi se u `interface.md`, odjeljak 3. Pregled grupa:
+Potpuna tabela pinova (PIC24FJ64GA702, SOIC-28) nalazi se u `hwsw-interface.md`, odjeljak 3. Pregled grupa:
 
 | Grupa | Pinovi | Veza |
 |---|---|---|
@@ -135,7 +135,7 @@ Potpuna tabela pinova (PIC24FJ64GA702, SOIC-28) nalazi se u `interface.md`, odje
 | Programski konektor | MCLR, PGD1, PGC1, 3.3 V, GND | Za programer |
 | ESP-01 | UART, 3.3 V, EN | Utičnica 2 × 4 |
 | IR Distance Click | OUT, EN, 3.3 V, GND | Utičnica za click modul ili žice |
-| Konektor topa | VBAT, GND, CHARGE, FIRE, VCAP_SENSE, rezerva | Raspored u `interface.md`, odjeljak 5 |
+| Konektor topa | VBAT, GND, CHARGE, FIRE, VCAP_SENSE, rezerva | Raspored u `hwsw-interface.md`, odjeljak 5 |
 
 PCB:
 - Dvoslojna ploča, izrada u KiCadu 8, fabrikacija u Kini.
@@ -166,16 +166,7 @@ Top još nije dostupan, pa se unaprijed predviđa samo interfejs:
 | 4 | 3V kontakt micro:bita: smjer (izlaz ili ulaz) | Da li ploču napajati kroz ivični konektor |
 | 5 | Geometrija ivičnog konektora (razmak, širina i dužina prstiju, debljina) | Footprint |
 | 6 | Opseg napona na P2 (jumper BAT) | Skaliranje ADC-a |
-| 7 | Smjerovi motora i raspored PWM kanala | Provjera tabele u `interface.md` |
+| 7 | Smjerovi motora i raspored PWM kanala | Provjera tabele u `hwsw-interface.md` |
 
 ---
 
-## 9. Otvorene stavke
-
-| # | Stavka | Ko saznaje |
-|---|---|---|
-| 1 | Potvrda MCU-a i IR modula | Profesor |
-| 2 | Rezultati mjerenja iz odjeljka 8 | HW tim |
-| 3 | Napon, struja i konektor topa | Kad se top dobije |
-| 4 | Da li je potreban dodatni kondenzator ili regulator za ESP8266 | HW tim, nakon mjerenja 1 |
-| 5 | Prag napona baterije za zaustavljanje | HW + SW tim |
