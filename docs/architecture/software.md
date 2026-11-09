@@ -91,5 +91,4 @@ Firmver je organizovan po principu apstrakcije hardvera (HAL). Gornji sloj (maš
 
 ### 4.2 Mašina stanja: Top/Meta
 
-### 4.2 Mašina stanja: KULA (Top/Meta)
 
