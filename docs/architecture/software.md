@@ -41,14 +41,14 @@ flowchart TD
         
         subgraph LOGIKA["Aplikacioni sloj (Logika i stanja)"]
             SM_VEH["Vozilo SM<br/>(IDLE, DRIVE, AVOID)"]
-            SM_TUR["Kula SM<br/>(SEARCH, TRACK, FIRE)"]
+            SM_TUR["Meta/top SM<br/>(SEARCH, TRACK, FIRE)"]
         end
         
         subgraph HAL["HAL - Upravljački programi"]
             DRV_WIFI["WiFi Modul<br/>(ESP8266 UART)"]
             DRV_SENS["Senzori<br/>(HC-SR04, IR)"]
             DRV_MOT["Motori<br/>(JoyCar I2C)"]
-            DRV_TUR["Kula i Top<br/>(Servo PWM, ADC)"]
+            DRV_TUR["Meta/top<br/>(Servo PWM, ADC)"]
         end
     end
 
