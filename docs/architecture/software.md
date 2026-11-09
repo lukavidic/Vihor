@@ -85,7 +85,11 @@ Firmver je organizovan po principu apstrakcije hardvera (HAL). Gornji sloj (maš
 | **WiFi** | Komunikacija sa ESP8266, slanje/prijem podataka | UART1 (RB12 RX, RB13 TX, 115200 baud) | `wifi_init()`, `wifi_connect(ssid, pass)`, `wifi_send_log(msg)`, `wifi_get_command()`, `wifi_is_connected()` |
 | **Logger** | Formatiranje log poruka prema protokolu | - (koristi WiFi modul) | `log_info(module, msg)`, `log_warn(module, msg)`, `log_error(module, msg)` |
 
+## 4. Dinamički aspekti (Mašine stanje)
 
+### 4.1 Mašina stanja: VOZILO (Šasija)
+
+### 4.2 Mašina stanja: Top/Meta
 
 ### 4.2 Mašina stanja: KULA (Top/Meta)
 
