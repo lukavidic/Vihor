@@ -1,10 +1,10 @@
 # Spisak komponenti
 
 **Projekat:** Autonomna mobilna platforma sa integrisanim elektromagnetskim topom
-**Verzija:** 0.2 (nacrt)
-**Svrha:** Pregled svih komponenti sistema sa slikom, namjenom i osnovnim podacima. Detalji o pinovima i povezivanju su u [hwsw-interface.md](architecture/hwsw-interface.md), a o napajanju i blokovima u [hardware.md](architecture/hardware.md).
+**Verzija:** 0.3 (nacrt)
+**Svrha:** Pregled svih komponenti sistema sa slikom, namjenom i osnovnim podacima. Detalji o pinovima su u `hwsw-interface.md`, a o napajanju i blokovima u `hardware.md`.
 
-**Slike:** fotografije se stavljaju u folder `docs/images/` pod nazivom koji je naveden u oznaci slike uz komponentu. Dok slika ne postoji, prikazuje se prazan okvir. Najbolje su fotografije stvarnih dijelova koje imamo.
+**Slike:** fotografije se stavljaju u folder `docs/images/` pod nazivom iz oznake slike uz komponentu. Dok slika ne postoji, prikazuje se prazan okvir.
 
 Vrijednosti označene sa **TBD** treba potvrditi.
 
@@ -23,7 +23,7 @@ Vrijednosti označene sa **TBD** treba potvrditi.
 | Napon | 3.3 V |
 | Interfejsi | I2C, UART, ADC, GPIO |
 | Status | Potvrđeno |
-| Dokumentacija | datasheet: (https://ww1.microchip.com/downloads/aemDocuments/documents/MCU16/ProductDocuments/DataSheets/PIC24FJ256GA705-Family-Data-Sheet-DS30010118E.pdf) |
+| Dokumentacija | [Datasheet (porodica PIC24FJ256GA705)](https://ww1.microchip.com/downloads/aemDocuments/documents/MCU16/ProductDocuments/DataSheets/PIC24FJ256GA705-Family-Data-Sheet-DS30010118E.pdf) |
 
 ### 1.2 WiFi modul: ESP-01 (ESP8266)
 
@@ -32,10 +32,11 @@ Vrijednosti označene sa **TBD** treba potvrditi.
 | Svojstvo | Vrijednost |
 |---|---|
 | Namjena | Veza sa PC aplikacijom (WiFi, TCP) |
-| Napon | 3.3 V, vršno do oko 300 mA |
+| Napon | 3.3 V |
 | Interfejs | UART, 115200 baud, AT komande |
+| Napomena | Veća struja pri slanju (**TBD**) |
 | Status | Potvrđeno |
-| Dokumentacija | datasheet: (https://www.alldatasheet.com/datasheet-pdf/view/1179098/ETC2/ESP-01.html) |
+| Dokumentacija | [Datasheet](https://www.alldatasheet.com/datasheet-pdf/view/1179098/ETC2/ESP-01.html) |
 
 ### 1.3 Senzor za prepreke: HC-SR04
 
@@ -43,12 +44,12 @@ Vrijednosti označene sa **TBD** treba potvrditi.
 
 | Svojstvo | Vrijednost |
 |---|---|
-| Namjena | Detekcija prepreka (niski senzor) |
+| Namjena | Detekcija prepreka (niski senzor na šasiji) |
 | Napon | 5 V |
 | Interfejs | TRIG (ulaz), ECHO (izlaz, 5 V signal) |
 | Priključak | JoyCar US zaglavlje (P8 TRIG, P12 ECHO) |
 | Status | Potvrđeno |
-| Dokumentacija | datasheet: (https://cdn.sparkfun.com/datasheets/Sensors/Proximity/HCSR04.pdf) |
+| Dokumentacija | [Datasheet](https://cdn.sparkfun.com/datasheets/Sensors/Proximity/HCSR04.pdf) |
 
 ### 1.4 Senzor za metu: IR Distance Click
 
@@ -58,13 +59,25 @@ Vrijednosti označene sa **TBD** treba potvrditi.
 |---|---|
 | Proizvođač | MikroElektronika |
 | Senzor | Sharp GP2Y0A60SZ0F |
-| Namjena | Detekcija mete, opseg 10–150 cm |
+| Namjena | Detekcija mete, opseg 10–150 cm, na kuli |
 | Napon | 3.3 V (jumperi PWR SEL na 3V3) |
 | Interfejs | Analogni izlaz OUT, pin EN |
 | Status | Potvrditi sa profesorom |
-| Dokumentacija | datasheet: (https://download.mikroe.com/documents/datasheets/GP2Y0A60SZxF.pdf) |
+| Dokumentacija | [Datasheet](https://download.mikroe.com/documents/datasheets/GP2Y0A60SZxF.pdf) |
 
-### 1.5 JoyCar platforma
+### 1.5 Okretna kula (servo motor)
+
+![Servo kule](images/servo-kule.jpg)
+
+| Svojstvo | Vrijednost |
+|---|---|
+| Namjena | Okretanje kule sa topom, metom i senzorom za metu |
+| Tip | Servo motor (**TBD**) |
+| Interfejs | PWM, JoyCar izlaz za servo (P1) |
+| Opseg okretanja | **TBD** |
+| Napajanje | **TBD** |
+
+### 1.6 JoyCar platforma
 
 ![JoyCar](images/joycar.jpg)
 
@@ -77,7 +90,7 @@ Vrijednosti označene sa **TBD** treba potvrditi.
 | Zaglavlje | 3v3, 5V, V_BAT, V_LED, GND, EOUT7 |
 | Namjena | Pogon i izvor napajanja za cijeli sistem |
 
-### 1.6 Baterije: 4 × AA
+### 1.7 Baterije: 4 × AA
 
 ![Baterije](images/baterije-aa.jpg)
 
@@ -87,13 +100,13 @@ Vrijednosti označene sa **TBD** treba potvrditi.
 | Napon | Oko 4–6.4 V (4 × 1.5 V) |
 | Napomena | Pad napona pod opterećenjem, vidi `hardware.md`, odjeljak 4.3 |
 
-### 1.7 Elektromagnetski top (coilgun)
+### 1.8 Elektromagnetski top (coilgun)
 
 ![Top](images/top.jpg)
 
 | Svojstvo | Vrijednost |
 |---|---|
-| Namjena | Ispaljivanje projektila |
+| Namjena | Ispaljivanje projektila, na kuli |
 | Signali | CHARGE, FIRE, VCAP_SENSE (vidi `hwsw-interface.md`, odjeljak 5) |
 | Status | **Još nije isporučen**, rezervisan konektor i pinovi |
 
@@ -114,13 +127,15 @@ Vrijednosti označene sa **TBD** treba potvrditi.
 
 ## 3. Pomoćne komponente
 
+Vrijednosti su prijedlog i potvrđuju se pri izradi šeme.
+
 | Komponenta | Namjena | Količina | Napomena |
 |---|---|---|---|
 | Kondenzatori 100 nF | Blokiranje napajanja uz svaki pin napajanja | **TBD** | |
-| Kondenzator 100–470 µF | Uz ESP8266, šiljci struje pri slanju | 1 | **TBD** vrijednost |
-| Kondenzator VCAP (npr. 10 µF) | Jezgro PIC-a | 1 | Prema datasheetu |
-| Otpornici za pull-up | I2C (SDA, SCL), MCLR, EN modula ESP8266 | **TBD** | Provjeriti postoje li već na JoyCar ploči |
-| Serijski otpornik (npr. 1 kΩ) | Zaštita ulaza ECHO | 1 | |
+| Kondenzator uz ESP8266 | Skokovi struje pri slanju | 1 | **TBD** vrijednost |
+| Kondenzator VCAP | Jezgro PIC-a | 1 | Prema datasheetu |
+| Pull-up otpornici | I2C (SDA, SCL), MCLR, EN modula ESP8266 | **TBD** | Provjeriti postoje li na JoyCar ploči |
+| Serijski otpornik | Zaštita ulaza ECHO | 1 | **TBD** vrijednost |
 | Dugme | START/STOP | 1 | |
 | LED | Status | 1 | |
 | Razdjelnik napona i Zener dioda | Mjerenje napona kondenzatora topa | **TBD** | |
@@ -136,5 +151,6 @@ Vrijednosti označene sa **TBD** treba potvrditi.
 | ESP-01 | 3.3 V | UART | RB12, RB13 |
 | HC-SR04 | 5 V | TRIG, ECHO | RB6, RB7 |
 | IR Distance Click | 3.3 V | OUT, EN | RB2, RB3 |
+| Servo kule | **TBD** | PWM | RB14 |
 | JoyCar (motori, senzori) | V_BAT | I2C | RB8, RB9 |
 | Top | **TBD** | CHARGE, FIRE, VCAP_SENSE | RA3, RA4, RA0 |
