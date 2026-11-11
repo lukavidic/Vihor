@@ -1,0 +1,5 @@
+(sym_lib_table
+	(version 7)
+	(lib (name "PIC24FJ64GA702-I_SO") (type "KiCad") (uri "${KIPRJMOD}/../libs/Microcontroller-PIC24FJ64GA702-I_SO/PIC24FJ64GA702-I_SO.kicad_sym") (options "") (descr ""))
+	(lib (name "ESP8266-01_ESP-01") (type "KiCad") (uri "${KIPRJMOD}/../libs/WiFi-ESP8266/ESP8266-01_ESP-01.kicad_sym") (options "") (descr ""))
+)

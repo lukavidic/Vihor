@@ -1,0 +1,9 @@
+EESchema-DOCLIB  Version 2.0
+#
+$CMP PIC24FJ64GA702-I_SO
+D 16-bit Microcontrollers - MCU 16-bit, 16 MIPS, 64KB Flash, 16KB RAM
+K
+F 
+$ENDCMP
+#
+#End Doc Library
