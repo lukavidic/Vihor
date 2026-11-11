@@ -1,0 +1,6 @@
+(fp_lib_table
+	(version 7)
+	(lib (name "PIC") (type "KiCad") (uri "${KIPRJMOD}/../libs/Microcontroller-PIC24FJ64GA702-I_SO/PIC.pretty") (options "") (descr ""))
+	(lib (name "vihor") (type "KiCad") (uri "${KIPRJMOD}/../libs/vihor.pretty") (options "") (descr ""))
+	(lib (name "ESP8266") (type "KiCad") (uri "${KIPRJMOD}/../libs/WiFi-ESP8266/ESP8266.pretty") (options "") (descr ""))
+)
