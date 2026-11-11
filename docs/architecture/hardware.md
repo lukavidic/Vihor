@@ -1,7 +1,7 @@
 # Hardverska arhitektura
 
 **Projekat:** Autonomna mobilna platforma sa integrisanim elektromagnetskim topom
-**Verzija:** 0.3 (nacrt)
+**Verzija:** 0.4 (nacrt)
 **Svrha:** Opis hardverskih blokova ploče, njihovih veza, napajanja i konektora. Tačne pinove, I2C adrese i protokol definiše dokument `hwsw-interface.md`, pa se ovdje ne ponavljaju.
 
 Vrijednosti označene sa **TBD** treba potvrditi mjerenjem ili datasheetom.
@@ -70,7 +70,7 @@ flowchart TB
 | WiFi | ESP8266 (ESP-01) | 3.3 V | UART, AT komande | Veza sa aplikacijom |
 | Senzor za prepreke | HC-SR04 | 5 V | TRIG, ECHO (5 V signal) | Detekcija prepreka, na šasiji |
 | Senzor za metu | IR Distance Click (Sharp GP2Y0A60SZ0F) | 3.3 V | analogni OUT, EN | Detekcija mete, 10–150 cm, na kuli |
-| Kula | Servo motor (tip **TBD**) | **TBD** | PWM | Okretanje kule |
+| Kula | Servo motor SG90 | oko 5 V (**TBD**) | PWM 50 Hz | Okretanje kule |
 | Motori i drajveri | JoyCar ploča | V_BAT | I2C, 0x70 | Kretanje |
 | Izvor | 4 × AA baterije | oko 4–6.4 V | zaglavlje | Napajanje svega |
 | Top | Elektromagnetski top | **TBD** | CHARGE, FIRE, VCAP_SENSE | Gađanje, na kuli (još nije dostupan) |
@@ -91,7 +91,7 @@ flowchart LR
     H -->|5V| U["HC-SR04"]
     H -->|V_BAT| T["Punjač topa"]
     S --> M["Drajveri motora"]
-    S -.->|"TBD"| SV["Servo kule"]
+    S -.->|"TBD"| SV["Servo SG90"]
 ```
 
 Naponi se ne stvaraju na našoj ploči. Pitanje je **koliko struje zaglavlje JoyCar ploče može dati**.
@@ -103,7 +103,7 @@ Struje nisu izmjerene (**TBD**), a treba ih provjeriti na prototipu:
 - ESP8266 (3.3 V), ima najveću potrošnju i skokove struje pri slanju
 - IR Distance Click (3.3 V)
 - HC-SR04 (5 V)
-- Servo motor kule (napajanje **TBD**)
+- Servo motor SG90 (napajanje oko 5 V, a odakle ga napajati je **TBD**; V_BAT sa svježim baterijama može preći 6 V)
 - Punjenje topa (V_BAT)
 
 ### 4.3 Rizici
@@ -131,7 +131,7 @@ Potpuna tabela pinova je u `hwsw-interface.md`, odjeljak 3. Pregled grupa:
 | Korisnički | RB5 (dugme), RA2 (LED) | |
 | Rezerva | RB10, RB11 (slobodni), RB15 (zujalica, opciono) | |
 
-Pin za servo (RB14) je usklađen sa `software.md` i upisan u `hwsw-interface.md` (v0.9).
+Pin za servo (RB14) je usklađen sa `software.md` i upisan u `hwsw-interface.md` (v0.10).
 
 ---
 
@@ -180,13 +180,3 @@ Top još nije dostupan, pa se unaprijed predviđa samo interfejs:
 | 7 | Napajanje i struja servo motora kule | Da li ga zaglavlje može napajati |
 
 ---
-
-## 9. Otvorene stavke
-
-| # | Stavka | Ko saznaje |
-|---|---|---|
-| 1 | Potvrda IR modula | Profesor |
-| 2 | Tip servo motora, opseg i napajanje kule | Profesor, HW tim |
-| 3 | Napon, struja i konektor topa | Kad se top dobije |
-| 4 | Rezultati provjera iz odjeljka 8 | HW tim |
-| 5 | Prag napona baterije za zaustavljanje | HW + SW tim |
