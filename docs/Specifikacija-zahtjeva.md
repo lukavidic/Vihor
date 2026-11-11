@@ -1,7 +1,7 @@
 # Specifikacija zahtjeva (Requirements specification)
 
 **Projekat:** Autonomna mobilna platforma sa integrisanim elektromagnetskim topom
-**Verzija:** 0.7 (nacrt)
+**Verzija:** 0.8 (nacrt)
 **Napomena:** Vrijednosti označene sa **TBD** treba potvrditi sa profesorom ili mjerenjem.
 
 ---
@@ -14,7 +14,7 @@ Dokument opisuje šta autonomno vozilo na JoyCar platformi mora da radi i koja o
 ### 1.2 Opis sistema
 Sistem se sastoji od:
 - **vozila** na JoyCar platformi (motori i JoyCar ploča sa drajverima motora) i naše upravljačke ploče (PCB) koja JoyCar ploči zadaje komande kretanja,
-- **okretne kule (turret)** sa servo motorom, na kojoj su **elektromagnetski top**, **meta** i **senzor udaljenosti za metu**,
+- **okretne kule (turret)** sa servo motorom SG90, na kojoj su **elektromagnetski top**, **meta** i **senzor udaljenosti za metu**,
 - **senzora udaljenosti za prepreke** (ultrazvučni HC-SR04), fiksiranog nisko na šasiji,
 - **WiFi modula** za komunikaciju,
 - **PC aplikacije** za pokretanje, zaustavljanje i prijem log poruka.
@@ -57,7 +57,7 @@ Vozilo autonomno traži i gađa **pokretnu metu** na suparničkom vozilu istog t
 |---|---|
 | FR-05 | Vozilo traži metu okretanjem kule (po potrebi i kretanjem vozila, **TBD**) i detektuje je senzorom na kuli. |
 | FR-06 | Kada je meta detektovana, kula se okreće dok meta nije u liniji topa. Top i senzor su na kuli u istom smjeru, pa je poravnanje senzora ujedno i poravnanje topa. |
-| FR-12 | Kulu okreće servo motor u opsegu od **TBD** stepeni, a ploča zadaje željeni ugao. |
+| FR-12 | Kulu okreće servo motor SG90 u opsegu od **TBD** stepeni, a ploča zadaje željeni ugao. |
 
 ### 2.4 Elektromagnetski top
 | ID | Zahtjev |
@@ -180,16 +180,6 @@ flowchart LR
 
 ---
 
-## 6. Otvorena pitanja za profesora
-
-1. Da li je IR Distance Click potvrđen kao modul za metu?
-2. Smiju li se koristiti IR senzori sa JoyCar ploče?
-3. Kula: tip servo motora, opseg okretanja i napajanje?
-4. Šta je meta fizički (veličina, materijal, visina) i koji je projektil?
-5. Napon topa, budžet i rok isporuke?
-6. Kakvo je takmičarsko polje i šta se predaje i kako se ocjenjuje?
-
----
 
 ## 7. Praćenje (traceability)
 
