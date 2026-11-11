@@ -1,7 +1,7 @@
 # Interfejs sistema (HW/SW)
  
 **Projekat:** Autonomna mobilna platforma sa integrisanim elektromagnetskim topom
-**Verzija:** 0.9 (nacrt)
+**Verzija:** 0.10 (nacrt)
 **Svrha:** Zajednički dogovor hardverskog i softverskog tima: napajanje, pinovi mikrokontrolera, konektori i komunikacioni protokol. Svaka promjena pinova ili protokola ide prvo kroz izmjenu ovog dokumenta, uz saglasnost oba tima.
  
 Vrijednosti označene sa **TBD** treba potvrditi (profesor, JoyCar dokumentacija, datasheet).
@@ -16,7 +16,7 @@ Vrijednosti označene sa **TBD** treba potvrditi (profesor, JoyCar dokumentacija
 | WiFi modul | ESP8266 (ESP-01), AT komande preko UART-a | Potvrđeno |
 | Senzor za prepreke | HC-SR04 (ultrazvučni) | Potvrđeno |
 | Senzor za metu | IR Distance Click (MikroE, Sharp GP2Y0A60SZ0F, analogni izlaz, 10–150 cm), moguća alternativa HC-SR04 | Potvrditi sa profesorom |
-| Kula | Okretna kula sa servo motorom (tip **TBD**), na JoyCar izlazu Servo 1 (kontakt P1). Na kuli su top, senzor za metu i meta | Potvrđeno da se koristi, tip i opseg TBD |
+| Kula | Okretna kula sa servo motorom SG90, na JoyCar izlazu Servo 1 (kontakt P1). Na kuli su top, senzor za metu i meta | Potvrđeno, opseg i napajanje TBD |
 | Motori | JoyCar, sa JoyCar pločom koja sadrži PWM kontroler | I2C, adresa 0x70 (vidi odjeljak 4) |
 | Napajanje | 4 × 1.5 V AA baterije, naponi 3v3, 5V i V_BAT sa zaglavlja JoyCar ploče | Potvrđeno, bez vlastitih regulatora |
 | Top | Elektromagnetski top | Još nije dostupan, rezervisani pinovi |
@@ -68,7 +68,7 @@ Raspodjela je usklađena sa datasheetom (tabela funkcija pinova). PIC ima 21 I/O
 | 22 | RB11 | Rezerva | | RP11, 5 V tolerantan | Slobodan (ranije HC-SR04 #2: ECHO) |
 | 23 | RB12 | UART1 RX ← ESP8266 TX | ulaz | RP12 | |
 | 24 | RB13 | UART1 TX → ESP8266 RX | izlaz | RP13 | |
-| 25 | RB14 | Servo kule: PWM → JoyCar kontakt P1 | izlaz | RP14 | PWM signal za servo motor kule, tip i napajanje **TBD** |
+| 25 | RB14 | Servo kule: PWM → JoyCar kontakt P1 | izlaz | RP14 | PWM signal (50 Hz) za servo SG90 kule, napajanje **TBD** |
 | 26 | RB15 | JoyCar kontakt P16 (zujalica), opciono | izlaz | RP15 | Opciono, inače rezerva |
 | 13, 28 | VDD, AVDD | Napajanje 3.3 V | | | Uz svaki pin kondenzator 100 nF |
 | 8, 19, 27 | VSS, AVSS | Masa | | | |
@@ -272,14 +272,3 @@ Primjeri:
 | poruka | slobodan tekst ili `KLJUČ=vrijednost` parovi |
  
 ---
-
-## 8. Otvorene stavke
-
-| # | Stavka | Ko saznaje |
-|---|---|---|
-| 1 | Potvrda IR modula (IR Distance Click) | Profesor |
-| 2 | Tip servo motora kule, opseg okretanja i napajanje | Profesor, HW tim |
-| 3 | Nivo I2C, pull-up, napajanje sa JoyCar ploče, konektor i smjerovi motora | HW tim, JoyCar uputstvo |
-| 4 | Napon, struja i konektor topa | Kad se top dobije |
-| 5 | Koliko struje daju 3v3 i 5V na JoyCar zaglavlju i pad napona baterije pod opterećenjem | HW tim, mjerenje |
-| 6 | Prag napona baterije za zaustavljanje i prekid punjenja topa | HW + SW tim |
