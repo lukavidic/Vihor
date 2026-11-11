@@ -1,7 +1,7 @@
 # Spisak komponenti
 
 **Projekat:** Autonomna mobilna platforma sa integrisanim elektromagnetskim topom
-**Verzija:** 0.3 (nacrt)
+**Verzija:** 0.4 (nacrt)
 **Svrha:** Pregled svih komponenti sistema sa slikom, namjenom i osnovnim podacima. Detalji o pinovima su u `hwsw-interface.md`, a o napajanju i blokovima u `hardware.md`.
 
 **Slike:** fotografije se stavljaju u folder `docs/images/` pod nazivom iz oznake slike uz komponentu. Dok slika ne postoji, prikazuje se prazan okvir.
@@ -65,17 +65,17 @@ Vrijednosti označene sa **TBD** treba potvrditi.
 | Status | Potvrditi sa profesorom |
 | Dokumentacija | [Datasheet](https://download.mikroe.com/documents/datasheets/GP2Y0A60SZxF.pdf) |
 
-### 1.5 Okretna kula (servo motor)
+### 1.5 Okretna kula (servo motor SG90)
 
 ![Servo kule](images/servo-kule.jpg)
 
 | Svojstvo | Vrijednost |
 |---|---|
 | Namjena | Okretanje kule sa topom, metom i senzorom za metu |
-| Tip | Servo motor (**TBD**) |
-| Interfejs | PWM, JoyCar izlaz za servo (P1) |
-| Opseg okretanja | **TBD** |
-| Napajanje | **TBD** |
+| Tip | SG90 (modelarski servo) |
+| Interfejs | PWM 50 Hz, JoyCar izlaz za servo (P1) |
+| Opseg okretanja | Oko 180° (provjeriti), potreban opseg **TBD** |
+| Napajanje | Oko 5 V (provjeriti datasheet), izvor **TBD** |
 
 ### 1.6 JoyCar platforma
 
@@ -151,6 +151,6 @@ Vrijednosti su prijedlog i potvrđuju se pri izradi šeme.
 | ESP-01 | 3.3 V | UART | RB12, RB13 |
 | HC-SR04 | 5 V | TRIG, ECHO | RB6, RB7 |
 | IR Distance Click | 3.3 V | OUT, EN | RB2, RB3 |
-| Servo kule | **TBD** | PWM | RB14 |
+| Servo kule (SG90) | oko 5 V (**TBD**) | PWM | RB14 |
 | JoyCar (motori, senzori) | V_BAT | I2C | RB8, RB9 |
 | Top | **TBD** | CHARGE, FIRE, VCAP_SENSE | RA3, RA4, RA0 |
