@@ -87,8 +87,32 @@ Firmver je organizovan po principu apstrakcije hardvera (HAL). Gornji sloj (maš
 
 ## 4. Dinamički aspekti (Mašine stanje)
 
-### 4.1 Mašina stanja: VOZILO (Šasija)
+### 4.1 Mašina stanja: Navigacija vozila
+
+![Dijagram mašine stanja: Navigacija vozila](../resources/masina-stanja-1.png)
+
+### Opis navigacione mašine stanja (Navigacija vozila)
+
+Navigaciona mašina stanja funkcioniše potpuno nezavisno od borbene logike i upravlja kretanjem, brzinom i izbjegavanjem prepreka pomoću senzora:
+
+* **NAV_IDLE (Mirovanje):** Početno stanje u kojem su motori isključeni, a platforma miruje i čeka globalnu `START` komandu;
+* **NAV_CRUISE (Krstarenje):** Redovna vožnja i patroliranje terenom nakon pokretanja sistema;
+* **NAV_SLOW (Usporavanje):** Reakcija na uočenu prepreku na srednjoj distanci (`UOCENA PREPREKA`), gdje sistem smanjuje brzinu kretanja radi lakše kontrole;
+* **NAV_AVOID (Izbjegavanje):** Kritično stanje manevra kada je prepreka preblizu (`PREPREKA PREBLIZU`), gdje vozilo vrši korekciju smjera sve dok se put ponovo ne oslobodi (`PREPREKA IZBJEGNUTA` $\rightarrow$ povrat u `NAV_CRUISE`);
+* **STOP prekid:** Zajednička sigurnosna magistrala koja iz bilo kog stanja navigacije trenutno zaustavlja motore i vraća sistem u `NAV_IDLE`;
 
 ### 4.2 Mašina stanja: Top/Meta
 
+![Dijagram mašine stanja: Top/Meta](../resources/masina-stanja-2.png)
 
+### Opis borbene mašine stanja (Top/Meta)
+Borbena mašina stanja (Top/Meta) upravlja cjelokupnom logikom lociranja, nišanjenja, punjenja i opaljenja projektila iz elektromagnetnog topa na platformi. Logika je dizajnirana tako da omogući automatski ciklus sa visokim stepenom sigurnosti i otpornosti na gubitak mete:
+
+* **IDLE (Mirovanje):** Početno stanje sistema u kojem vozilo miruje i čeka `START` komandu sa PC aplikacije;
+* **SEARCH (Pretraga mete):** Faza u kojoj vozilo patrolira terenom i koristi senzore za lociranje protivničke mete;
+* **TRACK (Praćenje mete):** Stanje u kojem se orijentacija vozila prilagođava kako bi se detektovana meta (`META UOCENA`) zadržala u vidnom polju; u slučaju gubitka mete (`META IZGUBLJENA`), sistem se automatski vraća u `SEARCH`;
+* **AIM (Nišanjenje):** Fino poravnavanje kada je meta u liniji topa (`META U LINIJI TOPA`), uz bezbjednosni izlaz i povrat u `SEARCH` ako se meta ponovo izgubi;
+* **CHARGE (Punjenje topa):** Aktiviranje visokonaponskog kola za punjenje kondenzatora nakon što je nišan stabilan i potvrđen (`META ZAKLJUCANA`);
+* **FIRE (Opaljenje):** Slanje okidačkog impulsa i pražnjenje energije kroz kaleme ka meti kada je top potpuno napunjen (`TOP NAPUNJEN`);
+* **COOLDOWN (Hlađenje):** Sigurnosna faza hlađenja nakon pucanja (`TOP OPALIO`), nakon čega se ciklus zatvara i nastavlja potraga (`NASTAVAK POTRAGE`);
+* **STOP prekid:** Globalna sigurnosna linija koja iz bilo kog trenutnog borbenog stanja trenutno ruši procese i vraća sistem u sigurno `IDLE` stanje;
