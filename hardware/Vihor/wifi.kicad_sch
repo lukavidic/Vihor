@@ -912,6 +912,17 @@
 			(embedded_fonts no)
 		)
 	)
+	(text "TBD: kondenzator uz VCC (skokovi struje pri slanju)\nTBD: vrijednosti pull-up otpornika, potvrditi prema datasheetu ESP-01\nTBD: struja 3.3 V sa JoyCar zaglavlja pri radu WiFi-ja (provjera na prototipu)"
+		(exclude_from_sim no)
+		(at 165.862 137.668 0)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left)
+		)
+		(uuid "5748e360-e483-4b0e-bbd2-25589baea205")
+	)
 	(junction
 		(at 223.52 92.71)
 		(diameter 0)
@@ -1572,7 +1583,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "Resistor_SMD:R_0805_2012Metric"
 			(at 176.022 85.09 90)
 			(hide yes)
 			(show_name no)
@@ -2048,7 +2059,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "Resistor_SMD:R_0805_2012Metric"
 			(at 231.902 85.09 90)
 			(hide yes)
 			(show_name no)
@@ -2212,7 +2223,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "Resistor_SMD:R_0805_2012Metric"
 			(at 170.942 85.09 90)
 			(hide yes)
 			(show_name no)
@@ -2372,7 +2383,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "Resistor_SMD:R_0805_2012Metric"
 			(at 226.822 85.09 90)
 			(hide yes)
 			(show_name no)

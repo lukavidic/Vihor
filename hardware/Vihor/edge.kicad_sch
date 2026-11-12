@@ -868,6 +868,17 @@
 			(embedded_fonts no)
 		)
 	)
+	(text "TBD: smjer napajanja na kontaktu 3V (R8 je premosnica, ne ugrađuje se dok se ne provjeri)\nTBD: napon na P2 (jumper BAT), R3 i R5 čine djelitelj\nTBD: logički nivo SDA i SCL, R6 i R7 su pull-up, ugrađuju se samo ako ih JoyCar nema\nTBD: sa koje strane ploče su prsti"
+		(exclude_from_sim no)
+		(at 94.234 126.746 0)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left)
+		)
+		(uuid "2ace3438-01f4-4698-b8cc-16a6670ac838")
+	)
 	(junction
 		(at 185.42 91.44)
 		(diameter 0)
@@ -1620,7 +1631,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "Resistor_SMD:R_0805_2012Metric"
 			(at 139.192 85.09 90)
 			(hide yes)
 			(show_name no)
@@ -1702,7 +1713,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "Resistor_SMD:R_0805_2012Metric"
 			(at 132.842 85.09 90)
 			(hide yes)
 			(show_name no)
@@ -1784,7 +1795,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "Resistor_SMD:R_0805_2012Metric"
 			(at 176.022 83.82 90)
 			(hide yes)
 			(show_name no)
@@ -1866,7 +1877,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "Resistor_SMD:R_0805_2012Metric"
 			(at 150.622 85.09 90)
 			(hide yes)
 			(show_name no)
@@ -2026,7 +2037,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "Resistor_SMD:R_0805_2012Metric"
 			(at 183.642 83.82 90)
 			(hide yes)
 			(show_name no)
@@ -2287,7 +2298,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "Resistor_SMD:R_0805_2012Metric"
 			(at 191.262 83.82 90)
 			(hide yes)
 			(show_name no)
