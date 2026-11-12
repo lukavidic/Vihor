@@ -116,3 +116,35 @@ Borbena mašina stanja (Top/Meta) upravlja cjelokupnom logikom lociranja, nišan
 * **FIRE (Opaljenje):** Slanje okidačkog impulsa i pražnjenje energije kroz kaleme ka meti kada je top potpuno napunjen (`TOP NAPUNJEN`);
 * **COOLDOWN (Hlađenje):** Sigurnosna faza hlađenja nakon pucanja (`TOP OPALIO`), nakon čega se ciklus zatvara i nastavlja potraga (`NASTAVAK POTRAGE`);
 * **STOP prekid:** Globalna sigurnosna linija koja iz bilo kog trenutnog borbenog stanja trenutno ruši procese i vraća sistem u sigurno `IDLE` stanje;
+
+
+## 5. Komunikacioni protokoli
+
+### 5.1 Fizički i mrežni sloj
+
+Komunikacija između PC aplikacije i vozila odvija se preko WiFi mreže koristeći TCP/IP protokol.
+
+1. **WiFi:** ESP8266 u Station modu, spaja se na mrežu preko AT komandi.
+2. **UART:** PIC ↔ ESP8266, 115200 baud, 8N1 (koristi AT komande za inicijalizaciju).
+3. **TCP:** Vozilo je TCP klijent, PC Aplikacija je TCP server. 
+
+### 5.2 Komande (Aplikacija → Vozilo)
+
+Poruke su tekstualne, ASCII kodirane, i završavaju znakom novog reda (`\n`).
+
+| Komanda | Značenje | Očekivani odgovor vozila |
+| :--- | :--- | :--- |
+| `START\n` | Pokreće obje mašine stanja. | `[0.0s] INFO SYS: START received` |
+| `STOP\n` | Zaustavlja vozilo, razoružava top, vraća u IDLE. | `[0.0s] INFO SYS: STOP received` |
+
+### 5.3 Log poruke (Vozilo → Aplikacija)
+
+Format log poruka je strogo definisan radi lakšeg parsiranja na strani aplikacije.
+
+**Format:** `[vrijeme_s] NIVO modul: poruka\n`
+
+**Definicija polja:**
+1. **vrijeme_s:** Float, sekunde od zadnjeg resetovanja ili START komande (npr. `12.4s`).
+2. **NIVO:** `INFO`, `WARN`, `ERROR`.
+3. **modul:** Opciono, skraćenica modula (npr. `SYS`, `MOT`, `TUR`).
+4. **poruka:** Slobodan tekst ili `KLJUČ=vrijednost` parovi.
