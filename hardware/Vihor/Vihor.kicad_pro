@@ -8,7 +8,7 @@
       "internal_id": "",
       "mfg": "",
       "mpn": "",
-      "sch_revision": ""
+      "sch_revision": "v0.1"
     },
     "layer_pairs": [],
     "layer_presets": [],
@@ -28,7 +28,16 @@
     "equivalence_files": []
   },
   "erc": {
-    "erc_exclusions": [],
+    "erc_exclusions": [
+      [
+        "four_way_junction|1320800|863600|752b2e04-e111-48c9-a12c-53847f7083f6|b017f393-5e8a-47cb-9557-908751930bbf|/c3223988-a4cb-4efe-9db0-2be337cad9e8/75d1dbd5-dbee-4f2f-910f-f28b254d7b50||",
+        ""
+      ],
+      [
+        "four_way_junction|2235200|1244600|8ec101c1-0e10-4b0f-9223-0661a1e9696e|41b4ec54-781d-47ec-a565-106188c7384f|/c3223988-a4cb-4efe-9db0-2be337cad9e8/9e423ff4-069f-46d3-85a2-59e47aad4ecc||",
+        ""
+      ]
+    ],
     "meta": {
       "version": 0
     },
@@ -216,7 +225,7 @@
       "field_name_whitespace": "warning",
       "footprint_filter": "ignore",
       "footprint_link_issues": "warning",
-      "four_way_junction": "ignore",
+      "four_way_junction": "warning",
       "ground_pin_not_ground": "warning",
       "hier_label_mismatch": "error",
       "isolated_pin_label": "warning",
@@ -234,7 +243,7 @@
       "no_connect_dangling": "warning",
       "pin_not_connected": "error",
       "pin_not_driven": "error",
-      "pin_to_pin": "warning",
+      "pin_to_pin": "error",
       "power_pin_not_driven": "error",
       "same_local_global_label": "warning",
       "same_local_global_power": "warning",
@@ -242,7 +251,7 @@
       "similar_labels": "warning",
       "similar_power": "warning",
       "simulation_model_issue": "ignore",
-      "single_global_label": "ignore",
+      "single_global_label": "warning",
       "stacked_pin_name": "warning",
       "unannotated": "error",
       "unconnected_wire_endpoint": "warning",

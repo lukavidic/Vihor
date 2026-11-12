@@ -4,6 +4,12 @@
 	(generator_version "10.0")
 	(uuid "c3223988-a4cb-4efe-9db0-2be337cad9e8")
 	(paper "A4")
+	(title_block
+		(title "Vihor")
+		(date "2026-11-12")
+		(rev "v0.1")
+		(company "RE/MKS 26/27")
+	)
 	(lib_symbols)
 	(sheet
 		(at 207.01 77.47)
