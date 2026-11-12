@@ -1,7 +1,7 @@
 # Interfejs sistema (HW/SW)
  
 **Projekat:** Autonomna mobilna platforma sa integrisanim elektromagnetskim topom
-**Verzija:** 0.10 (nacrt)
+**Verzija:** 0.11 (nacrt)
 **Svrha:** Zajednički dogovor hardverskog i softverskog tima: napajanje, pinovi mikrokontrolera, konektori i komunikacioni protokol. Svaka promjena pinova ili protokola ide prvo kroz izmjenu ovog dokumenta, uz saglasnost oba tima.
  
 Vrijednosti označene sa **TBD** treba potvrditi (profesor, JoyCar dokumentacija, datasheet).
@@ -12,13 +12,13 @@ Vrijednosti označene sa **TBD** treba potvrditi (profesor, JoyCar dokumentacija
  
 | Komponenta | Izbor | Status |
 |---|---|---|
-| Mikrokontroler | PIC24FJ64GA702 (SOIC-28) | Gotovo potvrđeno, moguć sličan (npr. GA002) |
+| Mikrokontroler | PIC24FJ64GA702 (SOIC-28) | Potvrđeno |
 | WiFi modul | ESP8266 (ESP-01), AT komande preko UART-a | Potvrđeno |
 | Senzor za prepreke | HC-SR04 (ultrazvučni) | Potvrđeno |
-| Senzor za metu | IR Distance Click (MikroE, Sharp GP2Y0A60SZ0F, analogni izlaz, 10–150 cm), moguća alternativa HC-SR04 | Potvrditi sa profesorom |
+| Senzor za metu | IR Distance Click (MikroE, Sharp GP2Y0A60SZ0F, analogni izlaz, 10–150 cm), moguća alternativa HC-SR04 | Potvrđeno |
 | Kula | Okretna kula sa servo motorom SG90, na JoyCar izlazu Servo 1 (kontakt P1). Na kuli su top, senzor za metu i meta | Potvrđeno, opseg i napajanje TBD |
-| Motori | JoyCar, sa JoyCar pločom koja sadrži PWM kontroler | I2C, adresa 0x70 (vidi odjeljak 4) |
-| Napajanje | 4 × 1.5 V AA baterije, naponi 3v3, 5V i V_BAT sa zaglavlja JoyCar ploče | Potvrđeno, bez vlastitih regulatora |
+| Motori | JoyCar, sa JoyCar pločom koja sadrži PWM kontroler | Potvrđeno |
+| Napajanje | 4 × 1.5 V AA baterije, naponi 3v3, 5V i V_BAT sa zaglavlja JoyCar ploče | Potvrđeno |
 | Top | Elektromagnetski top | Još nije dostupan, rezervisani pinovi |
  
 ---
