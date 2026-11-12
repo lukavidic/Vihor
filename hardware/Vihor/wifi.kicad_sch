@@ -918,9 +918,41 @@
 		(color 0 0 0 0)
 		(uuid "7cddf6d4-134f-42c9-97b2-5815a18620c4")
 	)
+	(junction
+		(at 223.52 107.95)
+		(diameter 0)
+		(color 0 0 0 0)
+		(uuid "8a6e4914-e753-457d-be4f-919af57acd79")
+	)
+	(junction
+		(at 223.52 124.46)
+		(diameter 0)
+		(color 0 0 0 0)
+		(uuid "bd6c3625-fa8c-4b66-8b4d-0d94956602a6")
+	)
 	(wire
 		(pts
-			(xy 223.52 92.71) (xy 223.52 113.03)
+			(xy 223.52 107.95) (xy 223.52 113.03)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "0068d594-5cf6-42e5-84db-6979517952c5")
+	)
+	(wire
+		(pts
+			(xy 237.49 107.95) (xy 223.52 107.95)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "04ff6675-00da-42fd-904f-f6963e560e38")
+	)
+	(wire
+		(pts
+			(xy 223.52 92.71) (xy 223.52 107.95)
 		)
 		(stroke
 			(width 0)
@@ -930,13 +962,13 @@
 	)
 	(wire
 		(pts
-			(xy 217.17 107.95) (xy 226.06 107.95)
+			(xy 223.52 124.46) (xy 223.52 127)
 		)
 		(stroke
 			(width 0)
 			(type default)
 		)
-		(uuid "3e8d1463-3bc3-427c-8412-b1446174f286")
+		(uuid "41b4ec54-781d-47ec-a565-106188c7384f")
 	)
 	(wire
 		(pts
@@ -970,13 +1002,13 @@
 	)
 	(wire
 		(pts
-			(xy 226.06 107.95) (xy 226.06 127)
+			(xy 217.17 107.95) (xy 219.71 107.95)
 		)
 		(stroke
 			(width 0)
 			(type default)
 		)
-		(uuid "4bd89a04-f1de-4530-bb57-5fdb79837632")
+		(uuid "50ebe842-59f4-4501-9129-c3c1806e4334")
 	)
 	(wire
 		(pts
@@ -1020,6 +1052,16 @@
 	)
 	(wire
 		(pts
+			(xy 237.49 113.03) (xy 237.49 107.95)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "72513556-70a0-41ea-9437-a8c2b357d5f3")
+	)
+	(wire
+		(pts
 			(xy 177.8 76.2) (xy 177.8 81.28)
 		)
 		(stroke
@@ -1040,13 +1082,23 @@
 	)
 	(wire
 		(pts
-			(xy 223.52 120.65) (xy 223.52 127)
+			(xy 223.52 120.65) (xy 223.52 124.46)
 		)
 		(stroke
 			(width 0)
 			(type default)
 		)
 		(uuid "8b8a0a1c-b581-4b5e-ae2e-f262a8e6a2be")
+	)
+	(wire
+		(pts
+			(xy 223.52 124.46) (xy 237.49 124.46)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "8ec101c1-0e10-4b0f-9223-0661a1e9696e")
 	)
 	(wire
 		(pts
@@ -1067,6 +1119,36 @@
 			(type default)
 		)
 		(uuid "b3286c39-d2d3-40e1-92e6-c0b4702adf06")
+	)
+	(wire
+		(pts
+			(xy 219.71 124.46) (xy 223.52 124.46)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "dee8c74c-45e4-499f-8a7b-0779d5dbad41")
+	)
+	(wire
+		(pts
+			(xy 237.49 124.46) (xy 237.49 120.65)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "e3b926a5-c8b2-4ea7-862d-2178defa9146")
+	)
+	(wire
+		(pts
+			(xy 219.71 107.95) (xy 219.71 124.46)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "e6a29346-3366-4300-bff9-10002db43fed")
 	)
 	(wire
 		(pts
@@ -1451,84 +1533,6 @@
 			(project "Vihor"
 				(path "/c3223988-a4cb-4efe-9db0-2be337cad9e8/9e423ff4-069f-46d3-85a2-59e47aad4ecc"
 					(reference "#PWR024")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
-		(lib_id "power:GND")
-		(at 226.06 127 0)
-		(unit 1)
-		(body_style 1)
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(in_pos_files yes)
-		(dnp no)
-		(fields_autoplaced yes)
-		(uuid "4352de64-0f17-41ca-a9ca-d42deec516b6")
-		(property "Reference" "#PWR022"
-			(at 226.06 133.35 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Value" "GND"
-			(at 226.06 132.08 0)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Footprint" ""
-			(at 226.06 127 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Datasheet" ""
-			(at 226.06 127 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Description" "Power symbol creates a global label with name \"GND\" , ground"
-			(at 226.06 127 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(pin "1"
-			(uuid "a1cfd83d-84fc-428b-a430-1f50f2f47ff8")
-		)
-		(instances
-			(project "Vihor"
-				(path "/c3223988-a4cb-4efe-9db0-2be337cad9e8/9e423ff4-069f-46d3-85a2-59e47aad4ecc"
-					(reference "#PWR022")
 					(unit 1)
 				)
 			)
@@ -2087,6 +2091,88 @@
 			(project "Vihor"
 				(path "/c3223988-a4cb-4efe-9db0-2be337cad9e8/9e423ff4-069f-46d3-85a2-59e47aad4ecc"
 					(reference "R12")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "Device:C")
+		(at 237.49 116.84 0)
+		(unit 1)
+		(body_style 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(in_pos_files yes)
+		(dnp no)
+		(fields_autoplaced yes)
+		(uuid "b9d6d9b8-3fa2-49b0-9e58-4b9ab71154b6")
+		(property "Reference" "C5"
+			(at 241.3 115.5699 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Value" "10u"
+			(at 241.3 118.1099 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Footprint" ""
+			(at 238.4552 120.65 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Datasheet" ""
+			(at 237.49 116.84 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Description" "Unpolarized capacitor"
+			(at 237.49 116.84 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(pin "2"
+			(uuid "564a7f59-5e27-469b-be89-46d98b5976f2")
+		)
+		(pin "1"
+			(uuid "3eec0252-7377-43fb-8eb7-a396963cd350")
+		)
+		(instances
+			(project "Vihor"
+				(path "/c3223988-a4cb-4efe-9db0-2be337cad9e8/9e423ff4-069f-46d3-85a2-59e47aad4ecc"
+					(reference "C5")
 					(unit 1)
 				)
 			)
