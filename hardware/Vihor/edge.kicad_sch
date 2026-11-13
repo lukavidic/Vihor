@@ -868,7 +868,7 @@
 			(embedded_fonts no)
 		)
 	)
-	(text "TBD: smjer napajanja na kontaktu 3V (R8 je premosnica, ne ugrađuje se dok se ne provjeri)\nTBD: napon na P2 (jumper BAT), R3 i R5 čine djelitelj\nTBD: logički nivo SDA i SCL, R6 i R7 su pull-up, ugrađuju se samo ako ih JoyCar nema\nTBD: sa koje strane ploče su prsti"
+	(text "TBD: smjer napajanja na kontaktu 3V (R8 je premosnica, ne ugrađuje se dok se ne provjeri)\nTBD: sa koje strane ploče su prsti"
 		(exclude_from_sim no)
 		(at 94.234 126.746 0)
 		(effects
