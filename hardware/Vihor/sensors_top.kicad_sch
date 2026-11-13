@@ -1186,10 +1186,22 @@
 		(uuid "ac658439-e427-4699-855c-99618ffb2afd")
 	)
 	(junction
+		(at 104.14 91.44)
+		(diameter 0)
+		(color 0 0 0 0)
+		(uuid "36a265c1-2791-4784-991b-ca425e58db0b")
+	)
+	(junction
 		(at 132.08 86.36)
 		(diameter 0)
 		(color 0 0 0 0)
 		(uuid "4bb17b10-3771-4e52-a7b8-2d83e4bb0aac")
+	)
+	(junction
+		(at 109.22 93.98)
+		(diameter 0)
+		(color 0 0 0 0)
+		(uuid "94cd9f75-8ea7-496c-b8d2-cc17bea423ad")
 	)
 	(junction
 		(at 114.3 86.36)
@@ -1289,6 +1301,16 @@
 	)
 	(wire
 		(pts
+			(xy 109.22 93.98) (xy 109.22 100.33)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "5044c688-d6c8-4853-b202-32b53587cedc")
+	)
+	(wire
+		(pts
 			(xy 88.9 88.9) (xy 99.06 88.9)
 		)
 		(stroke
@@ -1296,6 +1318,16 @@
 			(type default)
 		)
 		(uuid "5cc68125-1cf0-4cb6-974e-49de16ac967d")
+	)
+	(wire
+		(pts
+			(xy 104.14 107.95) (xy 104.14 113.03)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "728c745b-11ae-46fd-ae09-6f853d6de66e")
 	)
 	(wire
 		(pts
@@ -1326,6 +1358,16 @@
 			(type default)
 		)
 		(uuid "847e25d2-dc79-4873-88b9-3dbec8cdb422")
+	)
+	(wire
+		(pts
+			(xy 104.14 91.44) (xy 104.14 100.33)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "86ee45aa-aefd-4ea3-9d43-95a79f0af407")
 	)
 	(wire
 		(pts
@@ -1456,6 +1498,16 @@
 			(type default)
 		)
 		(uuid "ede49416-7c7f-4b02-92cf-3b7a4601e04f")
+	)
+	(wire
+		(pts
+			(xy 109.22 107.95) (xy 109.22 113.03)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "f2141533-8444-4375-af87-db22d677e43e")
 	)
 	(wire
 		(pts
@@ -1662,6 +1714,166 @@
 					(size 1.27 1.27)
 				)
 				(justify left)
+			)
+		)
+	)
+	(symbol
+		(lib_id "power:GND")
+		(at 109.22 113.03 0)
+		(unit 1)
+		(body_style 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(in_pos_files yes)
+		(dnp no)
+		(fields_autoplaced yes)
+		(uuid "20cd565c-a70e-4c67-b6a7-0563902d99fc")
+		(property "Reference" "#PWR029"
+			(at 109.22 119.38 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Value" "GND"
+			(at 109.22 118.11 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" ""
+			(at 109.22 113.03 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Datasheet" ""
+			(at 109.22 113.03 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Description" "Power symbol creates a global label with name \"GND\" , ground"
+			(at 109.22 113.03 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(pin "1"
+			(uuid "c4d577e6-ec41-407c-baf3-40653d13688c")
+		)
+		(instances
+			(project "Vihor"
+				(path "/c3223988-a4cb-4efe-9db0-2be337cad9e8/75d1dbd5-dbee-4f2f-910f-f28b254d7b50"
+					(reference "#PWR029")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "Device:R")
+		(at 109.22 104.14 0)
+		(unit 1)
+		(body_style 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(in_pos_files yes)
+		(dnp no)
+		(fields_autoplaced yes)
+		(uuid "227b620d-7e75-4437-aa7d-83832051111a")
+		(property "Reference" "R15"
+			(at 111.76 102.8699 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Value" "10k"
+			(at 111.76 105.4099 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Footprint" "Resistor_SMD:R_0805_2012Metric"
+			(at 107.442 104.14 90)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Datasheet" ""
+			(at 109.22 104.14 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Description" "Resistor"
+			(at 109.22 104.14 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(pin "2"
+			(uuid "b97ba75f-2bc4-44fb-8315-6bb3643aa3c2")
+		)
+		(pin "1"
+			(uuid "40c8e305-cdff-4fe7-82dd-0b8d0d8e3fea")
+		)
+		(instances
+			(project "Vihor"
+				(path "/c3223988-a4cb-4efe-9db0-2be337cad9e8/75d1dbd5-dbee-4f2f-910f-f28b254d7b50"
+					(reference "R15")
+					(unit 1)
+				)
 			)
 		)
 	)
@@ -1994,6 +2206,88 @@
 		)
 	)
 	(symbol
+		(lib_id "Device:R")
+		(at 104.14 104.14 0)
+		(unit 1)
+		(body_style 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(in_pos_files yes)
+		(dnp no)
+		(fields_autoplaced yes)
+		(uuid "6fece063-817c-411f-a3e8-f62cca229ea8")
+		(property "Reference" "R16"
+			(at 106.68 102.8699 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Value" "10k"
+			(at 106.68 105.4099 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Footprint" "Resistor_SMD:R_0805_2012Metric"
+			(at 102.362 104.14 90)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Datasheet" ""
+			(at 104.14 104.14 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Description" "Resistor"
+			(at 104.14 104.14 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(pin "2"
+			(uuid "04bf1608-fed6-4dd6-894a-8828a72fba1e")
+		)
+		(pin "1"
+			(uuid "623edb7e-5ff9-4e79-ba17-22ddff448421")
+		)
+		(instances
+			(project "Vihor"
+				(path "/c3223988-a4cb-4efe-9db0-2be337cad9e8/75d1dbd5-dbee-4f2f-910f-f28b254d7b50"
+					(reference "R16")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
 		(lib_id "power:GND")
 		(at 143.51 104.14 0)
 		(unit 1)
@@ -2144,6 +2438,84 @@
 			(project "Vihor"
 				(path "/c3223988-a4cb-4efe-9db0-2be337cad9e8/75d1dbd5-dbee-4f2f-910f-f28b254d7b50"
 					(reference "#PWR027")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "power:GND")
+		(at 104.14 113.03 0)
+		(unit 1)
+		(body_style 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(in_pos_files yes)
+		(dnp no)
+		(fields_autoplaced yes)
+		(uuid "ae79faff-a188-4a4c-9f5f-1bb50b7a7f52")
+		(property "Reference" "#PWR030"
+			(at 104.14 119.38 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Value" "GND"
+			(at 104.14 118.11 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" ""
+			(at 104.14 113.03 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Datasheet" ""
+			(at 104.14 113.03 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Description" "Power symbol creates a global label with name \"GND\" , ground"
+			(at 104.14 113.03 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(pin "1"
+			(uuid "3c6b9fb1-e0fd-4b4b-9888-f5b87d26c2b3")
+		)
+		(instances
+			(project "Vihor"
+				(path "/c3223988-a4cb-4efe-9db0-2be337cad9e8/75d1dbd5-dbee-4f2f-910f-f28b254d7b50"
+					(reference "#PWR030")
 					(unit 1)
 				)
 			)

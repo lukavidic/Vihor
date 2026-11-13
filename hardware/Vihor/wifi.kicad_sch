@@ -930,6 +930,12 @@
 		(uuid "7cddf6d4-134f-42c9-97b2-5815a18620c4")
 	)
 	(junction
+		(at 237.49 107.95)
+		(diameter 0)
+		(color 0 0 0 0)
+		(uuid "868b4597-ae33-428f-b62b-a2fc7c35d7fe")
+	)
+	(junction
 		(at 223.52 107.95)
 		(diameter 0)
 		(color 0 0 0 0)
@@ -940,6 +946,12 @@
 		(diameter 0)
 		(color 0 0 0 0)
 		(uuid "bd6c3625-fa8c-4b66-8b4d-0d94956602a6")
+	)
+	(junction
+		(at 237.49 124.46)
+		(diameter 0)
+		(color 0 0 0 0)
+		(uuid "c5e3dad1-2bc0-4785-84c4-46057358c9b7")
 	)
 	(wire
 		(pts
@@ -1043,6 +1055,16 @@
 	)
 	(wire
 		(pts
+			(xy 248.92 107.95) (xy 248.92 113.03)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "64213af4-65e6-413a-a8b8-86ab6d2658d4")
+	)
+	(wire
+		(pts
 			(xy 233.68 88.9) (xy 233.68 100.33)
 		)
 		(stroke
@@ -1093,6 +1115,16 @@
 	)
 	(wire
 		(pts
+			(xy 237.49 124.46) (xy 248.92 124.46)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "8aa0429d-faad-4a37-a7be-9d1c4d40e6c1")
+	)
+	(wire
+		(pts
 			(xy 223.52 120.65) (xy 223.52 124.46)
 		)
 		(stroke
@@ -1113,6 +1145,16 @@
 	)
 	(wire
 		(pts
+			(xy 237.49 107.95) (xy 248.92 107.95)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "a28fb9c6-73cf-43fa-88ef-c5822ea47f5d")
+	)
+	(wire
+		(pts
 			(xy 217.17 92.71) (xy 223.52 92.71)
 		)
 		(stroke
@@ -1130,6 +1172,16 @@
 			(type default)
 		)
 		(uuid "b3286c39-d2d3-40e1-92e6-c0b4702adf06")
+	)
+	(wire
+		(pts
+			(xy 248.92 124.46) (xy 248.92 120.65)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "bf193746-4904-4243-8733-fd8560ffa367")
 	)
 	(wire
 		(pts
@@ -1190,6 +1242,30 @@
 			(type default)
 		)
 		(uuid "fb27b34f-243f-45da-867f-ff0fe1038551")
+	)
+	(global_label "ESP_RST"
+		(shape input)
+		(at 177.8 91.44 0)
+		(fields_autoplaced yes)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left)
+		)
+		(uuid "2f32da72-2eb0-42fd-aaf8-029a63a2a104")
+		(property "Intersheetrefs" "${INTERSHEET_REFS}"
+			(at 188.8284 91.44 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
 	)
 	(global_label "UART_RX"
 		(shape input)
@@ -1977,7 +2053,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "Capacitor_THT:CP_Radial_D6.3mm_P2.50mm"
 			(at 224.4852 120.65 0)
 			(hide yes)
 			(show_name no)
@@ -2109,6 +2185,88 @@
 	)
 	(symbol
 		(lib_id "Device:C")
+		(at 248.92 116.84 0)
+		(unit 1)
+		(body_style 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(in_pos_files yes)
+		(dnp no)
+		(fields_autoplaced yes)
+		(uuid "b513d258-9e81-4087-8bba-71374d85de23")
+		(property "Reference" "C6"
+			(at 252.73 115.5699 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Value" "100n"
+			(at 252.73 118.1099 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Footprint" "Capacitor_SMD:C_0805_2012Metric"
+			(at 249.8852 120.65 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Datasheet" ""
+			(at 248.92 116.84 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Description" "Unpolarized capacitor"
+			(at 248.92 116.84 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(pin "2"
+			(uuid "52e1c0e3-9503-4321-b24c-ea8682896474")
+		)
+		(pin "1"
+			(uuid "f3d196e7-1ec3-4686-b896-c0351ac253cf")
+		)
+		(instances
+			(project "Vihor"
+				(path "/c3223988-a4cb-4efe-9db0-2be337cad9e8/9e423ff4-069f-46d3-85a2-59e47aad4ecc"
+					(reference "C6")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "Device:C")
 		(at 237.49 116.84 0)
 		(unit 1)
 		(body_style 1)
@@ -2141,7 +2299,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "Capacitor_SMD:C_0805_2012Metric"
 			(at 238.4552 120.65 0)
 			(hide yes)
 			(show_name no)
