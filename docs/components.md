@@ -1,7 +1,7 @@
 # Spisak komponenti
  
 **Projekat:** Autonomna mobilna platforma sa integrisanim elektromagnetskim topom
-**Verzija:** 0.5 (nacrt)
+**Verzija:** 0.6 (nacrt)
 **Svrha:** Pregled svih komponenti sistema sa slikom, namjenom i osnovnim podacima. Detalji o pinovima su u `hwsw-interface.md`, a o napajanju i blokovima u `hardware.md`.
  
 **Slike:** fotografije se stavljaju u folder `docs/images/` pod nazivom iz oznake slike uz komponentu. Dok slika ne postoji, prikazuje se prazan okvir.
@@ -138,7 +138,7 @@ Vrijednosti su sa šeme. Što piše **TBD**, još nije izabrano. Svi pasivni dij
 | R3 | 0R | Gornji dio djelitelja na VBAT_SENSE | Može se zamijeniti većim |
 | R4 | 1k | Serijski otpornik na ECHO | **TBD** |
 | R5 | 10k | Donji dio djelitelja na VBAT_SENSE | Neugrađen (DNP) |
-| R6, R7 | 10k | Pull-up na SDA i SCL | Neugrađeni (DNP), ugrađuju se ako ih JoyCar nema |
+| R6, R7 | 10k | Pull-up na SDA i SCL | Neugrađeni (DNP), JoyCar ih već ima |
 | R8 | 0R | Premosnica EDGE_3V na +3.3V | Neugrađena (DNP) |
 | R9 do R12 | 10k | Pull-up na EN, RST, IO0 i IO2 ESP-01 | **TBD**, potvrditi prema datasheetu |
 | R13, R14 | **TBD** | Djelitelj napona kondenzatora topa (VCAP_SENSE) | Zavisi od radnog napona |
