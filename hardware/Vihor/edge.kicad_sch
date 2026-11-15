@@ -2195,7 +2195,7 @@
 				)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "vihor:MicroBit_EdgeFingers_9"
 			(at 99.06 92.71 0)
 			(hide yes)
 			(show_name no)
