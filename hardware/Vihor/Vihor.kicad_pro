@@ -263,24 +263,7 @@
     "equivalence_files": []
   },
   "erc": {
-    "erc_exclusions": [
-      [
-        "four_way_junction|1320800|863600|752b2e04-e111-48c9-a12c-53847f7083f6|b017f393-5e8a-47cb-9557-908751930bbf|/c3223988-a4cb-4efe-9db0-2be337cad9e8/75d1dbd5-dbee-4f2f-910f-f28b254d7b50||",
-        ""
-      ],
-      [
-        "four_way_junction|1320800|863600|db0966b8-deb3-47b8-a24d-746a964b1f94|b017f393-5e8a-47cb-9557-908751930bbf|/c3223988-a4cb-4efe-9db0-2be337cad9e8/75d1dbd5-dbee-4f2f-910f-f28b254d7b50||",
-        ""
-      ],
-      [
-        "four_way_junction|2235200|1244600|8b8a0a1c-b581-4b5e-ae2e-f262a8e6a2be|8ec101c1-0e10-4b0f-9223-0661a1e9696e|/c3223988-a4cb-4efe-9db0-2be337cad9e8/9e423ff4-069f-46d3-85a2-59e47aad4ecc||",
-        ""
-      ],
-      [
-        "four_way_junction|2235200|1244600|8ec101c1-0e10-4b0f-9223-0661a1e9696e|41b4ec54-781d-47ec-a565-106188c7384f|/c3223988-a4cb-4efe-9db0-2be337cad9e8/9e423ff4-069f-46d3-85a2-59e47aad4ecc||",
-        ""
-      ]
-    ],
+    "erc_exclusions": [],
     "meta": {
       "version": 0
     },
@@ -682,7 +665,7 @@
         "uuid": "c3223988-a4cb-4efe-9db0-2be337cad9e8"
       }
     ],
-    "used_designators": "#FLG1-4,#PWR1-32,C1-6,D1-2,IC1,J1-6,R1-17,SW1,TP1-6,U1",
+    "used_designators": "#FLG1-8,#PWR1-62,C1-12,D1-4,F1-2,IC1-2,J1-11,JP1-2,R1-28,SW1-2,TP1-12,U1-2",
     "variants": []
   },
   "sheets": [
@@ -692,19 +675,11 @@
     ],
     [
       "c80d1e14-efb6-49b5-b40d-07b5f6fa70e5",
-      "MCU i napajanje"
+      "Blok šema"
     ],
     [
       "07afed60-22e8-4bc7-81fd-d37d69dd51d2",
-      "Ivicni konektor"
-    ],
-    [
-      "9e423ff4-069f-46d3-85a2-59e47aad4ecc",
-      "WiFI"
-    ],
-    [
-      "75d1dbd5-dbee-4f2f-910f-f28b254d7b50",
-      "senzori i top"
+      "Moduli"
     ]
   ],
   "text_variables": {},
