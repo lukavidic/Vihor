@@ -117,6 +117,27 @@ Borbena mašina stanja (Top/Meta) upravlja cjelokupnom logikom lociranja, nišan
 * **COOLDOWN (Hlađenje):** Sigurnosna faza hlađenja nakon pucanja (`TOP OPALIO`), nakon čega se ciklus zatvara i nastavlja potraga (`NASTAVAK POTRAGE`);
 * **STOP prekid:** Globalna sigurnosna linija koja iz bilo kog trenutnog borbenog stanja trenutno ruši procese i vraća sistem u sigurno `IDLE` stanje;
 
+#### 4.3 Dijagram aktivnosti softverske arhitekture i arbitraže
+
+![Dijagram aktivnosti softverske arhitekture](../resources/dijagram-aktivnosti.png)
+
+##### Opis dijagrama aktivnosti
+Dijagram aktivnosti prikazuje dinamički tok izvršavanja firmvera na mikrokontroleru PIC24FJ64GA702, obuhvatajući inicijalizaciju, paralelni rad dviju nezavisnih mašina stanja, arbitražu upravljanja motorima i bezbjednosne prekide:
+
+1. **Inicijalizacija i pokretanje:**
+   * Sistem započinje u neaktivnom stanju (`NAV_IDLE` za navigaciju i `IDLE` za borbenu logiku);
+   * Prijemom komande `START` sa PC aplikacije putem WiFi konekcije (ESP8266 UART1 interfejs pri 115200 baud), pokreću se paralelne niti upravljanja za navigaciju i borbenu logiku;
+
+2. **Paralelni rad mašina stanja (Konkurentni tokovi):**
+   * **Navigaciona mašina stanja (Šasija):** Vozilo prelazi u `NAV_CRUISE` (krstarenje). Senzor HC-SR04 na šasiji kontinuirano prati prepreke. Detekcijom prepreke na srednjoj distanci prelazi u `NAV_SLOW` (usporavanje), a pri kritičnoj blizini u `NAV_AVOID` (manevrisanje/izbjegavanje). Po izbjegavanju prepreke, vozilo se vraća u `NAV_CRUISE`;
+   * **Borbena mašina stanja (Top/Meta):** Ulazi u `SEARCH` (pretraga mete). Kada IR Distance Click senzor na kuli detektuje cilj, aktivira se `TRACK` (praćenje) i `AIM` (fino nišanjenje kule). Po zaključavanju mete (`CHARGE`), puni se kondenzatorska baterija topa (preko linija `CHARGE` i `VCAP_SENSE`), vrši opaljenje (`FIRE`), prolazi kroz sigurnosnu fazu hlađenja (`COOLDOWN`) i nastavlja potragu. Ako se meta izgubi tokom praćenja ili nišanjenja, sistem se automatski vraća u `SEARCH`;
+
+3. **Arbitraža upravljanja motorima (Prioritizacija):**
+   * Obje mašine stanja šalju komande za kretanje preko I2C1 magistrale na PWM drajver motora (adresa 0x70) na JoyCar ploči;
+   * Stanje `NAV_AVOID` ima **apsolutni prioritet** nad borbenim komandama kretanja - dok vozilo izvodi manevar izbjegavanja prepreke, komande za okretanje iz borbene logike se privremeno ignorišu radi sprečavanja kolizije;
+
+4. **Bezbjednosni prekidi (Failsafe & STOP):**
+   * Prijemom komande `STOP`, gubitkom WiFi mrežne veze ili detekcijom niskog napona baterije (`battery_is_low()`), sigurnosni modul bez odlaganja zaustavlja motore, razoružava kolo topa i vraća obje mašine stanja u početno mirovanje (`NAV_IDLE` i `IDLE`);
 
 ## 5. Komunikacioni protokoli
 
