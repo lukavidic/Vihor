@@ -7364,7 +7364,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "0b28e277-a9bd-49d5-b16c-93b7f1ae7764")
-		(property "Reference" "#PWR046"
+		(property "Reference" "#PWR030"
 			(at 270.51 165.1 0)
 			(hide yes)
 			(show_name no)
@@ -7424,7 +7424,7 @@
 		(instances
 			(project "Vihor"
 				(path "/c3223988-a4cb-4efe-9db0-2be337cad9e8/07afed60-22e8-4bc7-81fd-d37d69dd51d2"
-					(reference "#PWR046")
+					(reference "#PWR030")
 					(unit 1)
 				)
 			)
@@ -7442,7 +7442,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "0dc8ed9a-2c1d-4718-b028-a92e73396053")
-		(property "Reference" "#PWR025"
+		(property "Reference" "#PWR09"
 			(at 81.28 80.01 0)
 			(hide yes)
 			(show_name no)
@@ -7502,7 +7502,7 @@
 		(instances
 			(project "Vihor"
 				(path "/c3223988-a4cb-4efe-9db0-2be337cad9e8/07afed60-22e8-4bc7-81fd-d37d69dd51d2"
-					(reference "#PWR025")
+					(reference "#PWR09")
 					(unit 1)
 				)
 			)
@@ -7520,7 +7520,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "125f06ec-e098-4874-a491-f9925ea147ec")
-		(property "Reference" "#PWR045"
+		(property "Reference" "#PWR029"
 			(at 267.97 91.44 0)
 			(hide yes)
 			(show_name no)
@@ -7580,7 +7580,7 @@
 		(instances
 			(project "Vihor"
 				(path "/c3223988-a4cb-4efe-9db0-2be337cad9e8/07afed60-22e8-4bc7-81fd-d37d69dd51d2"
-					(reference "#PWR045")
+					(reference "#PWR029")
 					(unit 1)
 				)
 			)
@@ -7598,7 +7598,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "13c2fabd-d6ef-4fee-abbb-02b52c108d74")
-		(property "Reference" "#PWR048"
+		(property "Reference" "#PWR032"
 			(at 274.32 165.1 0)
 			(hide yes)
 			(show_name no)
@@ -7658,7 +7658,7 @@
 		(instances
 			(project "Vihor"
 				(path "/c3223988-a4cb-4efe-9db0-2be337cad9e8/07afed60-22e8-4bc7-81fd-d37d69dd51d2"
-					(reference "#PWR048")
+					(reference "#PWR032")
 					(unit 1)
 				)
 			)
@@ -7676,7 +7676,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "1ae855e7-0495-4442-83f3-1183a5a59406")
-		(property "Reference" "#FLG07"
+		(property "Reference" "#FLG03"
 			(at 242.57 86.995 0)
 			(hide yes)
 			(show_name no)
@@ -7737,7 +7737,7 @@
 		(instances
 			(project "Vihor"
 				(path "/c3223988-a4cb-4efe-9db0-2be337cad9e8/07afed60-22e8-4bc7-81fd-d37d69dd51d2"
-					(reference "#FLG07")
+					(reference "#FLG03")
 					(unit 1)
 				)
 			)
@@ -7755,7 +7755,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "1bbae4c0-87bf-486b-ba19-27a1d239cb9f")
-		(property "Reference" "#PWR042"
+		(property "Reference" "#PWR026"
 			(at 237.49 109.22 0)
 			(hide yes)
 			(show_name no)
@@ -7815,7 +7815,7 @@
 		(instances
 			(project "Vihor"
 				(path "/c3223988-a4cb-4efe-9db0-2be337cad9e8/07afed60-22e8-4bc7-81fd-d37d69dd51d2"
-					(reference "#PWR042")
+					(reference "#PWR026")
 					(unit 1)
 				)
 			)
@@ -7833,7 +7833,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "1f3bba63-af20-4da0-8065-d0dcad944c10")
-		(property "Reference" "#PWR031"
+		(property "Reference" "#PWR015"
 			(at 165.1 120.65 0)
 			(hide yes)
 			(show_name no)
@@ -7893,7 +7893,7 @@
 		(instances
 			(project "Vihor"
 				(path "/c3223988-a4cb-4efe-9db0-2be337cad9e8/07afed60-22e8-4bc7-81fd-d37d69dd51d2"
-					(reference "#PWR031")
+					(reference "#PWR015")
 					(unit 1)
 				)
 			)
@@ -7911,7 +7911,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "2031db87-1a09-44fd-983b-98ebb8a9492d")
-		(property "Reference" "#PWR044"
+		(property "Reference" "#PWR028"
 			(at 257.81 35.56 0)
 			(hide yes)
 			(show_name no)
@@ -7971,7 +7971,7 @@
 		(instances
 			(project "Vihor"
 				(path "/c3223988-a4cb-4efe-9db0-2be337cad9e8/07afed60-22e8-4bc7-81fd-d37d69dd51d2"
-					(reference "#PWR044")
+					(reference "#PWR028")
 					(unit 1)
 				)
 			)
@@ -7989,7 +7989,7 @@
 		(dnp yes)
 		(fields_autoplaced yes)
 		(uuid "20ea1665-4260-4daf-923e-c9b07378412f")
-		(property "Reference" "R15"
+		(property "Reference" "R12"
 			(at 231.14 39.3699 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -8053,7 +8053,7 @@
 		(instances
 			(project "Vihor"
 				(path "/c3223988-a4cb-4efe-9db0-2be337cad9e8/07afed60-22e8-4bc7-81fd-d37d69dd51d2"
-					(reference "R15")
+					(reference "R12")
 					(unit 1)
 				)
 			)
@@ -8071,7 +8071,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "21a6d5f2-7b45-46c8-bf7d-9abbbf4dab23")
-		(property "Reference" "J9"
+		(property "Reference" "J6"
 			(at 225.425 88.9 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -8139,7 +8139,7 @@
 		(instances
 			(project "Vihor"
 				(path "/c3223988-a4cb-4efe-9db0-2be337cad9e8/07afed60-22e8-4bc7-81fd-d37d69dd51d2"
-					(reference "J9")
+					(reference "J6")
 					(unit 1)
 				)
 			)
@@ -8157,7 +8157,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "2a8af386-af06-4035-82a7-000b78d97e67")
-		(property "Reference" "#PWR039"
+		(property "Reference" "#PWR023"
 			(at 209.55 90.17 0)
 			(hide yes)
 			(show_name no)
@@ -8217,7 +8217,7 @@
 		(instances
 			(project "Vihor"
 				(path "/c3223988-a4cb-4efe-9db0-2be337cad9e8/07afed60-22e8-4bc7-81fd-d37d69dd51d2"
-					(reference "#PWR039")
+					(reference "#PWR023")
 					(unit 1)
 				)
 			)
@@ -8235,7 +8235,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "34c09203-5ceb-4e1b-b956-1438c5286f85")
-		(property "Reference" "R14"
+		(property "Reference" "R11"
 			(at 224.79 39.3699 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -8299,7 +8299,7 @@
 		(instances
 			(project "Vihor"
 				(path "/c3223988-a4cb-4efe-9db0-2be337cad9e8/07afed60-22e8-4bc7-81fd-d37d69dd51d2"
-					(reference "R14")
+					(reference "R11")
 					(unit 1)
 				)
 			)
@@ -8317,7 +8317,7 @@
 		(dnp yes)
 		(fields_autoplaced yes)
 		(uuid "37aa3272-779c-4786-8c65-00849b37a946")
-		(property "Reference" "R17"
+		(property "Reference" "R14"
 			(at 267.97 38.0999 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -8381,7 +8381,7 @@
 		(instances
 			(project "Vihor"
 				(path "/c3223988-a4cb-4efe-9db0-2be337cad9e8/07afed60-22e8-4bc7-81fd-d37d69dd51d2"
-					(reference "R17")
+					(reference "R14")
 					(unit 1)
 				)
 			)
@@ -8398,7 +8398,7 @@
 		(in_pos_files yes)
 		(dnp no)
 		(uuid "38af04e3-d61e-43e2-993e-0dd5597afd83")
-		(property "Reference" "TP9"
+		(property "Reference" "TP3"
 			(at 261.62 129.5399 90)
 			(show_name no)
 			(do_not_autoplace no)
@@ -8459,7 +8459,7 @@
 		(instances
 			(project "Vihor"
 				(path "/c3223988-a4cb-4efe-9db0-2be337cad9e8/07afed60-22e8-4bc7-81fd-d37d69dd51d2"
-					(reference "TP9")
+					(reference "TP3")
 					(unit 1)
 				)
 			)
@@ -8477,7 +8477,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "38f1aeb3-cfa9-4f87-aeb8-5e9468cc6e26")
-		(property "Reference" "IC2"
+		(property "Reference" "IC1"
 			(at 238.76 110.49 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -8679,7 +8679,7 @@
 		(instances
 			(project "Vihor"
 				(path "/c3223988-a4cb-4efe-9db0-2be337cad9e8/07afed60-22e8-4bc7-81fd-d37d69dd51d2"
-					(reference "IC2")
+					(reference "IC1")
 					(unit 1)
 				)
 			)
@@ -8697,7 +8697,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "3ddcf0ec-edb8-4643-b8a7-0da486852b64")
-		(property "Reference" "TP12"
+		(property "Reference" "TP6"
 			(at 270.51 83.0579 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -8758,7 +8758,7 @@
 		(instances
 			(project "Vihor"
 				(path "/c3223988-a4cb-4efe-9db0-2be337cad9e8/07afed60-22e8-4bc7-81fd-d37d69dd51d2"
-					(reference "TP12")
+					(reference "TP6")
 					(unit 1)
 				)
 			)
@@ -8776,7 +8776,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "3e1ac59e-1b4d-4c4b-b2ef-df7276915b57")
-		(property "Reference" "#PWR034"
+		(property "Reference" "#PWR018"
 			(at 187.96 160.02 0)
 			(hide yes)
 			(show_name no)
@@ -8836,7 +8836,7 @@
 		(instances
 			(project "Vihor"
 				(path "/c3223988-a4cb-4efe-9db0-2be337cad9e8/07afed60-22e8-4bc7-81fd-d37d69dd51d2"
-					(reference "#PWR034")
+					(reference "#PWR018")
 					(unit 1)
 				)
 			)
@@ -8854,7 +8854,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "3eb74f3e-028d-4226-90f3-d5f881daba97")
-		(property "Reference" "#PWR047"
+		(property "Reference" "#PWR031"
 			(at 274.32 116.84 0)
 			(hide yes)
 			(show_name no)
@@ -8914,7 +8914,7 @@
 		(instances
 			(project "Vihor"
 				(path "/c3223988-a4cb-4efe-9db0-2be337cad9e8/07afed60-22e8-4bc7-81fd-d37d69dd51d2"
-					(reference "#PWR047")
+					(reference "#PWR031")
 					(unit 1)
 				)
 			)
@@ -8932,7 +8932,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "4036e4fd-679b-4c0f-b3b7-45c841f68368")
-		(property "Reference" "#PWR037"
+		(property "Reference" "#PWR021"
 			(at 201.93 118.11 0)
 			(hide yes)
 			(show_name no)
@@ -8992,7 +8992,7 @@
 		(instances
 			(project "Vihor"
 				(path "/c3223988-a4cb-4efe-9db0-2be337cad9e8/07afed60-22e8-4bc7-81fd-d37d69dd51d2"
-					(reference "#PWR037")
+					(reference "#PWR021")
 					(unit 1)
 				)
 			)
@@ -9010,7 +9010,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "46e79953-93c7-4335-90e3-465e6e91d7a6")
-		(property "Reference" "#PWR038"
+		(property "Reference" "#PWR022"
 			(at 201.93 165.1 0)
 			(hide yes)
 			(show_name no)
@@ -9070,7 +9070,7 @@
 		(instances
 			(project "Vihor"
 				(path "/c3223988-a4cb-4efe-9db0-2be337cad9e8/07afed60-22e8-4bc7-81fd-d37d69dd51d2"
-					(reference "#PWR038")
+					(reference "#PWR022")
 					(unit 1)
 				)
 			)
@@ -9088,7 +9088,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "47636761-0736-4dfe-b16b-7c5eae7cbf93")
-		(property "Reference" "#FLG06"
+		(property "Reference" "#FLG02"
 			(at 237.49 104.775 0)
 			(hide yes)
 			(show_name no)
@@ -9149,7 +9149,7 @@
 		(instances
 			(project "Vihor"
 				(path "/c3223988-a4cb-4efe-9db0-2be337cad9e8/07afed60-22e8-4bc7-81fd-d37d69dd51d2"
-					(reference "#FLG06")
+					(reference "#FLG02")
 					(unit 1)
 				)
 			)
@@ -9167,7 +9167,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "4951021f-52c8-4ef4-a5da-6e452d766875")
-		(property "Reference" "R16"
+		(property "Reference" "R13"
 			(at 242.57 39.3699 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -9231,7 +9231,7 @@
 		(instances
 			(project "Vihor"
 				(path "/c3223988-a4cb-4efe-9db0-2be337cad9e8/07afed60-22e8-4bc7-81fd-d37d69dd51d2"
-					(reference "R16")
+					(reference "R13")
 					(unit 1)
 				)
 			)
@@ -9249,7 +9249,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "4b717a5d-4d13-4621-8196-cb57b1cd618d")
-		(property "Reference" "R9"
+		(property "Reference" "R6"
 			(at 88.9 30.4799 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -9313,7 +9313,7 @@
 		(instances
 			(project "Vihor"
 				(path "/c3223988-a4cb-4efe-9db0-2be337cad9e8/07afed60-22e8-4bc7-81fd-d37d69dd51d2"
-					(reference "R9")
+					(reference "R6")
 					(unit 1)
 				)
 			)
@@ -9331,7 +9331,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "564f3391-1cfd-4203-bcec-c3f7bce95697")
-		(property "Reference" "TP10"
+		(property "Reference" "TP4"
 			(at 261.62 142.2399 90)
 			(show_name no)
 			(do_not_autoplace no)
@@ -9392,7 +9392,7 @@
 		(instances
 			(project "Vihor"
 				(path "/c3223988-a4cb-4efe-9db0-2be337cad9e8/07afed60-22e8-4bc7-81fd-d37d69dd51d2"
-					(reference "TP10")
+					(reference "TP4")
 					(unit 1)
 				)
 			)
@@ -9410,7 +9410,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "5657691a-35de-4378-8136-2a4cf121f3a5")
-		(property "Reference" "#PWR043"
+		(property "Reference" "#PWR027"
 			(at 242.57 92.71 0)
 			(hide yes)
 			(show_name no)
@@ -9470,7 +9470,7 @@
 		(instances
 			(project "Vihor"
 				(path "/c3223988-a4cb-4efe-9db0-2be337cad9e8/07afed60-22e8-4bc7-81fd-d37d69dd51d2"
-					(reference "#PWR043")
+					(reference "#PWR027")
 					(unit 1)
 				)
 			)
@@ -9488,7 +9488,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "576d31dd-2828-4683-a574-2a04ea59566b")
-		(property "Reference" "#PWR040"
+		(property "Reference" "#PWR024"
 			(at 228.6 69.85 0)
 			(hide yes)
 			(show_name no)
@@ -9548,7 +9548,7 @@
 		(instances
 			(project "Vihor"
 				(path "/c3223988-a4cb-4efe-9db0-2be337cad9e8/07afed60-22e8-4bc7-81fd-d37d69dd51d2"
-					(reference "#PWR040")
+					(reference "#PWR024")
 					(unit 1)
 				)
 			)
@@ -9566,7 +9566,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "5969dc3d-138f-4ae7-af17-2be1cf434c81")
-		(property "Reference" "#PWR032"
+		(property "Reference" "#PWR016"
 			(at 170.18 100.33 0)
 			(hide yes)
 			(show_name no)
@@ -9626,7 +9626,7 @@
 		(instances
 			(project "Vihor"
 				(path "/c3223988-a4cb-4efe-9db0-2be337cad9e8/07afed60-22e8-4bc7-81fd-d37d69dd51d2"
-					(reference "#PWR032")
+					(reference "#PWR016")
 					(unit 1)
 				)
 			)
@@ -9644,7 +9644,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "5a9abe3c-575f-4b7a-a11a-5234b0acadb4")
-		(property "Reference" "C7"
+		(property "Reference" "C4"
 			(at 205.74 152.3999 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -9708,7 +9708,7 @@
 		(instances
 			(project "Vihor"
 				(path "/c3223988-a4cb-4efe-9db0-2be337cad9e8/07afed60-22e8-4bc7-81fd-d37d69dd51d2"
-					(reference "C7")
+					(reference "C4")
 					(unit 1)
 				)
 			)
@@ -9726,7 +9726,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "5c45ce81-a01e-469d-b2d0-8925ce6c9d41")
-		(property "Reference" "#FLG08"
+		(property "Reference" "#FLG04"
 			(at 247.65 86.995 0)
 			(hide yes)
 			(show_name no)
@@ -9787,7 +9787,7 @@
 		(instances
 			(project "Vihor"
 				(path "/c3223988-a4cb-4efe-9db0-2be337cad9e8/07afed60-22e8-4bc7-81fd-d37d69dd51d2"
-					(reference "#FLG08")
+					(reference "#FLG04")
 					(unit 1)
 				)
 			)
@@ -9805,7 +9805,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "638b404a-2170-40b4-b0fd-1088cee3e304")
-		(property "Reference" "R6"
+		(property "Reference" "R3"
 			(at 63.5 165.0999 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -9869,7 +9869,7 @@
 		(instances
 			(project "Vihor"
 				(path "/c3223988-a4cb-4efe-9db0-2be337cad9e8/07afed60-22e8-4bc7-81fd-d37d69dd51d2"
-					(reference "R6")
+					(reference "R3")
 					(unit 1)
 				)
 			)
@@ -9887,7 +9887,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "64e38eb0-1656-4472-bf48-7af397f332f9")
-		(property "Reference" "#PWR033"
+		(property "Reference" "#PWR017"
 			(at 176.53 162.56 0)
 			(hide yes)
 			(show_name no)
@@ -9947,7 +9947,7 @@
 		(instances
 			(project "Vihor"
 				(path "/c3223988-a4cb-4efe-9db0-2be337cad9e8/07afed60-22e8-4bc7-81fd-d37d69dd51d2"
-					(reference "#PWR033")
+					(reference "#PWR017")
 					(unit 1)
 				)
 			)
@@ -9965,7 +9965,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "65b72c6e-a539-4884-b16f-1ea836db50cf")
-		(property "Reference" "#PWR022"
+		(property "Reference" "#PWR06"
 			(at 60.96 181.61 0)
 			(hide yes)
 			(show_name no)
@@ -10025,7 +10025,7 @@
 		(instances
 			(project "Vihor"
 				(path "/c3223988-a4cb-4efe-9db0-2be337cad9e8/07afed60-22e8-4bc7-81fd-d37d69dd51d2"
-					(reference "#PWR022")
+					(reference "#PWR06")
 					(unit 1)
 				)
 			)
@@ -10043,7 +10043,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "6b908ea9-bd6c-4ed9-923a-cf13ac0de0ae")
-		(property "Reference" "#PWR017"
+		(property "Reference" "#PWR01"
 			(at 30.48 26.67 0)
 			(hide yes)
 			(show_name no)
@@ -10103,7 +10103,7 @@
 		(instances
 			(project "Vihor"
 				(path "/c3223988-a4cb-4efe-9db0-2be337cad9e8/07afed60-22e8-4bc7-81fd-d37d69dd51d2"
-					(reference "#PWR017")
+					(reference "#PWR01")
 					(unit 1)
 				)
 			)
@@ -10121,7 +10121,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "6d31afde-3996-4e4d-9b4a-29e13804705d")
-		(property "Reference" "D3"
+		(property "Reference" "D2"
 			(at 153.67 151.4474 90)
 			(show_name no)
 			(do_not_autoplace no)
@@ -10196,7 +10196,7 @@
 		(instances
 			(project "Vihor"
 				(path "/c3223988-a4cb-4efe-9db0-2be337cad9e8/07afed60-22e8-4bc7-81fd-d37d69dd51d2"
-					(reference "D3")
+					(reference "D2")
 					(unit 1)
 				)
 			)
@@ -10214,7 +10214,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "6f5b516f-7760-4317-9bdd-132047a51206")
-		(property "Reference" "#PWR023"
+		(property "Reference" "#PWR07"
 			(at 68.58 181.61 0)
 			(hide yes)
 			(show_name no)
@@ -10274,7 +10274,7 @@
 		(instances
 			(project "Vihor"
 				(path "/c3223988-a4cb-4efe-9db0-2be337cad9e8/07afed60-22e8-4bc7-81fd-d37d69dd51d2"
-					(reference "#PWR023")
+					(reference "#PWR07")
 					(unit 1)
 				)
 			)
@@ -10292,7 +10292,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "706f4885-bb1c-454f-afdf-2a1469a92b50")
-		(property "Reference" "J7"
+		(property "Reference" "J4"
 			(at 165.735 144.78 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -10354,7 +10354,7 @@
 		(instances
 			(project "Vihor"
 				(path "/c3223988-a4cb-4efe-9db0-2be337cad9e8/07afed60-22e8-4bc7-81fd-d37d69dd51d2"
-					(reference "J7")
+					(reference "J4")
 					(unit 1)
 				)
 			)
@@ -10372,7 +10372,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "71295f78-6dc7-4c99-a205-4b38585f8e24")
-		(property "Reference" "#PWR036"
+		(property "Reference" "#PWR020"
 			(at 198.12 165.1 0)
 			(hide yes)
 			(show_name no)
@@ -10432,7 +10432,7 @@
 		(instances
 			(project "Vihor"
 				(path "/c3223988-a4cb-4efe-9db0-2be337cad9e8/07afed60-22e8-4bc7-81fd-d37d69dd51d2"
-					(reference "#PWR036")
+					(reference "#PWR020")
 					(unit 1)
 				)
 			)
@@ -10450,7 +10450,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "74076863-8106-434e-8410-b824df24c395")
-		(property "Reference" "J6"
+		(property "Reference" "J3"
 			(at 155.575 96.52 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -10521,7 +10521,7 @@
 		(instances
 			(project "Vihor"
 				(path "/c3223988-a4cb-4efe-9db0-2be337cad9e8/07afed60-22e8-4bc7-81fd-d37d69dd51d2"
-					(reference "J6")
+					(reference "J3")
 					(unit 1)
 				)
 			)
@@ -10539,7 +10539,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "7b4fa4b5-17db-4c0e-a6ab-5806b4e75a96")
-		(property "Reference" "R11"
+		(property "Reference" "R8"
 			(at 93.98 30.4799 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -10603,7 +10603,7 @@
 		(instances
 			(project "Vihor"
 				(path "/c3223988-a4cb-4efe-9db0-2be337cad9e8/07afed60-22e8-4bc7-81fd-d37d69dd51d2"
-					(reference "R11")
+					(reference "R8")
 					(unit 1)
 				)
 			)
@@ -10621,7 +10621,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "8501ced0-8ccc-4ff4-9a42-9a799fa64d34")
-		(property "Reference" "TP11"
+		(property "Reference" "TP5"
 			(at 261.62 144.7799 90)
 			(show_name no)
 			(do_not_autoplace no)
@@ -10682,7 +10682,7 @@
 		(instances
 			(project "Vihor"
 				(path "/c3223988-a4cb-4efe-9db0-2be337cad9e8/07afed60-22e8-4bc7-81fd-d37d69dd51d2"
-					(reference "TP11")
+					(reference "TP5")
 					(unit 1)
 				)
 			)
@@ -10700,7 +10700,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "850c74e1-c430-40e8-a598-db2924bb1d34")
-		(property "Reference" "J4"
+		(property "Reference" "J1"
 			(at 27.305 106.68 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -10768,7 +10768,7 @@
 		(instances
 			(project "Vihor"
 				(path "/c3223988-a4cb-4efe-9db0-2be337cad9e8/07afed60-22e8-4bc7-81fd-d37d69dd51d2"
-					(reference "J4")
+					(reference "J1")
 					(unit 1)
 				)
 			)
@@ -10786,7 +10786,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "854e90f8-416b-4286-82a5-51cb634396f8")
-		(property "Reference" "R5"
+		(property "Reference" "R2"
 			(at 38.1 30.4799 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -10850,7 +10850,7 @@
 		(instances
 			(project "Vihor"
 				(path "/c3223988-a4cb-4efe-9db0-2be337cad9e8/07afed60-22e8-4bc7-81fd-d37d69dd51d2"
-					(reference "R5")
+					(reference "R2")
 					(unit 1)
 				)
 			)
@@ -10868,7 +10868,7 @@
 		(dnp yes)
 		(fields_autoplaced yes)
 		(uuid "85f215e7-56b3-4c7a-ace5-8f767de3e819")
-		(property "Reference" "R19"
+		(property "Reference" "R16"
 			(at 275.59 38.0999 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -10932,7 +10932,7 @@
 		(instances
 			(project "Vihor"
 				(path "/c3223988-a4cb-4efe-9db0-2be337cad9e8/07afed60-22e8-4bc7-81fd-d37d69dd51d2"
-					(reference "R19")
+					(reference "R16")
 					(unit 1)
 				)
 			)
@@ -10950,7 +10950,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "85fc9dd4-869a-4c8c-9923-bb68c5c17f12")
-		(property "Reference" "J5"
+		(property "Reference" "J2"
 			(at 27.305 143.51 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -11024,7 +11024,7 @@
 		(instances
 			(project "Vihor"
 				(path "/c3223988-a4cb-4efe-9db0-2be337cad9e8/07afed60-22e8-4bc7-81fd-d37d69dd51d2"
-					(reference "J5")
+					(reference "J2")
 					(unit 1)
 				)
 			)
@@ -11042,7 +11042,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "8c09dddf-e975-4d5f-9c67-657b677e01e7")
-		(property "Reference" "TP7"
+		(property "Reference" "TP1"
 			(at 250.19 84.3279 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -11103,7 +11103,7 @@
 		(instances
 			(project "Vihor"
 				(path "/c3223988-a4cb-4efe-9db0-2be337cad9e8/07afed60-22e8-4bc7-81fd-d37d69dd51d2"
-					(reference "TP7")
+					(reference "TP1")
 					(unit 1)
 				)
 			)
@@ -11201,7 +11201,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "9b79e97c-3e83-4dde-bd96-ab4943dc53d9")
-		(property "Reference" "C9"
+		(property "Reference" "C6"
 			(at 278.13 128.2699 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -11265,7 +11265,7 @@
 		(instances
 			(project "Vihor"
 				(path "/c3223988-a4cb-4efe-9db0-2be337cad9e8/07afed60-22e8-4bc7-81fd-d37d69dd51d2"
-					(reference "C9")
+					(reference "C6")
 					(unit 1)
 				)
 			)
@@ -11283,7 +11283,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "a314772d-cf35-4296-9375-89f10831431a")
-		(property "Reference" "#PWR035"
+		(property "Reference" "#PWR019"
 			(at 196.85 71.12 0)
 			(hide yes)
 			(show_name no)
@@ -11343,7 +11343,7 @@
 		(instances
 			(project "Vihor"
 				(path "/c3223988-a4cb-4efe-9db0-2be337cad9e8/07afed60-22e8-4bc7-81fd-d37d69dd51d2"
-					(reference "#PWR035")
+					(reference "#PWR019")
 					(unit 1)
 				)
 			)
@@ -11361,7 +11361,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "a3625f68-0db6-422d-b9b7-9c4345257d12")
-		(property "Reference" "C4"
+		(property "Reference" "C1"
 			(at 85.09 62.2299 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -11425,7 +11425,7 @@
 		(instances
 			(project "Vihor"
 				(path "/c3223988-a4cb-4efe-9db0-2be337cad9e8/07afed60-22e8-4bc7-81fd-d37d69dd51d2"
-					(reference "C4")
+					(reference "C1")
 					(unit 1)
 				)
 			)
@@ -11443,7 +11443,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "a5aa3713-4bb4-436d-9da5-c1a27548852f")
-		(property "Reference" "TP8"
+		(property "Reference" "TP2"
 			(at 261.62 126.9999 90)
 			(show_name no)
 			(do_not_autoplace no)
@@ -11504,7 +11504,7 @@
 		(instances
 			(project "Vihor"
 				(path "/c3223988-a4cb-4efe-9db0-2be337cad9e8/07afed60-22e8-4bc7-81fd-d37d69dd51d2"
-					(reference "TP8")
+					(reference "TP2")
 					(unit 1)
 				)
 			)
@@ -11522,7 +11522,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "a8ce7fe5-a845-4a95-8d1d-03ae95525652")
-		(property "Reference" "#PWR028"
+		(property "Reference" "#PWR012"
 			(at 91.44 26.67 0)
 			(hide yes)
 			(show_name no)
@@ -11582,7 +11582,7 @@
 		(instances
 			(project "Vihor"
 				(path "/c3223988-a4cb-4efe-9db0-2be337cad9e8/07afed60-22e8-4bc7-81fd-d37d69dd51d2"
-					(reference "#PWR028")
+					(reference "#PWR012")
 					(unit 1)
 				)
 			)
@@ -11600,7 +11600,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "ac6cdeba-96e4-4e5d-83bf-2214c14ff58e")
-		(property "Reference" "#PWR030"
+		(property "Reference" "#PWR014"
 			(at 149.86 163.83 0)
 			(hide yes)
 			(show_name no)
@@ -11660,7 +11660,7 @@
 		(instances
 			(project "Vihor"
 				(path "/c3223988-a4cb-4efe-9db0-2be337cad9e8/07afed60-22e8-4bc7-81fd-d37d69dd51d2"
-					(reference "#PWR030")
+					(reference "#PWR014")
 					(unit 1)
 				)
 			)
@@ -11678,7 +11678,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "ad53e420-0447-476a-aa18-e586b29287b3")
-		(property "Reference" "D2"
+		(property "Reference" "D1"
 			(at 100.33 153.6699 90)
 			(show_name no)
 			(do_not_autoplace no)
@@ -11742,7 +11742,7 @@
 		(instances
 			(project "Vihor"
 				(path "/c3223988-a4cb-4efe-9db0-2be337cad9e8/07afed60-22e8-4bc7-81fd-d37d69dd51d2"
-					(reference "D2")
+					(reference "D1")
 					(unit 1)
 				)
 			)
@@ -11759,7 +11759,7 @@
 		(in_pos_files yes)
 		(dnp no)
 		(uuid "afc3f275-3606-46f6-9dac-5d18b857befa")
-		(property "Reference" "#PWR021"
+		(property "Reference" "#PWR05"
 			(at 38.1 176.53 0)
 			(hide yes)
 			(show_name no)
@@ -11819,7 +11819,7 @@
 		(instances
 			(project "Vihor"
 				(path "/c3223988-a4cb-4efe-9db0-2be337cad9e8/07afed60-22e8-4bc7-81fd-d37d69dd51d2"
-					(reference "#PWR021")
+					(reference "#PWR05")
 					(unit 1)
 				)
 			)
@@ -11837,7 +11837,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "b3562c07-3ec8-4e28-9c3a-4a74e759693a")
-		(property "Reference" "#PWR026"
+		(property "Reference" "#PWR010"
 			(at 86.36 26.67 0)
 			(hide yes)
 			(show_name no)
@@ -11897,7 +11897,7 @@
 		(instances
 			(project "Vihor"
 				(path "/c3223988-a4cb-4efe-9db0-2be337cad9e8/07afed60-22e8-4bc7-81fd-d37d69dd51d2"
-					(reference "#PWR026")
+					(reference "#PWR010")
 					(unit 1)
 				)
 			)
@@ -11915,7 +11915,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "b7f1ec94-0a29-4e49-b325-2d98ef92a88f")
-		(property "Reference" "R12"
+		(property "Reference" "R9"
 			(at 152.4 140.9699 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -11979,7 +11979,7 @@
 		(instances
 			(project "Vihor"
 				(path "/c3223988-a4cb-4efe-9db0-2be337cad9e8/07afed60-22e8-4bc7-81fd-d37d69dd51d2"
-					(reference "R12")
+					(reference "R9")
 					(unit 1)
 				)
 			)
@@ -11997,7 +11997,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "c2ea39da-661a-403f-94d5-826a3141cc83")
-		(property "Reference" "C8"
+		(property "Reference" "C5"
 			(at 274.32 146.0499 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -12061,7 +12061,7 @@
 		(instances
 			(project "Vihor"
 				(path "/c3223988-a4cb-4efe-9db0-2be337cad9e8/07afed60-22e8-4bc7-81fd-d37d69dd51d2"
-					(reference "C8")
+					(reference "C5")
 					(unit 1)
 				)
 			)
@@ -12311,7 +12311,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "c5e22676-a534-4f60-8aad-6b6e14e9c538")
-		(property "Reference" "#FLG05"
+		(property "Reference" "#FLG01"
 			(at 237.49 86.995 0)
 			(hide yes)
 			(show_name no)
@@ -12372,7 +12372,7 @@
 		(instances
 			(project "Vihor"
 				(path "/c3223988-a4cb-4efe-9db0-2be337cad9e8/07afed60-22e8-4bc7-81fd-d37d69dd51d2"
-					(reference "#FLG05")
+					(reference "#FLG01")
 					(unit 1)
 				)
 			)
@@ -12390,7 +12390,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "c7011adf-8439-405d-8a49-977a00b422b1")
-		(property "Reference" "R8"
+		(property "Reference" "R5"
 			(at 81.28 140.97 90)
 			(show_name no)
 			(do_not_autoplace no)
@@ -12452,7 +12452,7 @@
 		(instances
 			(project "Vihor"
 				(path "/c3223988-a4cb-4efe-9db0-2be337cad9e8/07afed60-22e8-4bc7-81fd-d37d69dd51d2"
-					(reference "R8")
+					(reference "R5")
 					(unit 1)
 				)
 			)
@@ -12470,7 +12470,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "c849b326-e681-41a4-b3fc-50fac70a0f85")
-		(property "Reference" "R10"
+		(property "Reference" "R7"
 			(at 90.17 153.6699 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -12534,7 +12534,7 @@
 		(instances
 			(project "Vihor"
 				(path "/c3223988-a4cb-4efe-9db0-2be337cad9e8/07afed60-22e8-4bc7-81fd-d37d69dd51d2"
-					(reference "R10")
+					(reference "R7")
 					(unit 1)
 				)
 			)
@@ -12552,7 +12552,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "cd8f6895-34ad-42d2-82ae-a635cc62d83c")
-		(property "Reference" "#PWR019"
+		(property "Reference" "#PWR03"
 			(at 38.1 105.41 0)
 			(hide yes)
 			(show_name no)
@@ -12612,7 +12612,7 @@
 		(instances
 			(project "Vihor"
 				(path "/c3223988-a4cb-4efe-9db0-2be337cad9e8/07afed60-22e8-4bc7-81fd-d37d69dd51d2"
-					(reference "#PWR019")
+					(reference "#PWR03")
 					(unit 1)
 				)
 			)
@@ -12630,7 +12630,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "d086b511-9205-4b22-bd55-e3c8f22b526e")
-		(property "Reference" "#PWR041"
+		(property "Reference" "#PWR025"
 			(at 237.49 92.71 0)
 			(hide yes)
 			(show_name no)
@@ -12690,7 +12690,7 @@
 		(instances
 			(project "Vihor"
 				(path "/c3223988-a4cb-4efe-9db0-2be337cad9e8/07afed60-22e8-4bc7-81fd-d37d69dd51d2"
-					(reference "#PWR041")
+					(reference "#PWR025")
 					(unit 1)
 				)
 			)
@@ -12708,7 +12708,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "d4bd1430-28ef-4fb9-98a3-800dd3f0c799")
-		(property "Reference" "#PWR018"
+		(property "Reference" "#PWR02"
 			(at 35.56 26.67 0)
 			(hide yes)
 			(show_name no)
@@ -12768,7 +12768,7 @@
 		(instances
 			(project "Vihor"
 				(path "/c3223988-a4cb-4efe-9db0-2be337cad9e8/07afed60-22e8-4bc7-81fd-d37d69dd51d2"
-					(reference "#PWR018")
+					(reference "#PWR02")
 					(unit 1)
 				)
 			)
@@ -12786,7 +12786,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "d4dd2fc6-8bea-4b37-965d-7e371e6ef03a")
-		(property "Reference" "R4"
+		(property "Reference" "R1"
 			(at 33.02 30.4799 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -12850,7 +12850,7 @@
 		(instances
 			(project "Vihor"
 				(path "/c3223988-a4cb-4efe-9db0-2be337cad9e8/07afed60-22e8-4bc7-81fd-d37d69dd51d2"
-					(reference "R4")
+					(reference "R1")
 					(unit 1)
 				)
 			)
@@ -12868,7 +12868,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "d590f780-b0ed-4218-95db-8f7cbe006df2")
-		(property "Reference" "J8"
+		(property "Reference" "J5"
 			(at 187.325 33.02 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -12951,7 +12951,7 @@
 		(instances
 			(project "Vihor"
 				(path "/c3223988-a4cb-4efe-9db0-2be337cad9e8/07afed60-22e8-4bc7-81fd-d37d69dd51d2"
-					(reference "J8")
+					(reference "J5")
 					(unit 1)
 				)
 			)
@@ -12969,7 +12969,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "d5bd1dc8-92b7-4c08-bf12-e11747024868")
-		(property "Reference" "C6"
+		(property "Reference" "C3"
 			(at 110.49 62.2299 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -13033,7 +13033,7 @@
 		(instances
 			(project "Vihor"
 				(path "/c3223988-a4cb-4efe-9db0-2be337cad9e8/07afed60-22e8-4bc7-81fd-d37d69dd51d2"
-					(reference "C6")
+					(reference "C3")
 					(unit 1)
 				)
 			)
@@ -13051,7 +13051,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "d9ec1736-edd0-43af-bf63-0b102723d6e8")
-		(property "Reference" "#PWR049"
+		(property "Reference" "#PWR033"
 			(at 276.86 165.1 0)
 			(hide yes)
 			(show_name no)
@@ -13111,7 +13111,7 @@
 		(instances
 			(project "Vihor"
 				(path "/c3223988-a4cb-4efe-9db0-2be337cad9e8/07afed60-22e8-4bc7-81fd-d37d69dd51d2"
-					(reference "#PWR049")
+					(reference "#PWR033")
 					(unit 1)
 				)
 			)
@@ -13129,7 +13129,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "ddad3879-2d80-48f9-801c-fdb97c01b303")
-		(property "Reference" "R18"
+		(property "Reference" "R15"
 			(at 270.51 93.9799 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -13193,7 +13193,7 @@
 		(instances
 			(project "Vihor"
 				(path "/c3223988-a4cb-4efe-9db0-2be337cad9e8/07afed60-22e8-4bc7-81fd-d37d69dd51d2"
-					(reference "R18")
+					(reference "R15")
 					(unit 1)
 				)
 			)
@@ -13211,7 +13211,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "de8a92ed-4c50-45e8-848b-479d413be533")
-		(property "Reference" "SW2"
+		(property "Reference" "SW1"
 			(at 189.23 144.7799 90)
 			(show_name no)
 			(do_not_autoplace no)
@@ -13275,7 +13275,7 @@
 		(instances
 			(project "Vihor"
 				(path "/c3223988-a4cb-4efe-9db0-2be337cad9e8/07afed60-22e8-4bc7-81fd-d37d69dd51d2"
-					(reference "SW2")
+					(reference "SW1")
 					(unit 1)
 				)
 			)
@@ -13293,7 +13293,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "e50fac21-dfcd-487e-b8d1-8ea22c3b76c6")
-		(property "Reference" "R13"
+		(property "Reference" "R10"
 			(at 212.09 92.7099 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -13357,7 +13357,7 @@
 		(instances
 			(project "Vihor"
 				(path "/c3223988-a4cb-4efe-9db0-2be337cad9e8/07afed60-22e8-4bc7-81fd-d37d69dd51d2"
-					(reference "R13")
+					(reference "R10")
 					(unit 1)
 				)
 			)
@@ -13375,7 +13375,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "e6d606ac-2904-4303-8c59-4518d7586a8b")
-		(property "Reference" "#PWR029"
+		(property "Reference" "#PWR013"
 			(at 97.79 172.72 0)
 			(hide yes)
 			(show_name no)
@@ -13435,7 +13435,7 @@
 		(instances
 			(project "Vihor"
 				(path "/c3223988-a4cb-4efe-9db0-2be337cad9e8/07afed60-22e8-4bc7-81fd-d37d69dd51d2"
-					(reference "#PWR029")
+					(reference "#PWR013")
 					(unit 1)
 				)
 			)
@@ -13453,7 +13453,7 @@
 		(dnp yes)
 		(fields_autoplaced yes)
 		(uuid "ece376f9-7ad7-49a6-846d-242af6e24422")
-		(property "Reference" "R20"
+		(property "Reference" "R17"
 			(at 283.21 38.0999 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -13517,7 +13517,7 @@
 		(instances
 			(project "Vihor"
 				(path "/c3223988-a4cb-4efe-9db0-2be337cad9e8/07afed60-22e8-4bc7-81fd-d37d69dd51d2"
-					(reference "R20")
+					(reference "R17")
 					(unit 1)
 				)
 			)
@@ -13535,7 +13535,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "efd0571f-4fdb-4c3e-93af-0a99ddc65903")
-		(property "Reference" "#PWR027"
+		(property "Reference" "#PWR011"
 			(at 87.63 172.72 0)
 			(hide yes)
 			(show_name no)
@@ -13595,7 +13595,7 @@
 		(instances
 			(project "Vihor"
 				(path "/c3223988-a4cb-4efe-9db0-2be337cad9e8/07afed60-22e8-4bc7-81fd-d37d69dd51d2"
-					(reference "#PWR027")
+					(reference "#PWR011")
 					(unit 1)
 				)
 			)
@@ -13613,7 +13613,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "f336a719-b6b8-454c-a513-ebdc268430c5")
-		(property "Reference" "R7"
+		(property "Reference" "R4"
 			(at 71.12 165.0999 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -13677,7 +13677,7 @@
 		(instances
 			(project "Vihor"
 				(path "/c3223988-a4cb-4efe-9db0-2be337cad9e8/07afed60-22e8-4bc7-81fd-d37d69dd51d2"
-					(reference "R7")
+					(reference "R4")
 					(unit 1)
 				)
 			)
@@ -13695,7 +13695,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "f400b0b8-403e-462b-a8ed-5a7398db301c")
-		(property "Reference" "C5"
+		(property "Reference" "C2"
 			(at 99.06 62.2299 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -13759,7 +13759,7 @@
 		(instances
 			(project "Vihor"
 				(path "/c3223988-a4cb-4efe-9db0-2be337cad9e8/07afed60-22e8-4bc7-81fd-d37d69dd51d2"
-					(reference "C5")
+					(reference "C2")
 					(unit 1)
 				)
 			)
@@ -13857,7 +13857,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "fbe5bd6a-5e00-4220-8f58-8047197048b1")
-		(property "Reference" "#PWR024"
+		(property "Reference" "#PWR08"
 			(at 81.28 26.67 0)
 			(hide yes)
 			(show_name no)
@@ -13917,7 +13917,7 @@
 		(instances
 			(project "Vihor"
 				(path "/c3223988-a4cb-4efe-9db0-2be337cad9e8/07afed60-22e8-4bc7-81fd-d37d69dd51d2"
-					(reference "#PWR024")
+					(reference "#PWR08")
 					(unit 1)
 				)
 			)
@@ -13935,7 +13935,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "feb4fb81-a615-4fb1-ae23-c6dc732e6ac0")
-		(property "Reference" "#PWR020"
+		(property "Reference" "#PWR04"
 			(at 38.1 130.81 0)
 			(hide yes)
 			(show_name no)
@@ -13995,7 +13995,7 @@
 		(instances
 			(project "Vihor"
 				(path "/c3223988-a4cb-4efe-9db0-2be337cad9e8/07afed60-22e8-4bc7-81fd-d37d69dd51d2"
-					(reference "#PWR020")
+					(reference "#PWR04")
 					(unit 1)
 				)
 			)
