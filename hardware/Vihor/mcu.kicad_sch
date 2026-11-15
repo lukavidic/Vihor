@@ -4886,7 +4886,7 @@
 				)
 			)
 		)
-		(property "Footprint" "Connector_PinHeader_2.54mm:PinHeader_1x01_P2.54mm_Vertical"
+		(property "Footprint" "Connector_PinHeader_2.54mm:PinHeader_1x02_P2.54mm_Vertical"
 			(at 27.94 106.68 0)
 			(hide yes)
 			(show_name no)
@@ -5171,7 +5171,7 @@
 	)
 	(symbol
 		(lib_id "Connector:TestPoint")
-		(at 210.82 97.79 270)
+		(at 209.55 97.79 270)
 		(unit 1)
 		(body_style 1)
 		(exclude_from_sim no)
@@ -5179,10 +5179,9 @@
 		(on_board yes)
 		(in_pos_files yes)
 		(dnp no)
-		(fields_autoplaced yes)
 		(uuid "5bf4c497-cd11-42f6-b8a0-058a98b5419d")
 		(property "Reference" "TP4"
-			(at 215.9 96.5199 90)
+			(at 214.63 96.5199 90)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -5193,7 +5192,7 @@
 			)
 		)
 		(property "Value" "TestPoint"
-			(at 215.9 99.0599 90)
+			(at 214.63 98.806 90)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -5204,7 +5203,7 @@
 			)
 		)
 		(property "Footprint" "TestPoint:TestPoint_Pad_D1.5mm"
-			(at 210.82 102.87 0)
+			(at 209.55 102.87 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -5215,7 +5214,7 @@
 			)
 		)
 		(property "Datasheet" ""
-			(at 210.82 102.87 0)
+			(at 209.55 102.87 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -5226,7 +5225,7 @@
 			)
 		)
 		(property "Description" "test point"
-			(at 210.82 97.79 0)
+			(at 209.55 97.79 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
