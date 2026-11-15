@@ -1,7 +1,7 @@
 # Hardverska arhitektura
  
 **Projekat:** Autonomna mobilna platforma sa integrisanim elektromagnetskim topom
-**Verzija:** 0.5 (nacrt)
+**Verzija:** 0.6 (nacrt)
 **Svrha:** Opis hardverskih blokova ploče, njihovih veza, napajanja i konektora. Tačne pinove, I2C adrese i protokol definiše dokument `hwsw-interface.md`, pa se ovdje ne ponavljaju.
  
 **Šema:** KiCad 10, folder `hardware/Vihor` (opis u odjeljku 9).
@@ -175,13 +175,10 @@ Top još nije dostupan, pa se unaprijed predviđa samo interfejs:
 |---|---|---|
 | 1 | Napon i struja 3v3 i 5V zaglavlja pod opterećenjem (WiFi, motori, servo) | Da li zaglavlje izdržava sve potrošače |
 | 2 | Pad napona baterije pod opterećenjem | Prag za zaštitu |
-| 3 | SDA i SCL: logički nivo i pull-up otpornici | Da li dodati pull-up |
-| 4 | Geometrija ivičnog konektora (razmak, širina i dužina prstiju) | Footprint |
-| 5 | Napon na P2 (jumper BAT) | Skaliranje ADC-a |
-| 6 | Smjerovi motora i raspored PWM kanala | Provjera tabele u `hwsw-interface.md` |
-| 7 | Napajanje i struja servo motora kule | Da li ga zaglavlje može napajati |
-| 8 | Mjere i smjer prstiju micro:bita (širina, dužina, razmak od ivice, GND desno gledano sa prednje strane) | Footprint J3 |
-| 9 | Da li JoyCar ploča već ima pull-up na SDA i SCL | R6 i R7 se ugrađuju samo ako nema |
+| 3 | Geometrija ivičnog konektora (razmak, širina i dužina prstiju) | Footprint |
+| 4 | Smjerovi motora i raspored PWM kanala | Provjera tabele u `hwsw-interface.md` |
+| 5 | Napajanje i struja servo motora kule | Da li ga zaglavlje može napajati |
+| 6 | Mjere i smjer prstiju micro:bita (širina, dužina, razmak od ivice, GND desno gledano sa prednje strane) | Footprint J3 |
  
 ---
  
@@ -210,7 +207,7 @@ Veze između listova su **global labele**: ista labela na dva mjesta znači istu
 | Oznaka | Vrijednost | Namjena |
 |---|---|---|
 | R5 | 10k | Donji dio djelitelja na VBAT_SENSE (uz R3 0R) |
-| R6, R7 | 10k | Pull-up na SDA i SCL (samo ako ih JoyCar nema) |
+| R6, R7 | 10k | Pull-up na SDA i SCL (JoyCar ih već ima, ostaju neugrađeni) |
 | R8 | 0R | Premosnica između EDGE_3V i +3.3V (dok se ne provjeri smjer napajanja) |
  
 **Stanje:** ERC bez grešaka i upozorenja. Footprinti su dodijeljeni svim dijelovima osim J3 (u izradi), a C4 i D1 su privremeni.
