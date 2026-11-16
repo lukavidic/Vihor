@@ -1,5 +1,3 @@
-
-
 # Interfejs sistema (HW/SW)
  
 **Projekat:** Autonomna mobilna platforma sa integrisanim elektromagnetskim topom
@@ -132,7 +130,8 @@ Ispitano sa EasyPIC pločom: signal od 3.3 V direktno sa pina mikrokontrolera, n
  
 - PIC može upravljati servom direktno sa RB14, bez pretvarača nivoa.
 - Ukupan ugao od oko 90° znači da kula može pretražiti oko 45° lijevo i desno od sredine. To ograničava zahtjev FR-05 (ugao pretrage), ako se ne promijeni servo ili mehanika kule.
-- Rad na 6.4 V (zaglavlje Servo 1) i potrošnja struje nisu ispitani (**TBD**).
+- **Struja** (strujna kliješta, žica provučena 4 puta, bez opterećenja, napajanje 5 V): u mirovanju ispod rezolucije instrumenta, u pokretu oko 12 do 25 mA prosječno. Kliješta pokazuju prosjek i neprecizna su na malim strujama, pa vršna struja pri pokretanju i struja pod opterećenjem nisu izmjerene (**TBD**).
+- Rad na 6.4 V (zaglavlje Servo 1) nije ispitan (**TBD**).
 ---
  
 ## 4. Interfejs prema JoyCar ploči (motori)
@@ -197,6 +196,7 @@ Kompenzacija različite brzine motora u primjeru koda: vrijednost se množi fakt
 - Vrijednosti ispod praga ne pokreću motor, pa je koristan opseg otprilike od 120 do 255. Najmanja brzina u vožnji treba biti iznad praga, a ne na njemu.
 - Lijevi motor krene prije desnog, pa za pravu vožnju treba kompenzacija (konstante iz gornjeg pasusa).
 - Na podu i sa slabijim baterijama prag će biti viši. Provjeriti na prototipu (**TBD**).
+ 
 ### 4.3 Šta još treba saznati
  
 | Pitanje | Odgovor |
