@@ -1,7 +1,7 @@
 # Interfejs sistema (HW/SW)
  
 **Projekat:** Autonomna mobilna platforma sa integrisanim elektromagnetskim topom
-**Verzija:** 0.16 (nacrt)
+**Verzija:** 0.17 (nacrt)
 **Svrha:** Zajednički dogovor hardverskog i softverskog tima: napajanje, pinovi mikrokontrolera, konektori i komunikacioni protokol. Svaka promjena pinova ili protokola ide prvo kroz izmjenu ovog dokumenta, uz saglasnost oba tima.
  
 Vrijednosti označene sa **TBD** treba potvrditi (profesor, JoyCar dokumentacija, datasheet).
@@ -147,6 +147,20 @@ Napomena o nedoslijednosti u izvoru: komentar u primjeru koda kaže da su PWM0 i
  
 Kompenzacija različite brzine motora u primjeru koda: vrijednost se množi faktorom `(100 − bias) / 100` (zasebno za desni i lijevi motor). Preuzeti u firmver kao dvije konstante.
  
+**Izmjereno na vozilu** (točkovi u zraku, svježe baterije, V_BAT oko 6.4 V, upravljano sa EasyPIC ploče):
+ 
+| Provjera | Rezultat |
+|---|---|
+| Najmanja vrijednost pri kojoj desni točak krene | 90 do 110 (dva mjerenja) |
+| Najmanja vrijednost pri kojoj lijevi točak krene | 80 do 90 (dva mjerenja) |
+| Oba motora naprijed, vrijednost 150 | Vrte se približno jednako (procjena odoka) |
+| Okret u mjestu, obje strane | Točkovi se vrte u suprotnim smjerovima |
+| Zaustavljanje sa svim kanalima na 0 | Točkovi stanu brže |
+| Zaustavljanje sa svim kanalima na 255 | Točkovi stanu sporije |
+ 
+- Vrijednosti ispod praga ne pokreću motor, pa je koristan opseg otprilike od 120 do 255. Najmanja brzina u vožnji treba biti iznad praga, a ne na njemu.
+- Lijevi motor krene prije desnog, pa za pravu vožnju treba kompenzacija (konstante iz gornjeg pasusa).
+- Na podu i sa slabijim baterijama prag će biti viši. Provjeriti na prototipu (**TBD**).
 ### 4.3 Šta još treba saznati
  
 | Pitanje | Odgovor |
@@ -236,7 +250,7 @@ PIC je I2C master na modulu I2C1 (RB8 = SCL1, RB9 = SDA1). Magistrala je zajedni
 | JoyCar IO ekspander | 0x38 | Senzori JoyCar ploče (brzina, linija, prepreke), jedan bajt |
  
 Pull-up otpornici su na JoyCar ploči; mjesta R14 (SDA) i R16 (SCL) na našoj ploči ostaju neugrađena (DNP). Test tačke: TP4 (SDA) i TP5 (SCL).
-
+ 
 HC-SR04 ne koristi I2C.
  
 ---
@@ -261,6 +275,15 @@ HC-SR04 ne koristi I2C.
 | `AT+CIPSTART` (TCP prema računaru, port 8084) | Veza uspostavljena |
 | `AT+CIPSEND` (log poruka) | Poruka primljena na računaru |
 | Prijem komande `START` sa računara | Primljena na mikrokontroleru |
+ 
+**WiFi i motori zajedno** (isti sklop, uz I2C vezu prema JoyCar ploči, vozilo podignuto):
+ 
+| Korak | Rezultat |
+|---|---|
+| Vozilo šalje log `INFO SYS: spreman` | Primljen na računaru |
+| Računar šalje `START` | Motori krenu, vozilo šalje `STATE=DRIVE` |
+| Računar šalje `STOP` | Motori stanu, vozilo šalje `STATE=IDLE` |
+| Napon 3.3 V na JoyCar zaglavlju dok motori rade | Stabilan (mjereno multimetrom, bez zabilježene vrijednosti) |
  
 Ispitivanje na našoj ploči i sa PIC24FJ64GA702 ostaje za prototip.
  
