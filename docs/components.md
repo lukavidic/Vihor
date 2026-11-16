@@ -59,7 +59,7 @@ Vrijednosti označene sa **TBD** treba potvrditi.
 |---|---|
 | Proizvođač | MikroElektronika |
 | Senzor | Sharp GP2Y0A60SZ0F |
-| Namjena | Detekcija mete, opseg 10–150 cm, na kuli |
+| Namjena | Detekcija mete, na kuli. Opseg po datasheetu 10–150 cm; izmjereno pouzdano otkrivanje do oko 80 cm, praćenje do oko 50 cm (`hwsw-interface.md`, 3.1) |
 | Napon | 3.3 V (jumperi PWR SEL na 3V3) |
 | Interfejs | Analogni izlaz OUT, pin EN |
 | Status | Potvrđeno |
@@ -74,7 +74,7 @@ Vrijednosti označene sa **TBD** treba potvrditi.
 | Namjena | Okretanje kule sa topom, metom i senzorom za metu |
 | Tip | SG90 (modelarski servo) |
 | Interfejs | PWM 50 Hz, JoyCar izlaz za servo (P1) |
-| Opseg okretanja | Oko 180° (provjeriti), potreban opseg **TBD** |
+| Opseg okretanja | Izmjereno oko 90° (impulsi 0,5–2,5 ms), dakle oko 45° lijevo i desno od sredine (`hwsw-interface.md`, 3.2). Potreban opseg **TBD** (zahtjev FR-05) |
 | Napajanje | Sa JoyCar zaglavlja Servo 1, izmjereno oko 6.4 V (V_BAT). Granica napona SG90 **TBD** |
  
 ### 1.6 JoyCar platforma
