@@ -1,7 +1,7 @@
 # Spisak komponenti
  
 **Projekat:** Autonomna mobilna platforma sa integrisanim elektromagnetskim topom
-**Verzija:** 0.6 (nacrt)
+**Verzija:** 0.7 (nacrt)
 **Svrha:** Pregled svih komponenti sistema sa slikom, namjenom i osnovnim podacima. Detalji o pinovima su u `hwsw-interface.md`, a o napajanju i blokovima u `hardware.md`.
  
 **Slike:** fotografije se stavljaju u folder `docs/images/` pod nazivom iz oznake slike uz komponentu. Dok slika ne postoji, prikazuje se prazan okvir.
@@ -33,7 +33,7 @@ Vrijednosti označene sa **TBD** treba potvrditi.
 |---|---|
 | Namjena | Veza sa PC aplikacijom (WiFi, TCP) |
 | Napon | 3.3 V |
-| Interfejs | UART, 115200 baud, AT komande |
+| Interfejs | UART, 9600 baud, AT komande (AT firmver 1.7.4); reset preko ESP_RST (RB10) |
 | Napomena | Veća struja pri slanju (**TBD**) |
 | Status | Potvrđeno |
 | Dokumentacija | [Datasheet](https://www.alldatasheet.com/datasheet-pdf/view/1179098/ETC2/ESP-01.html) |
@@ -75,7 +75,7 @@ Vrijednosti označene sa **TBD** treba potvrditi.
 | Tip | SG90 (modelarski servo) |
 | Interfejs | PWM 50 Hz, JoyCar izlaz za servo (P1) |
 | Opseg okretanja | Oko 180° (provjeriti), potreban opseg **TBD** |
-| Napajanje | Oko 5 V (provjeriti datasheet), izvor **TBD** |
+| Napajanje | Sa JoyCar zaglavlja Servo 1, izmjereno oko 6.4 V (V_BAT). Granica napona SG90 **TBD** |
  
 ### 1.6 JoyCar platforma
  
@@ -103,7 +103,7 @@ Vrijednosti označene sa **TBD** treba potvrditi.
 | Svojstvo | Vrijednost |
 |---|---|
 | Namjena | Ispaljivanje projektila, na kuli |
-| Signali | CHARGE, FIRE, VCAP_SENSE (vidi `hwsw-interface.md`, odjeljak 5) |
+| Signali | TOP_CHARGE, TOP_FIRE, CAP_V, TOP_RESERVE na konektoru J2 (vidi `hwsw-interface.md`, odjeljak 5) |
 | Status | **Još nije isporučen**, rezervisan konektor i pinovi |
  
 ---
@@ -112,38 +112,102 @@ Vrijednosti označene sa **TBD** treba potvrditi.
  
 | Oznaka | Dio | Opis | Napomena |
 |---|---|---|---|
-| J3 | Ivični konektor (zlatni prsti) | Zamjenjuje micro:bit u utoru JoyCar ploče | 1.6 mm, ENIG, raspored sa micro:bita, mjere **TBD** |
-| J2 | Priključak napajanja | +3.3V, +5V, VBAT, GND sa JoyCar zaglavlja | Pinski konektor 1 × 4 |
-| J1 | Programski konektor | MCLR, +3.3V, GND, PGD1, PGC1 | Pinski konektor 1 × 5, redoslijed prema programeru **TBD** |
+| J5 | Ivični konektor (zlatni prsti) | Zamjenjuje micro:bit u utoru JoyCar ploče, 9 kontakata | 1.6 mm, ENIG, raspored sa micro:bita, mjere **TBD** |
+| J6 | Priključak napajanja | +3.3V, +5V, VBAT, GND sa JoyCar zaglavlja | Pinski konektor 1 × 4 |
+| J3 | Programski konektor | MCLR, +3.3V, GND, PGD1, PGC1 | Pinski konektor 1 × 5 |
+| J4 | Debug konektor | DEBUG_TX, GND | Pinski konektor 1 × 2 |
 | U1 | ESP-01 | WiFi modul | Utičnica 2 × 4 |
-| J4 | IR Distance Click | +3.3V, GND, IR_OUT, IR_EN | Pinski konektor 1 × 4 |
-| J5 | Konektor topa | VBAT, GND, TOP_CHARGE, TOP_FIRE, CAP_V, TOP_RESERVE | Pinski konektor 1 × 6, rezervisano |
+| J1 | IR Distance Click | +3.3V, GND, IR_OUT, IR_EN | Pinski konektor 1 × 4 |
+| J2 | Konektor topa | VBAT, GND, TOP_CHARGE, TOP_FIRE, CAP_V, TOP_RESERVE | Pinski konektor 1 × 6, rezervisano |
+| JP1 | Kratkospojnik | Odvajanje napajanja topa | Pinski konektor 1 × 2 |
+| TP1–TP6 | Test tačke | VBAT, UART_TX, UART_RX, SDA, SCL, +3.3V | Pad 1.5 mm |
  
 ---
  
-## 3. Pomoćne komponente
+## 3. Dijelovi ploče (prema šemi)
  
-Vrijednosti su sa šeme. Što piše **TBD**, još nije izabrano. Svi pasivni dijelovi su u kućištu 0805.
- 
-| Oznaka | Vrijednost | Namjena | Napomena |
+Izvor: šema `Vihor.kicad_sch`, list „Moduli“ (KiCad 10.0.8), izvoz *Symbol Fields Table* od 15.11.2026. Ukupno **42 dijela**, od toga **4 neugrađena (DNP)**. Dijelovi su grupisani prema blokovima na listu „Moduli“.
+
+Oznake: **DNP** = neugrađeno (mjesto na ploči postoji, dio se ne lemi). **TBD** = vrijednost još nije određena.
+
+### 3.1 WiFi modul
+
+| Oznaka | Vrijednost | Footprint | Namjena |
 |---|---|---|---|
-| C1, C2 | 100 nF | Blokiranje napajanja PIC-a (pinovi 13 i 28) | |
-| C3 | 10 µF | Kondenzator VCAP (pin 20) | Prema datasheetu: keramički ili tantal, ESR < 5 Ω, blizu pina |
-| C4 | 100 µF | Uz napajanje ESP-01 (skokovi struje pri slanju) | **TBD** vrijednost i tip |
-| C5 | 10 µF | Uz napajanje ESP-01 | **TBD** vrijednost |
-| R1 | 10k | Pull-up na MCLR | **TBD** |
-| R2 | 1k | Otpornik za LED | **TBD** |
-| D2 | LED | Statusna LED | |
-| SW1 | Dugme | START/STOP | |
-| R3 | 0R | Gornji dio djelitelja na VBAT_SENSE | Može se zamijeniti većim |
-| R4 | 1k | Serijski otpornik na ECHO | **TBD** |
-| R5 | 10k | Donji dio djelitelja na VBAT_SENSE | Neugrađen (DNP) |
-| R6, R7 | 10k | Pull-up na SDA i SCL | Neugrađeni (DNP), JoyCar ih već ima |
-| R8 | 0R | Premosnica EDGE_3V na +3.3V | Neugrađena (DNP) |
-| R9 do R12 | 10k | Pull-up na EN, RST, IO0 i IO2 ESP-01 | **TBD**, potvrditi prema datasheetu |
-| R13, R14 | **TBD** | Djelitelj napona kondenzatora topa (VCAP_SENSE) | Zavisi od radnog napona |
-| D1 | Zener, **TBD** | Zaštita ulaza VCAP_SENSE | |
-| Programer za PIC | | Programiranje mikrokontrolera | **TBD** model |
+| U1 | ESP8266-01 (ESP-01) | ESP8266:XCVR_ESP8266-01_ESP-01 | WiFi modul, UART prema PIC-u (UART_TX, UART_RX) |
+| R1 | 10k | Resistor_SMD:R_0805_2012Metric | Pull-up na EN (CH_PD) |
+| R2 | 10k | Resistor_SMD:R_0805_2012Metric | Pull-up na RST; mreža ESP_RST ide na RB10 |
+| R6 | 10k | Resistor_SMD:R_0805_2012Metric | Pull-up na IO0 (normalno pokretanje) |
+| R8 | 10k | Resistor_SMD:R_0805_2012Metric | Pull-up na IO2 (normalno pokretanje) |
+| C1 | 100 µF | Capacitor_THT:CP_Radial_D6.3mm_P2.50mm | Kondenzator sa nožicama uz VCC, strujni šiljci pri slanju. Footprint je za polarizovani kondenzator; vrsta (polarizovani ili nepolarizovani) **TBD**, zavisi od toga koji su kondenzatori dostupni |
+| C2 | 10 µF | Capacitor_SMD:C_0805_2012Metric | Blokiranje napajanja VCC |
+| C3 | 100 nF | Capacitor_SMD:C_0805_2012Metric | Blokiranje napajanja VCC |
+
+### 3.2 Ivični konektor
+
+| Oznaka | Vrijednost | Footprint | Namjena |
+|---|---|---|---|
+| J5 | Conn_01x09 | vihor:MicroBit_EdgeFingers_9 | Zlatni prsti za micro:bit utor. Pinovi 1–9: GND, SDA, SCL, EDGE_3V, BUZZER, VBAT_SENSE (preko R11), ECHO (preko R13), TRIG, SERVO_PWM |
+| R11 | 0 Ω | Resistor_SMD:R_0805_2012Metric | Serijski na liniji napona baterije (P2 → VBAT_SENSE); gornji otpornik opcionog djelitelja |
+| R12 | 10k, **DNP** | Resistor_SMD:R_0805_2012Metric | VBAT_SENSE prema GND; donji otpornik opcionog djelitelja. Ne ugrađuje se: napon na P2 je izmjeren i ispod 3.3 V |
+| R13 | 1k | Resistor_SMD:R_0805_2012Metric | Serijska zaštita ulaza ECHO (RB7) |
+| R14 | 10k, **DNP** | Resistor_SMD:R_0805_2012Metric | I2C pull-up na SDA; ne ugrađuje se jer JoyCar već ima pull-up |
+| R16 | 10k, **DNP** | Resistor_SMD:R_0805_2012Metric | I2C pull-up na SCL; ne ugrađuje se jer JoyCar već ima pull-up |
+| R17 | 0 Ω, **DNP** | Resistor_SMD:R_0805_2012Metric | Premosnica EDGE_3V → +3.3V; ne ugrađuje se dok se ne provjeri smjer napajanja na kontaktu 3V |
+
+### 3.3 MCU i napajanje
+
+| Oznaka | Vrijednost | Footprint | Namjena |
+|---|---|---|---|
+| IC1 | PIC24FJ64GA702-I/SO | PIC:SOIC127P1030X265-28N | Mikrokontroler |
+| C4 | 100 nF | Capacitor_SMD:C_0805_2012Metric | Blokiranje VDD (pin 13) |
+| C5 | 10 µF | Capacitor_SMD:C_0805_2012Metric | Kondenzator jezgre VCAP (pin 20) |
+| C6 | 100 nF | Capacitor_SMD:C_0805_2012Metric | Blokiranje AVDD (pin 28) |
+| R10 | 10k | Resistor_SMD:R_0805_2012Metric | Pull-up na MCLR |
+| J3 | Conn_01x05 | Connector_PinHeader_2.54mm:PinHeader_1x05_P2.54mm_Vertical | Programski konektor (ICSP): 1 MCLR, 2 +3.3V, 3 GND, 4 PGD1, 5 PGC1 |
+| J6 | Conn_01x04 | Connector_PinHeader_2.54mm:PinHeader_1x04_P2.54mm_Vertical | Napajanje sa JoyCar zaglavlja: 1 +3.3V, 2 +5V, 3 VBAT, 4 GND |
+| J4 | Conn_01x02 | Connector_PinHeader_2.54mm:PinHeader_1x02_P2.54mm_Vertical | Debug konektor: 1 DEBUG_TX (RB11), 2 GND |
+| SW1 | SW_Push | Button_Switch_THT:SW_PUSH_6mm | Dugme START/STOP (mreža BTN, RB5) |
+| R15 | 10k | Resistor_SMD:R_0805_2012Metric | Pull-up dugmeta (BTN) |
+| D2 | LED | LED_SMD:LED_0805_2012Metric | Statusna LED (RA2) |
+| R9 | 1k | Resistor_SMD:R_0805_2012Metric | Otpornik za ograničenje struje LED-a |
+| TP1 | TestPoint | TestPoint:TestPoint_Pad_D1.5mm | Test tačka VBAT |
+| TP2 | TestPoint | TestPoint:TestPoint_Pad_D1.5mm | Test tačka UART_TX |
+| TP3 | TestPoint | TestPoint:TestPoint_Pad_D1.5mm | Test tačka UART_RX |
+| TP4 | TestPoint | TestPoint:TestPoint_Pad_D1.5mm | Test tačka SDA |
+| TP5 | TestPoint | TestPoint:TestPoint_Pad_D1.5mm | Test tačka SCL |
+| TP6 | TestPoint | TestPoint:TestPoint_Pad_D1.5mm | Test tačka +3.3V |
+
+### 3.4 Senzori i top
+
+| Oznaka | Vrijednost | Footprint | Namjena |
+|---|---|---|---|
+| J1 | Conn_01x04 | Connector_PinHeader_2.54mm:PinHeader_1x04_P2.54mm_Vertical | Konektor IR Distance Click: 1 +3.3V, 2 GND, 3 IR_OUT (RB2), 4 IR_EN (RB3) |
+| J2 | Conn_01x06 | Connector_PinHeader_2.54mm:PinHeader_1x06_P2.54mm_Vertical | Konektor topa: 1 VBAT (preko F1 i JP1), 2 GND, 3 TOP_CHARGE, 4 TOP_FIRE, 5 CAP_V, 6 TOP_RESERVE |
+| F1 | **TBD** | Fuse:Fuse_1206_3216Metric | Osigurač na VBAT prema topu (vrijednost zavisi od struje topa) |
+| JP1 | Kratkospojnik (pinski konektor 1 × 2 sa kapicom) | Connector_PinHeader_2.54mm:PinHeader_1x02_P2.54mm_Vertical | Spajanje i odvajanje napajanja topa: sa kapicom VBAT ide na top, bez kapice je top odvojen |
+| R3 | 10k | Resistor_SMD:R_0805_2012Metric | Pull-down na TOP_CHARGE (RA3) |
+| R4 | 10k | Resistor_SMD:R_0805_2012Metric | Pull-down na TOP_FIRE (RA4) |
+| R5 | **TBD** | Resistor_SMD:R_0805_2012Metric | Gornji otpornik djelitelja CAP_V → VCAP_SENSE (RA0) |
+| R7 | **TBD** | Resistor_SMD:R_0805_2012Metric | Donji otpornik djelitelja (VCAP_SENSE prema GND) |
+| D1 | **TBD** | Diode_SMD:D_SOD-123 | Zener dioda, zaštita ulaza VCAP_SENSE (RA0) |
+
+### 3.5 Sažetak
+
+| Vrsta | Količina | Oznake |
+|---|---|---|
+| Otpornici | 17 (4 DNP) | R1–R17 |
+| Kondenzatori | 6 | C1–C6 |
+| Diode | 2 | D1 (zener), D2 (LED) |
+| Konektori | 6 | J1–J6 |
+| Kratkospojnik | 1 | JP1 |
+| Osigurač | 1 | F1 |
+| Dugme | 1 | SW1 |
+| Test tačke | 6 | TP1–TP6 |
+| Integrisana kola i moduli | 2 | IC1, U1 |
+| **Ukupno** | **42** | |
+ 
+Alat koji nije dio ploče: programer za PIC (model **TBD**), spaja se na J3.
  
 ---
  
@@ -151,9 +215,15 @@ Vrijednosti su sa šeme. Što piše **TBD**, još nije izabrano. Svi pasivni dij
  
 | Komponenta | Napon | Interfejs | Pinovi PIC-a |
 |---|---|---|---|
-| ESP-01 | 3.3 V | UART | RB12, RB13 |
+| ESP-01 | 3.3 V | UART, reset | RB12, RB13, RB10 |
 | HC-SR04 | 5 V | TRIG, ECHO | RB6, RB7 |
 | IR Distance Click | 3.3 V | OUT, EN | RB2, RB3 |
 | Servo kule (SG90) | oko 5 V (**TBD**) | PWM | RB14 |
 | JoyCar (motori, senzori) | V_BAT | I2C | RB8, RB9 |
-| Top | **TBD** | CHARGE, FIRE, VCAP_SENSE | RA3, RA4, RA0 |
+| Top | **TBD** | TOP_CHARGE, TOP_FIRE, CAP_V (preko djelitelja), TOP_RESERVE | RA3, RA4, RA0, RB4 |
+| Baterija (mjerenje) | | ADC, JoyCar P2 | RA1 |
+| Dugme START/STOP (SW1) | 3.3 V | Digitalni ulaz | RB5 |
+| Statusna LED (D2) | 3.3 V | Digitalni izlaz | RA2 |
+| Zujalica (JoyCar P16) | | Digitalni izlaz | RB15 |
+| Debug konektor (J4) | 3.3 V | UART TX | RB11 |
+| Programer (J3) | 3.3 V | ICSP | MCLR, RB0, RB1 |
