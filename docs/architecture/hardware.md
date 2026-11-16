@@ -73,7 +73,7 @@ flowchart TB
 | Mikrokontroler | PIC24FJ64GA702 (SOIC-28) | 3.3 V | I2C, UART, ADC, GPIO | Upravljanje, mašine stanja |
 | WiFi | ESP8266 (ESP-01) | 3.3 V | UART, AT komande | Veza sa aplikacijom |
 | Senzor za prepreke | HC-SR04 | 5 V | TRIG, ECHO (5 V signal) | Detekcija prepreka, na šasiji |
-| Senzor za metu | IR Distance Click (Sharp GP2Y0A60SZ0F) | 3.3 V | analogni OUT, EN | Detekcija mete, 10–150 cm, na kuli |
+| Senzor za metu | IR Distance Click (Sharp GP2Y0A60SZ0F) | 3.3 V | analogni OUT, EN | Detekcija mete, na kuli. Po datasheetu 10–150 cm, izmjereno pouzdano do oko 80 cm |
 | Kula | Servo motor SG90 | oko 5 V (**TBD**) | PWM 50 Hz | Okretanje kule |
 | Motori i drajveri | JoyCar ploča | V_BAT | I2C, 0x70 | Kretanje |
 | Izvor | 4 × AA baterije | oko 4–6.4 V | zaglavlje | Napajanje svega |
