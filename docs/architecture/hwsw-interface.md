@@ -1,7 +1,9 @@
+
+
 # Interfejs sistema (HW/SW)
  
 **Projekat:** Autonomna mobilna platforma sa integrisanim elektromagnetskim topom
-**Verzija:** 0.17 (nacrt)
+**Verzija:** 0.19 (nacrt)
 **Svrha:** Zajednički dogovor hardverskog i softverskog tima: napajanje, pinovi mikrokontrolera, konektori i komunikacioni protokol. Svaka promjena pinova ili protokola ide prvo kroz izmjenu ovog dokumenta, uz saglasnost oba tima.
  
 Vrijednosti označene sa **TBD** treba potvrditi (profesor, JoyCar dokumentacija, datasheet).
@@ -97,6 +99,40 @@ Povezivanje na PIC (konektor **J1**: 1 +3.3V, 2 GND, 3 IR_OUT, 4 IR_EN):
 - **EN** ide na digitalni izlaz **RB3**.
 - Snop je uzak, pa je modul pogodniji za određivanje smjera prema meti od ultrazvučnog senzora, a HC-SR04 ostaje za prepreke (JoyCar US zaglavlje, kontakti P8 i P12).
 - Pošto se za metu koristi IR modul, **drugi HC-SR04 nije potreban**.
+**Pinovi na pločici** (mikroBUS raspored): OUT je na mjestu pina AN, a EN na mjestu pina RST. Na istoj strani su još 3.3V i GND, a na drugoj strani 5V i GND. Ostali pinovi su nespojeni (NC).
+ 
+**Izmjereno** (napajanje 3.3 V, ravna svijetla površina ispred senzora, napon na OUT mjeren multimetrom):
+ 
+| Udaljenost | Napon na OUT |
+|---|---|
+| 3 cm | 2.0 V |
+| 5 cm | 1.8 V |
+| 10 cm | 1.63 V |
+| 20 cm | 0.95 V |
+| 30 cm | 0.70 V |
+| 50 cm | 0.48 V |
+| 85 cm | 0.33 V |
+| 100 cm | 0.24 V |
+| prazan prostor | ispod 0.2 V |
+ 
+- Senzor radi na 3.3 V. Najveći izmjereni napon je 2.0 V, pa izlaz ne prelazi 3.3 V.
+- Napon raste sve do 3 cm, pa bliska meta ne može izgledati kao daleka.
+- Na 1 m signal je blizu vrijednosti za prazan prostor. Pouzdano otkrivanje mete je do oko 80 cm, a praćenje do oko 50 cm.
+- Prag "meta postoji" i kalibraciona tabela određuju se sa stvarnom metom (**TBD**), jer tamna ili kosa površina daje manji napon.
+- **Pin EN:** nespojen stoji na oko 2.8 V i senzor tada radi. Kad se spusti na GND (preko 1 kΩ), izlaz OUT pada na 0 V. Senzor se dakle uključuje jedinicom na RB3, a isključuje nulom.
+### 3.2 Servo kule (SG90): izmjereno
+ 
+Ispitano sa EasyPIC pločom: signal od 3.3 V direktno sa pina mikrokontrolera, napajanje servoa sa pina +5V na JoyCar zaglavlju, period signala oko 20 ms.
+ 
+| Provjera | Rezultat |
+|---|---|
+| Reaguje li servo na signal od 3.3 V | Da |
+| Ukupan ugao za impulse od 0.5 do 2.5 ms | Oko 90° (procjena odoka) |
+| Sredina | Impuls od 1.5 ms |
+ 
+- PIC može upravljati servom direktno sa RB14, bez pretvarača nivoa.
+- Ukupan ugao od oko 90° znači da kula može pretražiti oko 45° lijevo i desno od sredine. To ograničava zahtjev FR-05 (ugao pretrage), ako se ne promijeni servo ili mehanika kule.
+- Rad na 6.4 V (zaglavlje Servo 1) i potrošnja struje nisu ispitani (**TBD**).
 ---
  
 ## 4. Interfejs prema JoyCar ploči (motori)
