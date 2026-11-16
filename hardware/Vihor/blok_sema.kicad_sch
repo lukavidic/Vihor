@@ -5,4 +5,478 @@
 	(uuid "fe8b4ced-9239-49b1-a4c2-c5ba3a02a416")
 	(paper "A4")
 	(lib_symbols)
+	(rectangle
+		(start 25.4 49.53)
+		(end 60.96 67.31)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(fill
+			(type none)
+		)
+		(uuid "1dd71193-9623-40b0-8dde-a2e6298a10da")
+	)
+	(rectangle
+		(start 83.82 90.17)
+		(end 111.76 120.65)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(fill
+			(type none)
+		)
+		(uuid "34e00b3f-304e-4d47-a2c9-5082d964158e")
+	)
+	(rectangle
+		(start 77.47 38.1)
+		(end 232.41 151.13)
+		(stroke
+			(width 0)
+			(type dash)
+		)
+		(fill
+			(type none)
+		)
+		(uuid "4ece8685-dcc5-42f1-a769-af8a0f87831d")
+	)
+	(rectangle
+		(start 133.35 49.53)
+		(end 173.99 68.58)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(fill
+			(type none)
+		)
+		(uuid "7af60155-9a25-4c59-a27a-c60a9027c440")
+	)
+	(rectangle
+		(start 242.57 71.12)
+		(end 281.94 152.4)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(fill
+			(type none)
+		)
+		(uuid "acecfa71-9b09-4154-b802-e55daa21e4c7")
+	)
+	(rectangle
+		(start 133.35 85.09)
+		(end 175.26 133.35)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(fill
+			(type none)
+		)
+		(uuid "b0033ee2-bcc2-400e-9e62-cf1ef1c5796c")
+	)
+	(rectangle
+		(start 200.66 92.71)
+		(end 229.87 119.38)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(fill
+			(type none)
+		)
+		(uuid "b4c1ca8f-8821-4146-9116-21ce26898d97")
+	)
+	(rectangle
+		(start 24.13 88.9)
+		(end 62.23 130.81)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(fill
+			(type none)
+		)
+		(uuid "c95d95a7-ccdc-4417-bf07-98fccdbd1103")
+	)
+	(text "MCU I NAPAJANJE"
+		(exclude_from_sim no)
+		(at 152.146 89.408 0)
+		(effects
+			(font
+				(size 2.032 2.032)
+				(thickness 0.4064)
+				(bold yes)
+			)
+		)
+		(uuid "0c705e74-04e3-4de8-93fc-88c2c4f37d55")
+	)
+	(text "OKRETNA KULA"
+		(exclude_from_sim no)
+		(at 31.75 92.71 0)
+		(effects
+			(font
+				(size 2.032 2.032)
+				(thickness 0.4064)
+				(bold yes)
+			)
+			(justify left)
+		)
+		(uuid "19e1bbbc-c0de-4771-830c-78500827987f")
+	)
+	(text "IR Distance Click\nElektromagnetski top\nServo SG90 (preko JoyCar Servo 1)"
+		(exclude_from_sim no)
+		(at 25.908 104.394 0)
+		(effects
+			(font
+				(size 1.27 1.27)
+				(thickness 0.1588)
+			)
+			(justify left)
+		)
+		(uuid "45c73b38-f08a-4448-8c9c-761cccc6dac7")
+	)
+	(text "SENZORI I TOP"
+		(exclude_from_sim no)
+		(at 97.79 93.218 0)
+		(effects
+			(font
+				(size 2.032 2.032)
+				(bold yes)
+			)
+		)
+		(uuid "4b453296-264b-4f70-bf9d-a0ef791a9802")
+	)
+	(text "ESP-01 (U1)\nAT komande"
+		(exclude_from_sim no)
+		(at 135.128 59.944 0)
+		(effects
+			(font
+				(size 1.27 1.27)
+				(thickness 0.1588)
+			)
+			(justify left)
+		)
+		(uuid "505b8464-20bb-4e3b-9000-7e1ed50456b2")
+	)
+	(text "J5\n"
+		(exclude_from_sim no)
+		(at 234.188 108.204 0)
+		(effects
+			(font
+				(size 1.27 1.27)
+				(thickness 0.1588)
+			)
+			(justify left)
+		)
+		(uuid "5072066b-2b20-4727-a2da-7a8b1a814164")
+	)
+	(text "IVICNI KONEKTOR"
+		(exclude_from_sim no)
+		(at 202.184 96.012 0)
+		(effects
+			(font
+				(size 2.032 2.032)
+				(bold yes)
+			)
+			(justify left)
+		)
+		(uuid "537269f9-7b3f-4b76-9447-39575cfdd6dd")
+	)
+	(text "PC APLIKACIJA"
+		(exclude_from_sim no)
+		(at 32.004 53.34 0)
+		(effects
+			(font
+				(size 2.032 2.032)
+				(thickness 0.4064)
+				(bold yes)
+			)
+			(justify left)
+		)
+		(uuid "5be9cce4-7c24-4564-a462-34c96456c9f3")
+	)
+	(text "J6: +3.3V, +5V, VBAT, GND (sa JoyCar zaglavlja)"
+		(exclude_from_sim no)
+		(at 177.546 140.716 0)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left)
+		)
+		(uuid "5df82f74-5541-4701-b27b-f50f3e394f3a")
+	)
+	(text "JoyCar PLOCA"
+		(exclude_from_sim no)
+		(at 250.698 75.184 0)
+		(effects
+			(font
+				(size 2.032 2.032)
+				(bold yes)
+			)
+			(justify left)
+		)
+		(uuid "5f076c2e-5926-4fba-9bea-4870b1b55ef2")
+	)
+	(text "IR_OUT, IR_EN\nTOP_CHARGE\nTOP_FIRE\nTOP_RESERVE\nVCAP_SENSE\nVBAT"
+		(exclude_from_sim no)
+		(at 122.682 104.14 0)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+		)
+		(uuid "63ba08cc-e261-4692-a376-28bebf45bcc2")
+	)
+	(text "UART_TX, UART_RX (9600)\nESP_RST"
+		(exclude_from_sim no)
+		(at 152.908 76.708 0)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left)
+		)
+		(uuid "78baba9d-3224-4d1e-8882-d8f42ff9571c")
+	)
+	(text "J1\n"
+		(exclude_from_sim no)
+		(at 71.374 100.33 0)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left)
+		)
+		(uuid "7971643c-abda-49e6-bbb5-61aaf7237e21")
+	)
+	(text "J1: IR Distance Click\nJ2: top\nF1, JP1: napajanje topa\nR3, R4: pull-down\nR5, R7, D1: VCAP_SENSE"
+		(exclude_from_sim no)
+		(at 85.598 105.156 0)
+		(effects
+			(font
+				(size 1.27 1.27)
+				(thickness 0.1588)
+			)
+			(justify left)
+		)
+		(uuid "7d59a18d-4cbd-46f1-bffb-38f859dc2b5a")
+	)
+	(text "NASA PLOCA"
+		(exclude_from_sim no)
+		(at 89.408 41.91 0)
+		(effects
+			(font
+				(size 2.032 2.032)
+				(bold yes)
+			)
+		)
+		(uuid "8f5a14cd-4376-457a-8c86-ca0eb5e4acc0")
+	)
+	(text "SDA, SCL (I2C)\nTRIG, ECHO\nSERVO_PWM\nBUZZER\nVBAT_SENSE, EDGE_3V"
+		(exclude_from_sim no)
+		(at 187.96 103.632 0)
+		(effects
+			(font
+				(size 1.27 1.27)
+				(thickness 0.1588)
+			)
+		)
+		(uuid "ab2d7d01-7e6b-4755-b5fc-7db8faa60df6")
+	)
+	(text "komande\nlog poruke"
+		(exclude_from_sim no)
+		(at 26.67 59.182 0)
+		(effects
+			(font
+				(size 1.27 1.27)
+				(thickness 0.1588)
+			)
+			(justify left)
+		)
+		(uuid "b562aa68-7133-405a-bfb4-b07387834f81")
+	)
+	(text "J5 (9 kontakata)\nmijenja micro:bit"
+		(exclude_from_sim no)
+		(at 201.676 102.87 0)
+		(effects
+			(font
+				(size 1.27 1.27)
+				(thickness 0.1588)
+			)
+			(justify left)
+		)
+		(uuid "c14e9959-9032-4d0d-98d8-048f5f87d29c")
+	)
+	(text "Motori: (PWM, 0x70)\nSenzori: (IO, 0x38)\nUS zaglavlje: HC-SR04\nServo 1: SG90\nBaterije: 4 x AA\nZaglavlje: 3v3, 5V\nV_BAT, GND"
+		(exclude_from_sim no)
+		(at 246.126 92.202 0)
+		(effects
+			(font
+				(size 1.27 1.27)
+				(thickness 0.254)
+				(bold yes)
+			)
+			(justify left)
+		)
+		(uuid "c7f89ac1-6a09-4527-bbb1-efaa42ad77c2")
+	)
+	(text "PIC24FJ64GA702 (IC1)\nNapajanje: J6\nProgramiranje: J3 (ICSP)\nDebug: J4 (UART2)\nDugme: SW1, LED D2\nTest tacke TP1 do TP6"
+		(exclude_from_sim no)
+		(at 135.128 103.124 0)
+		(effects
+			(font
+				(size 1.27 1.27)
+				(thickness 0.1588)
+			)
+			(justify left)
+		)
+		(uuid "da82aedb-114f-4111-9253-b0a0c6b04321")
+	)
+	(text "J2\n"
+		(exclude_from_sim no)
+		(at 71.374 113.03 0)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left)
+		)
+		(uuid "dd840ec2-4fa9-475b-a8c0-d07a619292bb")
+	)
+	(text "WiFi MODUL"
+		(exclude_from_sim no)
+		(at 152.908 53.086 0)
+		(effects
+			(font
+				(size 2.032 2.032)
+				(bold yes)
+			)
+		)
+		(uuid "e8805137-a69f-4594-a27c-42ca79af0d6c")
+	)
+	(text "WiFi, TCP"
+		(exclude_from_sim no)
+		(at 94.996 53.086 0)
+		(effects
+			(font
+				(size 1.27 1.27)
+				(thickness 0.1588)
+			)
+		)
+		(uuid "ebd58f82-1d35-4f68-888e-7bc8eef95df7")
+	)
+	(polyline
+		(pts
+			(xy 62.23 101.6) (xy 83.82 101.6)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "00f972d8-9319-4a22-87a3-c250a15d8a95")
+	)
+	(polyline
+		(pts
+			(xy 111.76 110.49) (xy 133.35 110.49)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "279b19fe-7a28-4e0f-ade8-f076b23ab35e")
+	)
+	(polyline
+		(pts
+			(xy 152.4 68.58) (xy 152.4 85.09)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "4f93089b-32e9-44a1-8b96-5b654c01506c")
+	)
+	(polyline
+		(pts
+			(xy 156.21 133.35) (xy 156.21 142.24)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "5a560128-973f-4850-939f-747a958af204")
+	)
+	(polyline
+		(pts
+			(xy 62.23 114.3) (xy 83.82 114.3)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "b3d8f6f8-dbb2-4e73-aaca-c65a7f765f31")
+	)
+	(polyline
+		(pts
+			(xy 60.96 54.61) (xy 133.35 54.61)
+		)
+		(stroke
+			(width 0)
+			(type dash)
+		)
+		(uuid "becdc024-563f-4df7-bb2c-878740dd74ef")
+	)
+	(polyline
+		(pts
+			(xy 156.21 142.24) (xy 242.57 142.24)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "c9998a77-eb3e-49c2-a76f-4f5ec07d6321")
+	)
+	(polyline
+		(pts
+			(xy 177.8 109.22) (xy 200.66 109.22)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "ca113742-c825-4f46-ae7b-d55b081714b7")
+	)
+	(polyline
+		(pts
+			(xy 229.87 109.22) (xy 242.57 109.22)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "cf7fd3a6-721d-496d-a70d-c63176f48c8a")
+	)
+	(polyline
+		(pts
+			(xy 175.26 109.22) (xy 177.8 109.22)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "de5b7745-0d65-4227-82c4-03213d1f81a0")
+	)
+	(polyline
+		(pts
+			(xy 83.82 100.33) (xy 83.82 101.6)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "f7883fc2-f85d-4bd2-a972-21aa8ba5bc40")
+	)
 )
