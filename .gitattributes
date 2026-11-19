@@ -1,0 +1,32 @@
+# Krajevi redova: Git sam bira, osim za fajlove ispod.
+* text=auto
+
+# KiCad fajlovi uvijek sa LF krajevima redova, da ne nastaju lažne izmjene
+# između računara sa Windowsom i drugih sistema.
+*.kicad_pro   text eol=lf
+*.kicad_sch   text eol=lf
+*.kicad_pcb   text eol=lf
+*.kicad_sym   text eol=lf
+*.kicad_mod   text eol=lf
+*.kicad_dru   text eol=lf
+*.kicad_prl   text eol=lf
+fp-lib-table  text eol=lf
+sym-lib-table text eol=lf
+
+# Izvorni kod i dokumenti
+*.c   text
+*.h   text
+*.py  text
+*.md  text
+*.csv text
+
+# Binarni fajlovi: Git ih ne smije mijenjati
+*.pdf  binary
+*.png  binary
+*.jpg  binary
+*.jpeg binary
+*.step binary
+*.stp  binary
+*.wrl  binary
+*.zip  binary
+*.hex  binary
