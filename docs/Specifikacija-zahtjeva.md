@@ -1,7 +1,7 @@
 # Specifikacija zahtjeva (Requirements specification)
  
 **Projekat:** Autonomna mobilna platforma sa integrisanim elektromagnetskim topom
-**Verzija:** 0.9 (nacrt)
+**Verzija:** 0.10 (nacrt)
 **Napomena:** Vrijednosti označene sa **TBD** treba potvrditi sa profesorom ili mjerenjem.
  
 ---
@@ -55,7 +55,7 @@ Vozilo autonomno traži i gađa **pokretnu metu** na suparničkom vozilu istog t
 |---|---|
 | FR-05 | Vozilo traži metu okretanjem kule (po potrebi i kretanjem vozila, **TBD**) i detektuje je senzorom na kuli. |
 | FR-06 | Kada je meta detektovana, kula se okreće dok meta nije u liniji topa. Top i senzor su na kuli u istom smjeru, pa je poravnanje senzora ujedno i poravnanje topa. |
-| FR-12 | Kulu okreće servo motor SG90 u opsegu od **TBD** stepeni, a ploča zadaje željeni ugao. |
+| FR-12 | Kulu okreće servo motor SG90, a ploča zadaje željeni ugao. Izmjereni opseg servo motora je oko 90°, odnosno oko 45° lijevo i desno od sredine (`hwsw-interface.md`, 3.2). Da li je taj opseg dovoljan za traženje mete je otvoreno pitanje (**TBD**, vidi FR-05). |
  
 ### 2.4 Elektromagnetski top
 | ID | Zahtjev |
