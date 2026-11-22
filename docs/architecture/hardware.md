@@ -1,7 +1,7 @@
 # Hardverska arhitektura
  
 **Projekat:** Autonomna mobilna platforma sa integrisanim elektromagnetskim topom
-**Verzija:** 0.7 (nacrt)
+**Verzija:** 0.8 (nacrt)
 **Svrha:** Opis hardverskih blokova ploče, njihovih veza, napajanja i konektora. Tačne pinove, I2C adrese i protokol definiše dokument `hwsw-interface.md`, pa se ovdje ne ponavljaju.
  
 **Šema:** KiCad 10, folder `hardware/Vihor` (opis u odjeljku 9), PDF u `docs/Vihor.pdf`.
@@ -72,9 +72,9 @@ flowchart TB
 |---|---|---|---|---|
 | Mikrokontroler | PIC24FJ64GA702 (SOIC-28) | 3.3 V | I2C, UART, ADC, GPIO | Upravljanje, mašine stanja |
 | WiFi | ESP8266 (ESP-01) | 3.3 V | UART, AT komande | Veza sa aplikacijom |
-| Senzor za prepreke | HC-SR04 | 5 V | TRIG, ECHO (5 V signal) | Detekcija prepreka, na šasiji |
+| Senzor za prepreke | HC-SR04 | 5 V | TRIG (linija u mirovanju na oko 5 V), ECHO (na P12 oko 3.3 V, preko čipa W1 na JoyCar ploči) | Detekcija prepreka, na šasiji |
 | Senzor za metu | IR Distance Click (Sharp GP2Y0A60SZ0F) | 3.3 V | analogni OUT, EN | Detekcija mete, na kuli. Po datasheetu 10–150 cm, izmjereno pouzdano do oko 80 cm |
-| Kula | Servo motor SG90 | oko 5 V (**TBD**) | PWM 50 Hz | Okretanje kule |
+| Kula | Servo motor SG90 | oko 6.4 V sa zaglavlja Servo 1 (granica napona SG90 **TBD**) | PWM 50 Hz | Okretanje kule, izmjereni opseg oko 90° |
 | Motori i drajveri | JoyCar ploča | V_BAT | I2C, 0x70 | Kretanje |
 | Izvor | 4 × AA baterije | oko 4–6.4 V | zaglavlje | Napajanje svega |
 | Top | Elektromagnetski top | **TBD** | CHARGE, FIRE, VCAP_SENSE | Gađanje, na kuli (još nije dostupan) |
@@ -99,21 +99,21 @@ flowchart LR
     S -->|"V_BAT, izmjereno oko 6.4 V"| SV["Servo SG90<br/>(Servo 1 zaglavlje)"]
 ```
  
-Naponi se ne stvaraju na našoj ploči: dolaze konektorom J6 (1 +3.3V, 2 +5V, 3 VBAT, 4 GND). HC-SR04 napaja JoyCar direktno preko US zaglavlja. Pitanje je **koliko struje zaglavlje JoyCar ploče može dati**.
+Naponi se ne stvaraju na našoj ploči: dolaze konektorom J6 (1 +3.3V, 2 +5V, 3 VBAT, 4 GND). Uz J6 je kondenzator C7 (10 µF), na mjestu gdje napon 3.3 V ulazi na ploču. HC-SR04 napaja JoyCar direktno preko US zaglavlja. Pitanje je **koliko struje zaglavlje JoyCar ploče može dati**.
  
 ### 4.2 Potrošači
  
-Struje nisu izmjerene (**TBD**), a treba ih provjeriti na prototipu:
+Struje uglavnom nisu izmjerene (**TBD**), a treba ih provjeriti na prototipu:
 - PIC24FJ64GA702 (3.3 V)
 - ESP8266 (3.3 V), ima najveću potrošnju i skokove struje pri slanju
 - IR Distance Click (3.3 V)
 - HC-SR04 (5 V)
-- Servo motor SG90: Servo 1 zaglavlje JoyCar ploče daje V_BAT (izmjereno oko 6.4 V); granica napona SG90 je **TBD**
+- Servo motor SG90: Servo 1 zaglavlje JoyCar ploče daje V_BAT (izmjereno oko 6.4 V); granica napona SG90 je **TBD**. Struja u pokretu oko 12–25 mA prosječno (na 5 V, bez opterećenja); vršna struja **TBD** (`hwsw-interface.md`, 3.2)
 - Punjenje topa (V_BAT)
 ### 4.3 Rizici
  
 - **Pad napona baterije.** Motori, servo i punjenje topa povlače veliku struju, pa napon može pasti i resetovati PIC. Zato punjenje topa ide ograničenom strujom i samo dok vozilo stoji, a napon baterije se mjeri na RA1.
-- **Kapacitet zaglavlja 3v3.** Ako JoyCar ne daje dovoljno struje za ESP8266, treba dodati kondenzator ili drugo rješenje.
+- **Kapacitet zaglavlja 3v3.** ESP8266 pri slanju povlači strujne šiljke. Na ploči su zato C1–C3 uz ESP i C7 uz konektor J6. Da li je to dovoljno, provjerava se na prototipu.
 - **Zajednička masa.** Sve komponente dijele GND sa JoyCar pločom, a uz napajanje svakog čipa ide kondenzator.
 ---
  
@@ -126,7 +126,7 @@ Potpuna tabela pinova je u `hwsw-interface.md`, odjeljak 3. Pregled grupa:
 | Programiranje | MCLR, RB0 (PGD1), RB1 (PGC1) | Programski konektor J3 |
 | I2C (JoyCar) | RB8 (SCL1), RB9 (SDA1) | PWM kontroler 0x70, IO ekspander 0x38 |
 | UART (WiFi) | RB12 (RX), RB13 (TX) | ESP8266 |
-| HC-SR04 | RB6 (TRIG), RB7 (ECHO, INT0) | JoyCar US zaglavlje |
+| HC-SR04 | RB6 (TRIG, preko R18), RB7 (ECHO, preko R13, INT0) | JoyCar US zaglavlje |
 | IR Distance Click | RB2 (OUT, AN4), RB3 (EN) | Senzor za metu |
 | Servo kule | RB14 (PWM) | JoyCar izlaz za servo (P1) |
 | Baterija | RA1 (AN1) | JoyCar kontakt P2 |
@@ -136,7 +136,7 @@ Potpuna tabela pinova je u `hwsw-interface.md`, odjeljak 3. Pregled grupa:
 | Debug | RB11 (DEBUG_TX) | Debug konektor J4 |
 | Zujalica | RB15 (BUZZER) | JoyCar kontakt P16 (upotreba opciona) |
  
-Pin za servo (RB14) je usklađen sa `software.md` i upisan u `hwsw-interface.md` (v0.16). Slobodnih pinova nema; rezerve su RB4 (rezervisan za top) i RB15 (zujalica, upotreba opciona).
+Pin za servo (RB14) je usklađen sa `software.md` i upisan u `hwsw-interface.md` (v0.22). Slobodnih pinova nema; rezerve su RB4 (rezervisan za top) i RB15 (zujalica, upotreba opciona).
  
 ---
  
@@ -153,12 +153,12 @@ Pin za servo (RB14) je usklađen sa `software.md` i upisan u `hwsw-interface.md`
 | J2 | Top | 1 VBAT (preko F1 i JP1), 2 GND, 3 TOP_CHARGE, 4 TOP_FIRE, 5 CAP_V, 6 TOP_RESERVE |
 | JP1 | Kratkospojnik za odvajanje napajanja topa | 2 pina |
  
-Raspored zlatnih prstiju (J5) je sa micro:bita, a tačne mjere su **TBD**.
+Raspored zlatnih prstiju (J5) je sa micro:bita: jezičak 51.6 mm, dubina 7.62 mm, prsti 1.0 × 7.0 mm (mjere iz datasheeta utora, potvrđene papirnom probom; zazor oko 1 mm).
  
 PCB:
 - Dvoslojna ploča, KiCad 10, fabrikacija u Kini.
 - Ploča 1.6 mm, zlatni prsti sa ENIG površinom.
-- Oblik i dimenzije odgovaraju JoyCar platformi i micro:bit utoru (**TBD**, mjerenje).
+- Jezičak za micro:bit utor ima mjere iz datasheeta utora (vidi J5 iznad). Ostale dimenzije ploče se prilagođavaju JoyCar platformi (**TBD**).
 - Pasivni dijelovi su u kućištu 0805 (lako se lemi ručno).
 - Neugrađena mjesta (DNP) za pull-up otpornike na SDA i SCL (R14, R16), djelitelj na VBAT_SENSE (R12) i premosnicu za 3V (R17), da se greške mogu popraviti bez nove ploče.
 - Test tačke: TP1 (VBAT), TP2 (UART_TX), TP3 (UART_RX), TP4 (SDA), TP5 (SCL) i TP6 (+3.3V).
@@ -185,9 +185,8 @@ Top još nije dostupan, pa se unaprijed predviđa samo interfejs:
 | 1 | Napon i struja 3v3 i 5V zaglavlja pod opterećenjem (WiFi, motori, servo) | Da li zaglavlje izdržava sve potrošače |
 | 2 | Pad napona baterije pod opterećenjem | Prag za zaštitu |
 | 3 | Geometrija ivičnog konektora (razmak, širina i dužina prstiju) | Footprint |
-| 4 | Smjerovi motora i raspored PWM kanala | Provjera tabele u `hwsw-interface.md` |
-| 5 | Napajanje i struja servo motora kule | Da li ga zaglavlje može napajati |
-| 6 | Mjere i smjer prstiju micro:bita (širina, dužina, razmak od ivice, GND desno gledano sa prednje strane) | Footprint J5 |
+| 4 | Napajanje i struja servo motora kule | Da li ga zaglavlje može napajati |
+| 5 | Mjere i smjer prstiju micro:bita (širina, dužina, razmak od ivice, GND desno gledano sa prednje strane) | Footprint J5 |
  
 ---
  
@@ -222,10 +221,10 @@ Za svaki blok je opisano šta radi, kako je riješen i zašto, te šta je još o
 **Uloga:** mikrokontroler IC1 (PIC24FJ64GA702) upravlja cijelim vozilom. Ovaj blok ima i ulaz napajanja ploče, konektore za programiranje i debug, dugme, statusnu LED i test tačke.
  
 **Kako je riješeno:**
-- **Napajanje** dolazi sa zaglavlja JoyCar ploče preko konektora J6 (1 +3.3V, 2 +5V, 3 VBAT, 4 GND). Ploča nema vlastitih regulatora, pa sve zavisi od JoyCar 3,3 V izlaza. +5V je doveden, ali ga na ploči ne koristi nijedan dio (rezerva).
+- **Napajanje** dolazi sa zaglavlja JoyCar ploče preko konektora J6 (1 +3.3V, 2 +5V, 3 VBAT, 4 GND). Ploča nema vlastitih regulatora, pa sve zavisi od JoyCar 3,3 V izlaza. Uz J6 je **C7 (10 µF)**, na mjestu gdje napon 3,3 V ulazi na ploču, da kratki padovi napona na žicama sa zaglavlja ne stignu do PIC-a i ESP-a. +5V je doveden, ali ga na ploči ne koristi nijedan dio (rezerva).
 - **Kondenzatori uz PIC:** C4 (VDD, pin 13) i C6 (AVDD, pin 28), 100 nF, prigušuju kratke smetnje na napajanju i stoje što bliže pinovima. C5 (10 µF) na pinu VCAP (20) je obavezan kondenzator za unutrašnji regulator jezgre PIC-a; bez njega PIC ne radi.
 - **Reset:** R10 (10k) drži MCLR na „1“, pa PIC normalno radi. Programator pri programiranju spušta MCLR i tako preuzima PIC.
-- **Programski konektor J3** (1 MCLR, 2 +3.3V, 3 GND, 4 PGD1, 5 PGC1) služi za programiranje PIC-a na ploči (ICSP), preko pinova RB0 i RB1.
+- **Programski konektor J3** (1 MCLR, 2 +3.3V, 3 GND, 4 PGD1, 5 PGC1) služi za programiranje PIC-a na ploči (ICSP), preko pinova RB0 i RB1. Koristi se **PICkit 3**; raspored J3 je isti kao na programatoru, pa se on utakne direktno. Pri programiranju se ploča napaja sa JoyCar ploče, a ne iz programatora.
 - **Dugme SW1** je spojeno na BTN (RB5) i GND, sa pull-up otpornikom R15 (10k): nepritisnuto je „1“, pritisnuto „0“. Na ploči nema kola za debounce, pa se odskakivanje kontakata rješava u firmveru.
 - **Statusna LED D2** je na RA2, preko otpornika R9 (1k), koji ograničava struju na nekoliko mA.
 - **Debug konektor J4** (1 DEBUG_TX, 2 GND): PIC preko RB11 (UART2) šalje poruke na računar kroz USB-UART adapter. Tako se firmver može pratiti i bez WiFi-ja, npr. dok veza sa ESP-om još ne radi.
@@ -238,16 +237,16 @@ Za svaki blok je opisano šta radi, kako je riješen i zašto, te šta je još o
 **Uloga:** preko konektora J5 naša ploča ulazi u micro:bit utor JoyCar ploče, umjesto micro:bita. Kroz njega idu signali prema JoyCar ploči: I2C prema motorima i senzorima, ultrazvučni senzor, servo kule, zujalica i napon baterije.
  
 **Kako je riješeno:**
-- **J5** ima 9 zlatnih prstiju, samo za kontakte koje koristimo: 1 GND, 2 SDA (P20), 3 SCL (P19), 4 EDGE_3V (3V), 5 BUZZER (P16), 6 VBAT_SENSE (P2), 7 ECHO (P12), 8 TRIG (P8), 9 SERVO_PWM (P1). Napajanje ploče ne ide kroz utor, nego preko J6.
-- **R13 (1k)** je u seriji na liniji ECHO. HC-SR04 daje ECHO od 5 V; RB7 je 5 V tolerantan, a otpornik dodatno ograničava struju u pin.
+- **J5** ima 9 zlatnih prstiju, samo za kontakte koje koristimo: 1 GND, 2 SDA (P20), 3 SCL (P19), 4 EDGE_3V (3V), 5 BUZZER (P16), 6 VBAT_SENSE (P2), 7 ECHO (P12), 8 TRIG (P8), 9 SERVO_PWM (P1). Napajanje ploče ne ide kroz utor, nego preko J6. Mjere: jezičak 51.6 mm, dubina 7.62 mm, prsti 1.0 × 7.0 mm (mjere iz datasheeta utora, potvrđene papirnom probom; zazor oko 1 mm).
+- **R13 (1k)** je u seriji na liniji ECHO. Izmjereno je da ECHO stiže na P12: između pina E na US zaglavlju i P12 je čip oznake W1 na JoyCar ploči, koji signal spušta na oko 3,3 V i u mirovanju aktivno drži liniju na nuli. Zato na liniji ECHO nema pull-up otpornika ni djelitelja napona (djelitelj bi spustio impuls ispod praga jedinice).
+- **R18 (1k)** je u seriji na liniji TRIG. Linija je sa utaknutim senzorom u mirovanju na skoro 5 V, pa R18 ograničava struju u RB6.
 - **R11 (0 Ω) i R12 (DNP)** su mjesto za djelitelj napona baterije (VBAT_SENSE). JoyCar već ima djelitelj na P2 (izmjereno oko 2,6 V pri 6,45 V, ispod 3,3 V), pa R11 služi kao obična veza, a R12 se ne ugrađuje. Ako bi napon ikad prelazio 3,3 V, na mjesto R11 se zalemi otpornik i ugradi R12, bez nove ploče.
 - **R14 i R16 (DNP)** su mjesta za I2C pull-up otpornike na SDA i SCL. JoyCar ploča ih već ima (izmjereno), pa se ne ugrađuju.
 - **R17 (0 Ω, DNP)** je premosnica između kontakta 3V u utoru (EDGE_3V) i +3.3V naše ploče. Nije provjereno da li JoyCar kroz taj kontakt daje napon ili ga očekuje od micro:bita. Dok se to ne provjeri, kontakt ostaje odvojen, da dva izvora od 3,3 V ne bi radila paralelno.
  
 **Otvoreno:**
-- veza ECHO preko P12: mjerenje pokazuje da P12 u utoru nije spojen sa pinom E na US zaglavlju (`hwsw-interface.md`, 4.5). Treba riješiti prije naručivanja ploče (**TBD**);
 - smjer napajanja na kontaktu 3V (odluka o R17);
-- tačne mjere prstiju i sa koje strane ploče su (**TBD**).
+- sa koje strane ploče su prsti (**TBD**).
  
 #### WiFi modul
  
@@ -257,9 +256,8 @@ Za svaki blok je opisano šta radi, kako je riješen i zašto, te šta je još o
 - ESP-01 se utakne u **utičnicu 2 × 4**, pa se može izvaditi i pripremiti van ploče (upis AT firmvera, podešavanje brzine). Na ploči nema konektora za programiranje ESP-a.
 - Pinovi **EN, IO0 i IO2** su pull-up otpornicima R1, R6 i R8 (10k) držani na „1“, jer modul samo tako startuje normalno. Sa IO0 na „0“ pri paljenju ulazi u režim za programiranje.
 - **RST** ima pull-up R2 (10k), a spojen je i na PIC (ESP_RST, RB10). Ako modul prestane odgovarati, PIC ga može sam resetovati, bez gašenja vozila.
-- Pri slanju ESP povlači kratke strujne šiljke do oko 300 mA. Kondenzatori **C1 (100 µF), C2 (10 µF) i C3 (100 nF)** stoje uz napajanje modula, da napon 3,3 V ne propadne i ne resetuje modul ili PIC.
+- Pri slanju ESP povlači kratke strujne šiljke do oko 300 mA. Kondenzatori **C1 (100 µF, elektrolitski, + na +3.3V), C2 (10 µF) i C3 (100 nF)** stoje uz napajanje modula, da napon 3,3 V ne propadne i ne resetuje modul ili PIC.
  
-**Otvoreno:** vrsta kondenzatora C1, polarizovani ili nepolarizovani (**TBD**, zavisi od toga koji su kondenzatori dostupni).
  
 #### Senzori i top
  
@@ -288,4 +286,4 @@ Za svaki blok je opisano šta radi, kako je riješen i zašto, te šta je još o
  
 Spisak svih dijelova sa vrijednostima i footprintima je u `components.md`, odjeljak 3.
  
-**Stanje:** footprinti su dodijeljeni svim dijelovima (ivični konektor J5: `vihor:MicroBit_EdgeFingers_9`). Privremeni su footprinti za C1 (čeka se koji su kondenzatori dostupni) i D1 (zener dioda: napon i tačan model još nisu izabrani, pa je footprint SOD-123 privremen). ERC (16.11.2026): 0 grešaka, 1 upozorenje: četiri žice spojene u jednoj tački (veza je ispravna, upozorenje se odnosi samo na preglednost crteža); isključene su provjere SPICE modela (šema se ne simulira) i slaganja footprinta sa filterima simbola.
+**Stanje:** footprinti su dodijeljeni svim dijelovima (ivični konektor J5: `vihor:MicroBit_EdgeFingers_9`). Privremen je footprint za D1 (zener dioda: napon i tačan model još nisu izabrani, pa je footprint SOD-123 privremen). ERC je ponovljen u PR #47 (22.11.2026): bez grešaka. Ranije upozorenje o četiri žice spojene u jednoj tački (kod C1) odnosi se samo na preglednost crteža; isključene su provjere SPICE modela (šema se ne simulira) i slaganja footprinta sa filterima simbola.
