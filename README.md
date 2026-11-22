@@ -25,6 +25,7 @@ Projekat iz računarske elektronike (RE/MKS 26/27).
 | [Hardverska arhitektura](docs/architecture/hardware.md) | Blok dijagram, napajanje, konektori, mjerenja |
 | [Softverska arhitektura](docs/architecture/software.md) | Moduli firmvera, mašine stanja, aplikacija |
 | [Spisak komponenti](docs/components.md) | Sve komponente sa slikama i osnovnim podacima |
+| [Električna šema (PDF)](docs/Vihor.pdf) | Svi listovi šeme: naslovni list, blok šema i moduli |
 
 
 ## Organizacija rada
@@ -41,17 +42,33 @@ Projekat iz računarske elektronike (RE/MKS 26/27).
 .
 ├── README.md
 ├── LICENSE
-└── docs/
-    ├── Specifikacija-zahtjeva.md
-    ├── components.md
-    ├── images/                 slike komponenti
-    └── architecture/
-        ├── hwsw-interface.md
-        ├── hardware.md
-        └── software.md
+├── .gitattributes              podešavanja gita za KiCad fajlove
+├── .github/                    šabloni za issue i pull request
+├── docs/
+│   ├── Specifikacija-zahtjeva.md
+│   ├── components.md
+│   ├── Vihor.pdf               električna šema (svi listovi)
+│   ├── images/                 slike komponenti
+│   ├── resources/              dijagrami (mašine stanja, aktivnosti)
+│   └── architecture/
+│       ├── hwsw-interface.md
+│       ├── hardware.md
+│       └── software.md
+├── hardware/
+│   ├── Vihor/                  KiCad projekat (šema i ploča)
+│   └── libs/                   simboli, footprinti i 3D modeli (PIC, ESP-01, ivični konektor)
+└── firmware/
+    └── tests/                  testni programi za EasyPIC i TCP server za test na računaru
 ```
 
-Kad se dodaju hardverski projekat (KiCad), firmver i aplikacija, dobijaju svoje foldere (npr. `hardware/`, `firmware/`, `app/`).
+Aplikacija dobija svoj folder (npr. `app/`) kad se doda u repozitorij.
+
+## Stanje projekta
+
+- **Dokumentacija:** specifikacija zahtjeva, HW/SW interfejs, hardverska arhitektura i spisak komponenti su usklađeni sa šemom i rezultatima mjerenja. Softverska arhitektura i dio specifikacije (FR-05, imena stanja) usklađuju se nakon dogovora sa SW timom.
+- **Šema:** pripremljena za izradu ploče (PR #47); vrijednosti dijelova za top (R5, R7, D1, F1) još nisu određene.
+- **Ispitivanje dijelova:** na razvojnoj ploči EasyPIC Fusion v7 (umjesto našeg PIC-a) ispitani su ESP-01 (AT komande, WiFi, TCP, START i STOP), motori preko I2C i servo motor; testni programi su u `firmware/tests/`. IR senzor je izmjeren multimetrom (napon izlaza u zavisnosti od udaljenosti), a kod ultrazvučnog senzora su izmjereni signali TRIG i ECHO na JoyCar ploči. Rezultati su u `docs/architecture/hwsw-interface.md`.
+- **Top:** još nije isporučen; interfejs je predviđen na ploči.
 
 ## Licenca
 
