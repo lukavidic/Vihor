@@ -1,7 +1,7 @@
 # Specifikacija zahtjeva (Requirements specification)
  
 **Projekat:** Autonomna mobilna platforma sa integrisanim elektromagnetskim topom
-**Verzija:** 0.10 (nacrt)
+**Verzija:** 0.11 (nacrt)
 **Napomena:** Vrijednosti označene sa **TBD** treba potvrditi sa profesorom ili mjerenjem.
  
 ---
@@ -53,9 +53,9 @@ Vozilo autonomno traži i gađa **pokretnu metu** na suparničkom vozilu istog t
 ### 2.3 Detekcija i praćenje mete
 | ID | Zahtjev |
 |---|---|
-| FR-05 | Vozilo traži metu okretanjem kule (po potrebi i kretanjem vozila, **TBD**) i detektuje je senzorom na kuli. |
+| FR-05 | Vozilo traži metu okretanjem kule i detektuje je senzorom na kuli. Ako meta nije u opsegu okretanja kule, vozilo se kreće dok je senzor ne otkrije. |
 | FR-06 | Kada je meta detektovana, kula se okreće dok meta nije u liniji topa. Top i senzor su na kuli u istom smjeru, pa je poravnanje senzora ujedno i poravnanje topa. |
-| FR-12 | Kulu okreće servo motor SG90, a ploča zadaje željeni ugao. Izmjereni opseg servo motora je oko 90°, odnosno oko 45° lijevo i desno od sredine (`hwsw-interface.md`, 3.2). Da li je taj opseg dovoljan za traženje mete je otvoreno pitanje (**TBD**, vidi FR-05). |
+| FR-12 | Kulu okreće servo motor SG90, a ploča zadaje željeni ugao. Izmjereni opseg servo motora je oko 90°, odnosno oko 45° lijevo i desno od sredine (`hwsw-interface.md`, 3.2). Van tog opsega meta se traži i kretanjem vozila (FR-05). |
  
 ### 2.4 Elektromagnetski top
 | ID | Zahtjev |
@@ -86,7 +86,7 @@ Sistem radi kao **dvije nezavisne mašine stanja**, koje rade istovremeno. Koman
 - SEARCH: kula se okreće i traži metu.
 - TRACK: meta je pronađena, kula se okreće dok nije poravnata sa topom. Ako se meta izgubi, vraća se u SEARCH.
 - FIRE: meta je poravnata i kondenzator napunjen, pa top ispaljuje projektil, a zatim se vraća u SEARCH.
-Mašine su nezavisne jer upravljaju različitim dijelovima (motori i kula). Ako mašina mete traži i kretanje vozila (**TBD**), stanje AVOID ima prioritet nad tom komandom. Kondenzator se puni u pozadini, a minimalni razmak između ispaljivanja je uslov u zahtjevu FR-08.
+Mašine su nezavisne jer upravljaju različitim dijelovima (motori i kula). Kad mašina mete traži metu kretanjem vozila (FR-05), stanje AVOID ima prioritet nad tom komandom. Kondenzator se puni u pozadini, a minimalni razmak između ispaljivanja je uslov u zahtjevu FR-08.
  
 ---
  
