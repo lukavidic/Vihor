@@ -79,7 +79,7 @@ Firmver je organizovan po principu apstrakcije hardvera (HAL). Gornji sloj (maš
 | **Motors** | Kontrola motora preko JoyCar I2C magistrale | I2C1 (Adresa: 0x70 PWM kontroler) | `motors_init()`, `motors_drive(speed_L, speed_R)`, `motors_stop()`, `motors_brake()` |
 | **ObstacleSensor** | Mjerenje udaljenosti prepreka | HC-SR04: TRIG (RB6), ECHO (RB7, INT0) | `obstacle_init()`, `obstacle_get_distance_mm()`, `obstacle_is_triggered(threshold_mm)` |
 | **TargetSensor** | Detekcija i praćenje mete | IR Distance Click: OUT (RB2/AN4), EN (RB3) | `target_init()`, `target_get_distance_mm()`, `target_enable()`, `target_disable()` |
-| **Battery** | Mjerenje napona baterije, detekcija niskog napona | ADC (RA1/AN1) | `battery_init()`, `battery_get_voltage()`, `battery_is_low()` |
+| **Battery** | Mjerenje napona baterije, proračun procenta i detekcija upozorenja/kritičnog stanja | ADC (RA1/AN1) | `battery_init()`, `battery_get_voltage()`, `battery_get_percentage()`, `battery_is_warning()`, `battery_is_low()` |
 | **Turret** | Kontrola servo motora kule | GPIO: Servo PWM (RB14), CHARGE (RA3), FIRE (RA4), ADC (RA0) | `turret_init()`, `turret_set_angle(deg)`, `turret_get_angle()`, `turret_scan_step(direction)` |
 | **Coilgun** | Punjenje kondenzatora i okidanje topa | CHARGE (RA3), FIRE (RA4), VCAP_SENSE (RA0/AN0) | `coilgun_init()`, `coilgun_start_charge()`, `coilgun_fire()`, `coilgun_get_voltage()`, `coilgun_is_ready()` |
 | **WiFi** | Komunikacija sa ESP8266, slanje logova, parsiranje komandi, reset ESP modula. | UART1 (9600 baud), GPIO: RB10 (ESP_RST), RB11 (DEBUG_TX) | `wifi_init()`, `wifi_connect(ssid, pass)`, `wifi_send_log(msg)`, `wifi_get_command()`, `wifi_is_connected()` |
