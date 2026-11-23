@@ -1,7 +1,7 @@
 # Interfejs sistema (HW/SW)
  
 **Projekat:** Autonomna mobilna platforma sa integrisanim elektromagnetskim topom
-**Verzija:** 0.22 (nacrt)
+**Verzija:** 0.23 (nacrt)
 **Svrha:** Zajednički dogovor hardverskog i softverskog tima: napajanje, pinovi mikrokontrolera, konektori i komunikacioni protokol. Svaka promjena pinova ili protokola ide prvo kroz izmjenu ovog dokumenta, uz saglasnost oba tima.
  
 Vrijednosti označene sa **TBD** treba potvrditi (profesor, JoyCar dokumentacija, datasheet).
@@ -131,7 +131,7 @@ Ispitano sa EasyPIC pločom: signal od 3.3 V direktno sa pina mikrokontrolera, n
 | Sredina | Impuls od 1.5 ms |
  
 - PIC može upravljati servom direktno sa RB14, bez pretvarača nivoa.
-- Ukupan ugao od oko 90° znači da kula može pretražiti oko 45° lijevo i desno od sredine. To ograničava zahtjev FR-05 (ugao pretrage), ako se ne promijeni servo ili mehanika kule.
+- Ukupan ugao od oko 90° znači da kula može pretražiti oko 45° lijevo i desno od sredine. Van tog ugla vozilo traži metu kretanjem (zahtjev FR-05).
 - **Struja** (strujna kliješta, žica provučena 4 puta, bez opterećenja, napajanje 5 V): u mirovanju ispod rezolucije instrumenta, u pokretu oko 12 do 25 mA prosječno. Kliješta pokazuju prosjek i neprecizna su na malim strujama, pa vršna struja pri pokretanju i struja pod opterećenjem nisu izmjerene (**TBD**).
 - Rad na 6.4 V (zaglavlje Servo 1) nije ispitan (**TBD**).
 ---
