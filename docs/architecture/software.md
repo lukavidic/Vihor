@@ -167,5 +167,8 @@ Format log poruka je strogo definisan radi lakšeg parsiranja na strani aplikaci
 **Definicija polja:**
 1. **vrijeme_s:** Float, sekunde od zadnjeg resetovanja ili START komande (npr. `12.4s`).
 2. **NIVO:** `INFO`, `WARN`, `ERROR`.
-3. **modul:** Opciono, skraćenica modula (npr. `SYS`, `MOT`, `TUR`).
-4. **poruka:** Slobodan tekst ili `KLJUČ=vrijednost` parovi.
+   - `INFO`: Normalne informacije o stanju sistema (promjena stanja, detekcija mete, ispaljivanje).
+   - `WARN`: Upozorenja koja zahtijevaju pažnju ali ne zaustavljaju sistem (npr. niska baterija < 30%).
+   - `ERROR`: Kritične greške koje aktiviraju failsafe (npr. kritičan nivo baterije < 15%, gubitak WiFi veze, greška u komunikaciji sa senzorom).
+4. **modul:** Opciono, skraćenica modula (npr. `SYS`, `MOT`, `TUR`).
+5. **poruka:** Slobodan tekst ili `KLJUČ=vrijednost` parovi.
