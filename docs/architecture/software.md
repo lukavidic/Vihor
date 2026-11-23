@@ -11,7 +11,7 @@
 
 Ovaj dokument definiše softversku arhitekturu sistema, uključujući strukturu firmvera, mašine stanja, komunikacioni protokol i arhitekturu aplikacije. Firmver je modularan i sastoji se od nezavisnih modula koji komuniciraju preko jasno definisanih interfejsa.
 
-### 1.2 Ciljevi arhitekure
+### 1.2 Ciljevi arhitekture
 
 - Modularnost:  Firmver je podijeljen na nezavisne module sa jasno definisanim API-jem.
 - Determinizam i real-time odziv: Mašine stanja i upravljanje motorima/senzorima moraju reagovati u definisanim vremenskim okvirima (NFR-01).
@@ -40,8 +40,8 @@ flowchart TD
         direction TB
         
         subgraph LOGIKA["Aplikacioni sloj (Logika i stanja)"]
-            SM_VEH["Vozilo SM<br/>(IDLE, DRIVE, AVOID)"]
-            SM_TUR["Meta/top SM<br/>(SEARCH, TRACK, FIRE)"]
+            SM_VEH["Vozilo SM<br/>(NAV_IDLE, NAV_CRUISE, NAV_SLOW, NAV_AVOID)"]
+            SM_TUR["Meta/top SM<br/>(SEARCH, TRACK, AIM, CHARGE, FIRE, COOLDOWN)"]
         end
         
         subgraph HAL["HAL - Upravljački programi"]
@@ -80,12 +80,12 @@ Firmver je organizovan po principu apstrakcije hardvera (HAL). Gornji sloj (maš
 | **ObstacleSensor** | Mjerenje udaljenosti prepreka | HC-SR04: TRIG (RB6), ECHO (RB7, INT0) | `obstacle_init()`, `obstacle_get_distance_mm()`, `obstacle_is_triggered(threshold_mm)` |
 | **TargetSensor** | Detekcija i praćenje mete | IR Distance Click: OUT (RB2/AN4), EN (RB3) | `target_init()`, `target_get_distance_mm()`, `target_enable()`, `target_disable()` |
 | **Battery** | Mjerenje napona baterije, detekcija niskog napona | ADC (RA1/AN1) | `battery_init()`, `battery_get_voltage()`, `battery_is_low()` |
-| **Turret** | Kontrola servo motora kule | Servo PWM (RB14 - predlog, treba potvrditi) | `turret_init()`, `turret_set_angle(deg)`, `turret_get_angle()`, `turret_scan_step(direction)` |
+| **Turret** | Kontrola servo motora kule | GPIO: Servo PWM (RB14), CHARGE (RA3), FIRE (RA4), ADC (RA0) | `turret_init()`, `turret_set_angle(deg)`, `turret_get_angle()`, `turret_scan_step(direction)` |
 | **Coilgun** | Punjenje kondenzatora i okidanje topa | CHARGE (RA3), FIRE (RA4), VCAP_SENSE (RA0/AN0) | `coilgun_init()`, `coilgun_start_charge()`, `coilgun_fire()`, `coilgun_get_voltage()`, `coilgun_is_ready()` |
-| **WiFi** | Komunikacija sa ESP8266, slanje/prijem podataka | UART1 (RB12 RX, RB13 TX, 115200 baud) | `wifi_init()`, `wifi_connect(ssid, pass)`, `wifi_send_log(msg)`, `wifi_get_command()`, `wifi_is_connected()` |
+| **WiFi** | Komunikacija sa ESP8266, slanje logova, parsiranje komandi, reset ESP modula. | UART1 (9600 baud), GPIO: RB10 (ESP_RST), RB11 (DEBUG_TX) | `wifi_init()`, `wifi_connect(ssid, pass)`, `wifi_send_log(msg)`, `wifi_get_command()`, `wifi_is_connected()` |
 | **Logger** | Formatiranje log poruka prema protokolu | - (koristi WiFi modul) | `log_info(module, msg)`, `log_warn(module, msg)`, `log_error(module, msg)` |
 
-## 4. Dinamički aspekti (Mašine stanje)
+## 4. Dinamički aspekti (Mašine stanja)
 
 ### 4.1 Mašina stanja: Navigacija vozila
 
@@ -126,7 +126,7 @@ Dijagram aktivnosti prikazuje dinamički tok izvršavanja firmvera na mikrokontr
 
 1. **Inicijalizacija i pokretanje:**
    * Sistem započinje u neaktivnom stanju (`NAV_IDLE` za navigaciju i `IDLE` za borbenu logiku);
-   * Prijemom komande `START` sa PC aplikacije putem WiFi konekcije (ESP8266 UART1 interfejs pri 115200 baud), pokreću se paralelne niti upravljanja za navigaciju i borbenu logiku;
+   * Prijemom komande `START` sa PC aplikacije putem WiFi konekcije (ESP8266 UART1 interfejs pri 9600 baud), pokreću se paralelne niti upravljanja za navigaciju i borbenu logiku;
 
 2. **Paralelni rad mašina stanja (Konkurentni tokovi):**
    * **Navigaciona mašina stanja (Šasija):** Vozilo prelazi u `NAV_CRUISE` (krstarenje). Senzor HC-SR04 na šasiji kontinuirano prati prepreke. Detekcijom prepreke na srednjoj distanci prelazi u `NAV_SLOW` (usporavanje), a pri kritičnoj blizini u `NAV_AVOID` (manevrisanje/izbjegavanje). Po izbjegavanju prepreke, vozilo se vraća u `NAV_CRUISE`;
@@ -146,7 +146,7 @@ Dijagram aktivnosti prikazuje dinamički tok izvršavanja firmvera na mikrokontr
 Komunikacija između PC aplikacije i vozila odvija se preko WiFi mreže koristeći TCP/IP protokol.
 
 1. **WiFi:** ESP8266 u Station modu, spaja se na mrežu preko AT komandi.
-2. **UART:** PIC ↔ ESP8266, 115200 baud, 8N1 (koristi AT komande za inicijalizaciju).
+2. **UART:** PIC ↔ ESP8266, 9600 baud, 8N1 (koristi AT komande za inicijalizaciju).
 3. **TCP:** Vozilo je TCP klijent, PC Aplikacija je TCP server. 
 
 ### 5.2 Komande (Aplikacija → Vozilo)
