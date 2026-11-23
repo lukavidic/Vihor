@@ -1,7 +1,7 @@
 # Spisak komponenti
  
 **Projekat:** Autonomna mobilna platforma sa integrisanim elektromagnetskim topom
-**Verzija:** 0.8 (nacrt)
+**Verzija:** 0.9 (nacrt)
 **Svrha:** Pregled svih komponenti sistema sa slikom, namjenom i osnovnim podacima. Detalji o pinovima su u `hwsw-interface.md`, a o napajanju i blokovima u `hardware.md`.
  
 **Slike:** fotografije se stavljaju u folder `docs/images/` pod nazivom iz oznake slike uz komponentu. Dok slika ne postoji, prikazuje se prazan okvir.
@@ -75,7 +75,7 @@ Vrijednosti označene sa **TBD** treba potvrditi.
 | Namjena | Okretanje kule sa topom, metom i senzorom za metu |
 | Tip | SG90 (modelarski servo) |
 | Interfejs | PWM 50 Hz, JoyCar izlaz za servo (P1) |
-| Opseg okretanja | Izmjereno oko 90° (impulsi 0,5–2,5 ms), dakle oko 45° lijevo i desno od sredine (`hwsw-interface.md`, 3.2). Potreban opseg **TBD** (zahtjev FR-05) |
+| Opseg okretanja | Izmjereno oko 90° (impulsi 0,5–2,5 ms), dakle oko 45° lijevo i desno od sredine (`hwsw-interface.md`, 3.2). Van tog opsega meta se traži kretanjem vozila (zahtjev FR-05) |
 | Napajanje | Sa JoyCar zaglavlja Servo 1, izmjereno oko 6.4 V (V_BAT). Granica napona SG90 **TBD**. Struja u pokretu oko 12–25 mA prosječno (na 5 V, bez opterećenja) |
  
 ### 1.6 JoyCar platforma
