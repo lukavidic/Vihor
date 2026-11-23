@@ -69,6 +69,7 @@ Vozilo autonomno traži i gađa **pokretnu metu** na suparničkom vozilu istog t
 | FR-09 | Vozilo se povezuje na WiFi mrežu i uspostavlja vezu sa aplikacijom. |
 | FR-10 | Aplikacija ima komande **START** i **STOP**. |
 | FR-11 | Vozilo šalje log poruke (stanje, udaljenost, ispaljivanje, greške), a aplikacija ih prikazuje u realnom vremenu. |
+| FR-13 |  Vozilo kontinuirano prati nivo baterije. Kada nivo padne ispod 30%, vozilo šalje WARN log poruku i automatski smanjuje brzinu motora na 30% radi produženja rada. Kada nivo padne na kritični minimum (5%), aktivira se FAILSAFE (NFR-04) i vozilo se zaustavlja, kula se vraća u IDLE, a top se razoružava |
  
 ### 2.6 Stanja sistema
 Sistem radi kao **dvije nezavisne mašine stanja**, koje rade istovremeno. Komanda START pokreće obje, a STOP ih vraća u stanje IDLE.
