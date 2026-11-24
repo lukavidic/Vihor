@@ -76,17 +76,26 @@ Sistem radi kao **dvije nezavisne mašine stanja**, koje rade istovremeno. Koman
  
 **Vozilo (šasija)**, koristi senzor na šasiji i upravlja motorima:
  
-`IDLE → DRIVE ⇄ AVOID`
+`IDLE → NAV_CRUISE → NAV_SLOW ⇄ NAV_AVOID`
  
-- DRIVE: vozilo se kreće.
-- AVOID: prepreka je bliža od praga, pa se vozilo zaustavlja ili je zaobilazi, a zatim se vraća u DRIVE.
+- NAV_CRUISE: vozilo se kreće.
+- NAV_SLOW: detektovana je prepreka i vozilo usporava.
+- NAV_AVOID: prepreka je bliža od praga koji govori da li vozilo treba da se kreće, pa se vozilo zaustavlja, okreće i na taj način zaobilazi prepreku čime se vraća u stanje NAV_CRUISE.
 **Meta i top**, koristi senzor na kuli i upravlja kulom i topom:
  
-`IDLE → SEARCH → TRACK → FIRE → SEARCH`
+`IDLE → SEARCH → TRACK → AIM → CHARGE → FIRE → COOLDOWN → SEARCH`
  
 - SEARCH: kula se okreće i traži metu.
 - TRACK: meta je pronađena, kula se okreće dok nije poravnata sa topom. Ako se meta izgubi, vraća se u SEARCH.
 - FIRE: meta je poravnata i kondenzator napunjen, pa top ispaljuje projektil, a zatim se vraća u SEARCH.
+
+`TRACK → SEARCH`, `AIM → SEARCH`
+- Ukoliko je meta izgubljena, prelazi se u stanje SEARCH.   
+
+`COOLDOWN → SEARCH`
+- Nakon hladjenja prelazi se u stanje SEARCH.
+
+Ukoliko se pritisne taster STOP, kod obe mašine stanja se prelazi u stanje IDLE bez obzira u kojem se stanju trenutno nalazi sistem.
 Mašine su nezavisne jer upravljaju različitim dijelovima (motori i kula). Kad mašina mete traži metu kretanjem vozila (FR-05), stanje AVOID ima prioritet nad tom komandom. Kondenzator se puni u pozadini, a minimalni razmak između ispaljivanja je uslov u zahtjevu FR-08.
  
 ---
