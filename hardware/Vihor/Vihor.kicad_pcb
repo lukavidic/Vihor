@@ -2299,7 +2299,7 @@
 			)
 		)
 	)
-	(footprint "ESP8266:XCVR_ESP8266-01_ESP-01"
+	(footprint "vihor:ESP-01_Socket_2x04_P2.54mm"
 		(layer "F.Cu")
 		(uuid "4090a6f8-d605-4669-be81-bc547dbb541f")
 		(at 109 55.65)
@@ -2352,7 +2352,7 @@
 			(unlocked yes)
 			(layer "F.Fab")
 			(hide yes)
-			(uuid "f451e64f-0a8d-4f76-94d4-40b45205c823")
+			(uuid "04a6693d-be42-456d-b36e-0a66688d7582")
 			(effects
 				(font
 					(size 1 1)
@@ -2365,7 +2365,7 @@
 			(unlocked yes)
 			(layer "F.Fab")
 			(hide yes)
-			(uuid "94de0771-1a8f-452b-b806-616b8c01f166")
+			(uuid "53c71e1b-4688-4821-a554-d5d2cd4ca33d")
 			(effects
 				(font
 					(size 1 1)
@@ -2378,7 +2378,7 @@
 			(unlocked yes)
 			(layer "F.Fab")
 			(hide yes)
-			(uuid "00ab4daf-c58b-4b07-90e9-9fc873dbba53")
+			(uuid "87886757-36e4-4dc3-9cae-bd3c88e42f39")
 			(effects
 				(font
 					(size 1 1)
@@ -2391,7 +2391,7 @@
 			(unlocked yes)
 			(layer "F.Fab")
 			(hide yes)
-			(uuid "16e92e1b-dc5c-4fed-b210-8b9fb47ce863")
+			(uuid "6d9f95ac-0964-4490-8b22-37b1e15f1d31")
 			(effects
 				(font
 					(size 1 1)
@@ -2404,7 +2404,7 @@
 			(unlocked yes)
 			(layer "F.Fab")
 			(hide yes)
-			(uuid "0d5351f5-a2cc-4a20-baf1-1d63a4a1b518")
+			(uuid "1344f5ef-0143-40bf-9452-907762a95bfa")
 			(effects
 				(font
 					(size 1 1)
@@ -2417,7 +2417,7 @@
 			(unlocked yes)
 			(layer "F.Fab")
 			(hide yes)
-			(uuid "1678cea3-965e-4ae9-811e-5b3b8746fa95")
+			(uuid "084e7fa7-159b-4bfd-af37-6b191748e293")
 			(effects
 				(font
 					(size 1 1)
@@ -2430,7 +2430,7 @@
 			(unlocked yes)
 			(layer "F.Fab")
 			(hide yes)
-			(uuid "989722fb-0f20-4d0d-a88d-9ca545061981")
+			(uuid "035a000d-7a24-49a1-84bb-4ccfb9952d3e")
 			(effects
 				(font
 					(size 1 1)
@@ -2443,7 +2443,7 @@
 			(unlocked yes)
 			(layer "F.Fab")
 			(hide yes)
-			(uuid "db125de3-c9d9-4a9a-8811-af29faa568e7")
+			(uuid "94575d75-09f7-42f0-9b10-fd0baeadef26")
 			(effects
 				(font
 					(size 1 1)
@@ -2456,7 +2456,7 @@
 			(unlocked yes)
 			(layer "F.Fab")
 			(hide yes)
-			(uuid "91e01dbc-6946-46ae-9167-b1fc47144e78")
+			(uuid "e6ae657d-138a-4347-bdf3-56e01eff213f")
 			(effects
 				(font
 					(size 1 1)
@@ -2469,7 +2469,7 @@
 			(unlocked yes)
 			(layer "F.Fab")
 			(hide yes)
-			(uuid "9c3c90f2-18ff-4cae-8979-7525b57a4e6b")
+			(uuid "4a02451c-a3d5-477b-b066-592b0b85d656")
 			(effects
 				(font
 					(size 1 1)
@@ -2482,7 +2482,7 @@
 			(unlocked yes)
 			(layer "F.Fab")
 			(hide yes)
-			(uuid "4d206fb9-06ec-4763-a80c-767ab17ffa18")
+			(uuid "d10d01e2-5a08-4522-b39d-ec66cb3d5b2c")
 			(effects
 				(font
 					(size 1 1)
@@ -2705,8 +2705,8 @@
 		)
 		(pad "1" thru_hole rect
 			(at -3.81 8.31)
-			(size 1.5 1.5)
-			(drill 0.8)
+			(size 1.7 1.7)
+			(drill 1)
 			(layers "*.Cu" "*.Mask")
 			(remove_unused_layers no)
 			(net "GND")
@@ -2717,8 +2717,8 @@
 		)
 		(pad "2" thru_hole circle
 			(at -1.27 8.31)
-			(size 1.5 1.5)
-			(drill 0.8)
+			(size 1.7 1.7)
+			(drill 1)
 			(layers "*.Cu" "*.Mask")
 			(remove_unused_layers no)
 			(net "Net-(U1-IO2)")
@@ -2729,8 +2729,8 @@
 		)
 		(pad "3" thru_hole circle
 			(at 1.27 8.31)
-			(size 1.5 1.5)
-			(drill 0.8)
+			(size 1.7 1.7)
+			(drill 1)
 			(layers "*.Cu" "*.Mask")
 			(remove_unused_layers no)
 			(net "Net-(U1-IO0)")
@@ -2741,8 +2741,8 @@
 		)
 		(pad "4" thru_hole circle
 			(at 3.81 8.31)
-			(size 1.5 1.5)
-			(drill 0.8)
+			(size 1.7 1.7)
+			(drill 1)
 			(layers "*.Cu" "*.Mask")
 			(remove_unused_layers no)
 			(net "UART_TX")
@@ -2753,8 +2753,8 @@
 		)
 		(pad "5" thru_hole circle
 			(at -3.81 10.85)
-			(size 1.5 1.5)
-			(drill 0.8)
+			(size 1.7 1.7)
+			(drill 1)
 			(layers "*.Cu" "*.Mask")
 			(remove_unused_layers no)
 			(net "UART_RX")
@@ -2765,8 +2765,8 @@
 		)
 		(pad "6" thru_hole circle
 			(at -1.27 10.85)
-			(size 1.5 1.5)
-			(drill 0.8)
+			(size 1.7 1.7)
+			(drill 1)
 			(layers "*.Cu" "*.Mask")
 			(remove_unused_layers no)
 			(net "Net-(U1-EN)")
@@ -2777,8 +2777,8 @@
 		)
 		(pad "7" thru_hole circle
 			(at 1.27 10.85)
-			(size 1.5 1.5)
-			(drill 0.8)
+			(size 1.7 1.7)
+			(drill 1)
 			(layers "*.Cu" "*.Mask")
 			(remove_unused_layers no)
 			(net "ESP_RST")
@@ -2789,8 +2789,8 @@
 		)
 		(pad "8" thru_hole circle
 			(at 3.81 10.85)
-			(size 1.5 1.5)
-			(drill 0.8)
+			(size 1.7 1.7)
+			(drill 1)
 			(layers "*.Cu" "*.Mask")
 			(remove_unused_layers no)
 			(net "+3.3V")
