@@ -69,7 +69,7 @@ Vozilo autonomno traži i gađa **pokretnu metu** na suparničkom vozilu istog t
 | FR-09 | Vozilo se povezuje na WiFi mrežu i uspostavlja vezu sa aplikacijom. |
 | FR-10 | Aplikacija ima komande **START** i **STOP**. |
 | FR-11 | Vozilo šalje log poruke (stanje, udaljenost, ispaljivanje, greške), a aplikacija ih prikazuje u realnom vremenu. |
-| FR-13 |  Vozilo kontinuirano prati nivo baterije. Kada nivo padne ispod 30%, vozilo šalje WARN log poruku i automatski smanjuje brzinu motora na 30% radi produženja rada. Kada nivo padne na kritični minimum (5%), aktivira se FAILSAFE (NFR-04), vozilo se zaustavlja, kula se vraća u IDLE, a top se razoružava. |
+| FR-13 |  Vozilo kontinuirano prati nivo baterije. Kada nivo padne ispod 30%, vozilo šalje WARN log poruku i automatski smanjuje brzinu motora na 30% radi produženja rada. Kada nivo padne na kritični minimum (softverski prag 5% ili hardverski pad napona ispod 4.0V), aktivira se FAILSAFE (NFR-04), vozilo se zaustavlja, kula se vraća u IDLE, a top se razoružava. |
  
 ### 2.6 Stanja sistema
 Sistem radi kao **dvije nezavisne mašine stanja**, koje rade istovremeno. Komanda START pokreće obje, a STOP ih vraća u stanje IDLE.
@@ -79,7 +79,7 @@ Sistem radi kao **dvije nezavisne mašine stanja**, koje rade istovremeno. Koman
 `IDLE → NAV_CRUISE → NAV_SLOW ⇄ NAV_AVOID`
  
 - NAV_CRUISE: vozilo se kreće.
-- NAV_SLOW: detektovana je prepreka i vozilo usporava.
+- NAV_SLOW: detektovana je prepreka ili je nivo baterije ispod 30%, pa vozilo automatski usporava radi uštede energije.
 - NAV_AVOID: prepreka je bliža od praga koji govori da li vozilo treba da se kreće, pa se vozilo zaustavlja, okreće i na taj način zaobilazi prepreku čime se vraća u stanje NAV_CRUISE.
 **Meta i top**, koristi senzor na kuli i upravlja kulom i topom:
  
