@@ -351,12 +351,15 @@ Primjeri:
 [12.4s] INFO  STATE=TRACK dist=830mm
 [13.1s] INFO  FIRE
 [13.2s] ERROR CAP voltage low
+[15.0s] WARN  BAT: Napon ispod 4.0V, ulazak u FAILSAFE
+[10.2s] INFO  NAV: STATE=NAV_SLOW (Baterija < 30%)
 ```
  
-| Polje | Opis |
-|---|---|
-| vrijeme | sekunde od starta, npr. `12.4s` |
-| NIVO | `INFO`, `WARN`, `ERROR` |
-| poruka | slobodan tekst ili `KLJUČ=vrijednost` parovi |
+| Polje   | Opis                                                        |
+|---------|-------------------------------------------------------------|
+| vrijeme | sekunde od starta, npr. `12.4s`                             |
+| NIVO    | `INFO`, `WARN`, `ERROR`                                     |
+| modul   | Opciono, skraćenica modula (npr. `SYS`, `NAV`, `BAT`, `TUR`)|
+| poruka  | slobodan tekst ili `KLJUČ=vrijednost` parovi                |
  
 ---
