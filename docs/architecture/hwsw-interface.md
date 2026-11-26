@@ -356,11 +356,11 @@ Primjeri:
 [15.0s] ERROR BAT: Napon ispod 4.0V, ulazak u FAILSAFE
 ```
  
-| Polje   | Opis                                                        |
-|---------|-------------------------------------------------------------|
-| vrijeme | sekunde od starta, npr. `12.4s`                             |
-| NIVO    | `INFO`, `WARN`, `ERROR`                                     |
-| modul   | Opciono, skraćenica modula (npr. `SYS`, `NAV`, `BAT`, `TUR`)|
-| poruka  | slobodan tekst ili `KLJUČ=vrijednost` parovi                |
+| Polje   | Opis                                                               |
+|---------|--------------------------------------------------------------------|
+| vrijeme | sekunde od starta, npr. `12.4s`                                    |
+| NIVO    | `INFO`, `WARN`, `ERROR`                                            |
+| modul   | Opciono, skraćenica modula (npr. `SYS`, `NAV`, `MOT`, `BAT`, `TUR`)|
+| poruka  | slobodan tekst ili `KLJUČ=vrijednost` parovi                       |
  
 ---
