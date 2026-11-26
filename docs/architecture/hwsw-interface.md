@@ -1,7 +1,7 @@
 # Interfejs sistema (HW/SW)
  
 **Projekat:** Autonomna mobilna platforma sa integrisanim elektromagnetskim topom
-**Verzija:** 0.23 (nacrt)
+**Verzija:** 0.24 (nacrt)
 **Svrha:** Zajednički dogovor hardverskog i softverskog tima: napajanje, pinovi mikrokontrolera, konektori i komunikacioni protokol. Svaka promjena pinova ili protokola ide prvo kroz izmjenu ovog dokumenta, uz saglasnost oba tima.
  
 Vrijednosti označene sa **TBD** treba potvrditi (profesor, JoyCar dokumentacija, datasheet).

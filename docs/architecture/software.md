@@ -3,7 +3,7 @@
 
 **Projekat:** Autonomna mobilna platforma sa integrisanim elektromagnetskim topom
 
-**Verzija:** 0.2
+**Verzija:** 0.3
 
 ## 1. Uvod
 
@@ -31,7 +31,6 @@ flowchart TD
     classDef layerApp fill:#e3f2fd,stroke:#1565c0,stroke-width:2px,color:#000
     classDef layerLogic fill:#fff8e1,stroke:#f57f17,stroke-width:2px,color:#000
     classDef layerHAL fill:#e8f5e9,stroke:#2e7d32,stroke-width:2px,color:#000
-    class DRV_WIFI,DRV_SENS,DRV_MOT,DRV_TUR,DRV_GUN layerHAL;
     
     subgraph PC["PC APLIKACIJA"]
         UI["Korisnički interfejs<br/>(START/STOP dugmad, Log prikaz)"]
@@ -62,11 +61,12 @@ flowchart TD
     
     SM_TUR -->|"Nišanjenje"| DRV_TUR
     SM_TUR -->|"Punjenje i pucanje"| DRV_GUN
+    SM_TUR -->|"Čitanje mete"| DRV_SENS
 
     %% Primjena stilova (boja)
     class UI layerApp;
     class SM_VEH,SM_TUR layerLogic;
-    class DRV_WIFI,DRV_SENS,DRV_MOT,DRV_TUR layerHAL;
+    class DRV_WIFI,DRV_SENS,DRV_MOT,DRV_TUR,DRV_GUN layerHAL;
 ```
 
 ## 3. Struktura firmvera i moduli
@@ -112,10 +112,9 @@ Borbena mašina stanja (Top/Meta) upravlja cjelokupnom logikom lociranja, nišan
 
 * **IDLE (Mirovanje):** Početno stanje sistema u kojem vozilo miruje i čeka `START` komandu sa PC aplikacije;
 * **SEARCH (Pretraga mete):** Faza u kojoj vozilo patrolira terenom i koristi senzore za lociranje protivničke mete;
-* **TRACK (Praćenje mete):** Stanje u kojem se orijentacija vozila prilagođava kako bi se detektovana meta (`META UOCENA`) zadržala u vidnom polju; u slučaju gubitka mete (`META IZGUBLJENA`), sistem se automatski vraća u `SEARCH`;
-* **AIM (Nišanjenje):** Fino poravnavanje kada je meta u liniji topa (`META U LINIJI TOPA`), uz bezbjednosni izlaz i povrat u `SEARCH` ako se meta ponovo izgubi;
-* **CHARGE (Punjenje topa):** Aktiviranje visokonaponskog kola za punjenje kondenzatora nakon što je nišan stabilan i potvrđen (`META ZAKLJUCANA`);
-* **FIRE (Opaljenje):** Slanje okidačkog impulsa i pražnjenje energije kroz kaleme ka meti kada je top potpuno napunjen (`TOP NAPUNJEN`);
+* **TRACK (Praćenje mete):** Meta je uočena (`META UOCENA`). Vozilo staje, kula prati metu i počinje punjenje kondenzatora (CHARGE na RA3, mjerenje napona preko VCAP_SENSE na RA0); u slučaju gubitka mete (`META IZGUBLJENA`), sistem se automatski vraća u `SEARCH`;
+* **AIM (Nišanjenje):** Fino poravnavanje kada je meta u liniji topa (`META U LINIJI TOPA`), punjenje kondenzatora se nastavlja. Ako meta izađe iz linije topa, ali je i dalje vidljiva, sistem se vraća u `TRACK`, a ako se meta izgubi, vraća se u `SEARCH`;
+* **FIRE (Opaljenje):** Slanje okidačkog impulsa i pražnjenje energije kroz kaleme ka meti kada je meta zaključana (`META ZAKLJUCANA`), kondenzator napunjen (`TOP NAPUNJEN`) i protekao minimalni razmak između ispaljivanja (FR-08);
 * **COOLDOWN (Hlađenje):** Sigurnosna faza hlađenja nakon pucanja (`TOP OPALIO`), nakon čega se ciklus zatvara i nastavlja potraga (`NASTAVAK POTRAGE`);
 * **STOP prekid:** Globalna sigurnosna linija koja iz bilo kog trenutnog borbenog stanja trenutno ruši procese i vraća sistem u sigurno `IDLE` stanje;
 
@@ -132,11 +131,11 @@ Dijagram aktivnosti prikazuje dinamički tok izvršavanja firmvera na mikrokontr
 
 2. **Paralelni rad mašina stanja (Konkurentni tokovi):**
    * **Navigaciona mašina stanja (Šasija):** Vozilo prelazi u `NAV_CRUISE` (krstarenje). Senzor HC-SR04 na šasiji kontinuirano prati prepreke. Detekcijom prepreke na srednjoj distanci ili kada je nivo baterije ispod 30% (BATTERY_LVL < 30%), vozilo prelazi u `NAV_SLOW` (usporavanje), a pri kritičnoj blizini u `NAV_AVOID` (manevrisanje/izbjegavanje). Po izbjegavanju prepreke, vozilo se vraća u `NAV_CRUISE`;
-      * **Borbena mašina stanja (Top/Meta):** Ulazi u `SEARCH` (pretraga mete). Kada IR Distance Click senzor na kuli detektuje cilj, prelazi u `TRACK`: vozilo staje, kula prati metu i paralelno počinje punjenje kondenzatora (preko RA3, uz mjerenje napona preko VCAP_SENSE na RA0). Punjenje traje i u stanju `AIM`, samo dok motori stoje. Kada je meta u liniji topa, sistem prelazi u `AIM`, a kada je meta zaključana, kondenzator napunjen i ispunjen minimalni razmak između ispaljivanja (FR-08), prelazi u `FIRE`. Zatim slijede `COOLDOWN` i nova pretraga. Ako meta izađe iz linije topa, ali je i dalje vidljiva, sistem se iz `AIM` vraća u `TRACK`, a ako se izgubi, iz `TRACK` ili `AIM` vraća se u `SEARCH`;
+   * **Borbena mašina stanja (Top/Meta):** Ulazi u `SEARCH` (pretraga mete). Kada IR Distance Click senzor na kuli detektuje cilj, prelazi u `TRACK`: vozilo staje, kula prati metu i paralelno počinje punjenje kondenzatora (preko RA3, uz mjerenje napona preko VCAP_SENSE na RA0). Punjenje traje i u stanju `AIM`, samo dok motori stoje. Kada je meta u liniji topa, sistem prelazi u `AIM`, a kada je meta zaključana, kondenzator napunjen i ispunjen minimalni razmak između ispaljivanja (FR-08), prelazi u `FIRE`. Zatim slijede `COOLDOWN` i nova pretraga. Ako meta izađe iz linije topa, ali je i dalje vidljiva, sistem se iz `AIM` vraća u `TRACK`, a ako se izgubi, iz `TRACK` ili `AIM` vraća se u `SEARCH`;
 
 3. **Arbitraža upravljanja motorima (Prioritizacija):**
    * Patrolna kontrola (motori prate cilj/pretragu) šalje zahtjeve za kretanje ka bloku ARBITER MOTORA;
-   * Arbiter provjerava da li je `TRACK` aktiviran. Ako jeste i detektovana je prepreka, izvršava se AVOID MANEUVER (OVERRIDE) uz NAVIGACIJA BLOKIRANA (FR-04) - odnosno PRIORITET1:AVOID OVERRIDE; komande za okretanje iz borbene logike se privremeno ignorišu radi sprečavanja kolizije;
+   * Arbiter provjerava da li je navigaciona mašina u stanju `NAV_AVOID`. Ako jeste, izvršava se manevar izbjegavanja prepreke (PRIORITET 1, FR-04), a komande za kretanje iz borbene logike se privremeno ignorišu radi sprečavanja kolizije;
    * Kada nema prepreke, komande prolaze na JoyCar Drajvere motora (I2C adresa 0x70, PWM kanali) na JoyCar ploči;
 
 4. **Bezbjednosni prekidi (Failsafe & STOP):**

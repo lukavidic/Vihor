@@ -1,7 +1,7 @@
 # Specifikacija zahtjeva (Requirements specification)
  
 **Projekat:** Autonomna mobilna platforma sa integrisanim elektromagnetskim topom
-**Verzija:** 0.11 (nacrt)
+**Verzija:** 0.12 (nacrt)
 **Napomena:** Vrijednosti označene sa **TBD** treba potvrditi sa profesorom ili mjerenjem.
  
 ---
@@ -83,11 +83,15 @@ Sistem radi kao **dvije nezavisne mašine stanja**, koje rade istovremeno. Koman
 - NAV_AVOID: prepreka je bliža od praga koji govori da li vozilo treba da se kreće, pa se vozilo zaustavlja, okreće i na taj način zaobilazi prepreku čime se vraća u stanje NAV_CRUISE.
 **Meta i top**, koristi senzor na kuli i upravlja kulom i topom:
  
-`IDLE → SEARCH → TRACK → AIM → CHARGE → FIRE → COOLDOWN → SEARCH`
+`IDLE → SEARCH → TRACK → AIM → FIRE → COOLDOWN → SEARCH`
  
 - SEARCH: kula se okreće i traži metu.
-- TRACK: meta je pronađena, kula se okreće dok nije poravnata sa topom. Ako se meta izgubi, vraća se u SEARCH.
-- FIRE: meta je poravnata i kondenzator napunjen, pa top ispaljuje projektil, a zatim se vraća u SEARCH.
+- TRACK: meta je pronađena, vozilo staje, kula prati metu i počinje punjenje kondenzatora. Ako se meta izgubi, vraća se u SEARCH.
+- AIM: meta je u liniji topa, kula fino poravnava, a punjenje se nastavlja. Ako meta izađe iz linije topa, ali je i dalje vidljiva, vraća se u TRACK.
+- FIRE: meta je zaključana, kondenzator napunjen i protekao je minimalni razmak između ispaljivanja (FR-08), pa top ispaljuje projektil i prelazi u COOLDOWN.
+
+`AIM → TRACK`
+- Ukoliko meta izađe iz linije topa, ali je i dalje vidljiva, vraća se u stanje TRACK.
 
 `TRACK → SEARCH`, `AIM → SEARCH`
 - Ukoliko je meta izgubljena, prelazi se u stanje SEARCH.   
@@ -96,7 +100,7 @@ Sistem radi kao **dvije nezavisne mašine stanja**, koje rade istovremeno. Koman
 - Nakon hladjenja prelazi se u stanje SEARCH.
 
 Ukoliko se pritisne taster STOP, kod obe mašine stanja se prelazi u stanje IDLE bez obzira u kojem se stanju trenutno nalazi sistem.
-Mašine su nezavisne jer upravljaju različitim dijelovima (motori i kula). Kad mašina mete traži metu kretanjem vozila (FR-05), stanje AVOID ima prioritet nad tom komandom. Kondenzator se puni u pozadini, a minimalni razmak između ispaljivanja je uslov u zahtjevu FR-08.
+Mašine su nezavisne jer upravljaju različitim dijelovima (motori i kula). Kad mašina mete traži metu kretanjem vozila (FR-05), stanje AVOID ima prioritet nad tom komandom. Kondenzator se puni tokom stanja TRACK i AIM dok vozilo stoji, a minimalni razmak između ispaljivanja je uslov u zahtjevu FR-08.
  
 ---
  
