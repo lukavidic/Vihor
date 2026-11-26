@@ -563,11 +563,11 @@
       },
       {
         "netclass": "VBAT_TOP",
-        "pattern": "Net-(JP1-A)"
+        "pattern": "/Moduli/VBAT_F"
       },
       {
         "netclass": "VBAT_TOP",
-        "pattern": "Net-(J2-Pin_1)"
+        "pattern": "/Moduli/VBAT_TOP"
       }
     ]
   },

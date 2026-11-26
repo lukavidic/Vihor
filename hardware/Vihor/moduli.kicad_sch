@@ -6277,6 +6277,26 @@
 		)
 		(uuid "fce61fdd-1335-4b2d-8633-8de8555ff6dc")
 	)
+	(label "VBAT_TOP"
+		(at 39.37 148.59 0)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left bottom)
+		)
+		(uuid "3de3bd14-9d32-4faa-b8c8-a9b9a6e6643e")
+	)
+	(label "VBAT_F"
+		(at 43.18 140.97 0)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left bottom)
+		)
+		(uuid "75d5d504-069c-4db6-b245-495238a8fffe")
+	)
 	(label "CAP_V"
 		(at 74.93 138.43 90)
 		(effects
