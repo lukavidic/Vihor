@@ -8,3 +8,8 @@
 (rule "Vija do voda najmanje 0.3 mm (JLCPCB 0.254 mm)"
   (constraint clearance (min 0.3mm))
   (condition "A.Type == 'Via' && B.Type == 'Track'"))
+
+(rule "J5 prsti dijele jedan otvor u masci"
+  (constraint bridged_mask)
+  (condition "A.Layer == 'F.Mask' || A.Layer == 'B.Mask' || A.intersectsArea('Jezicak J5')")
+  (severity ignore))
