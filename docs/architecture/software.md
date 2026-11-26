@@ -1,9 +1,9 @@
 
-# Softverska arhitekura
+# Softverska arhitektura
 
 **Projekat:** Autonomna mobilna platforma sa integrisanim elektromagnetskim topom
 
-**Verzija:** 0.1
+**Verzija:** 0.2
 
 ## 1. Uvod
 
@@ -20,8 +20,8 @@ Ovaj dokument definiše softversku arhitekturu sistema, uključujući strukturu 
 ### 1.3 Ograničenja
 
 - MCU: PIC24FJ64GA702 (ograničena memorija i procesorska snaga)
-- Dvije nezavisne mašine stanja izvršavaju se konkurento
-
+- Dvije nezavisne mašine stanja izvršavaju se konkurentno
+  
 ## 2. Blok dijagram softverske arhitekture
 
 Dijagram prikazuje slojevitu arhitekturu firmvera. Aplikacioni sloj (Logika) sadrži mašine stanja koje donose odluke, dok HAL (Hardware Abstraction Layer) sadrži upravljačke programe koji komuniciraju sa fizičkim hardverom. 
@@ -31,6 +31,7 @@ flowchart TD
     classDef layerApp fill:#e3f2fd,stroke:#1565c0,stroke-width:2px,color:#000
     classDef layerLogic fill:#fff8e1,stroke:#f57f17,stroke-width:2px,color:#000
     classDef layerHAL fill:#e8f5e9,stroke:#2e7d32,stroke-width:2px,color:#000
+    class DRV_WIFI,DRV_SENS,DRV_MOT,DRV_TUR,DRV_GUN layerHAL;
     
     subgraph PC["PC APLIKACIJA"]
         UI["Korisnički interfejs<br/>(START/STOP dugmad, Log prikaz)"]
@@ -48,7 +49,8 @@ flowchart TD
             DRV_WIFI["WiFi Modul<br/>(ESP8266 UART)"]
             DRV_SENS["Senzori<br/>(HC-SR04, IR)"]
             DRV_MOT["Motori<br/>(JoyCar I2C)"]
-            DRV_TUR["Meta/top<br/>(Servo PWM, ADC)"]
+            DRV_TUR["Turret<br/>(Servo PWM)"]
+            DRV_GUN["Coilgun<br/>(CHARGE, FIRE, ADC)"]
         end
     end
 
@@ -58,8 +60,8 @@ flowchart TD
     SM_VEH -->|"Kontrola kretanja"| DRV_MOT
     SM_VEH -->|"Čitanje prepreka"| DRV_SENS
     
-    SM_TUR -->|"Nišanjenje i pucanje"| DRV_TUR
-    SM_TUR -->|"Čitanje mete"| DRV_SENS
+    SM_TUR -->|"Nišanjenje"| DRV_TUR
+    SM_TUR -->|"Punjenje i pucanje"| DRV_GUN
 
     %% Primjena stilova (boja)
     class UI layerApp;
@@ -80,8 +82,8 @@ Firmver je organizovan po principu apstrakcije hardvera (HAL). Gornji sloj (maš
 | **ObstacleSensor** | Mjerenje udaljenosti prepreka | HC-SR04: TRIG (RB6), ECHO (RB7, INT0) | `obstacle_init()`, `obstacle_get_distance_mm()`, `obstacle_is_triggered(threshold_mm)` |
 | **TargetSensor** | Detekcija i praćenje mete | IR Distance Click: OUT (RB2/AN4), EN (RB3) | `target_init()`, `target_get_distance_mm()`, `target_enable()`, `target_disable()` |
 | **Battery** | Mjerenje napona baterije, proračun procenta i detekcija upozorenja/kritičnog stanja | ADC (RA1/AN1) | `battery_init()`, `battery_get_voltage()`, `battery_get_percentage()`, `battery_is_warning()`, `battery_is_low()` |
-| **Turret** | Kontrola servo motora kule | GPIO: Servo PWM (RB14), CHARGE (RA3), FIRE (RA4), ADC (RA0) | `turret_init()`, `turret_set_angle(deg)`, `turret_get_angle()`, `turret_scan_step(direction)` |
-| **Coilgun** | Punjenje kondenzatora i okidanje topa | CHARGE (RA3), FIRE (RA4), VCAP_SENSE (RA0/AN0) | `coilgun_init()`, `coilgun_start_charge()`, `coilgun_fire()`, `coilgun_get_voltage()`, `coilgun_is_ready()` |
+| **Turret** | Kontrola servo motora kule | PWM: servo (RB14) | `turret_init()`, `turret_set_angle(deg)`, `turret_get_angle()`, `turret_scan_step(direction)` |
+| **Coilgun** | Punjenje kondenzatora, mjerenje napona i okidanje topa | CHARGE (RA3), FIRE (RA4), VCAP_SENSE (RA0/AN0) | `coilgun_init()`, `coilgun_start_charge()`, `coilgun_stop_charge()`, `coilgun_fire()`, `coilgun_get_voltage()`, `coilgun_is_ready()` |
 | **WiFi** | Komunikacija sa ESP8266, slanje logova, parsiranje komandi, reset ESP modula. | UART1 (9600 baud), GPIO: RB10 (ESP_RST), RB11 (DEBUG_TX) | `wifi_init()`, `wifi_connect(ssid, pass)`, `wifi_send_log(msg)`, `wifi_get_command()`, `wifi_is_connected()` |
 | **Logger** | Formatiranje log poruka prema protokolu | - (koristi WiFi modul) | `log_info(module, msg)`, `log_warn(module, msg)`, `log_error(module, msg)` |
 
@@ -130,7 +132,7 @@ Dijagram aktivnosti prikazuje dinamički tok izvršavanja firmvera na mikrokontr
 
 2. **Paralelni rad mašina stanja (Konkurentni tokovi):**
    * **Navigaciona mašina stanja (Šasija):** Vozilo prelazi u `NAV_CRUISE` (krstarenje). Senzor HC-SR04 na šasiji kontinuirano prati prepreke. Detekcijom prepreke na srednjoj distanci ili kada je nivo baterije ispod 30% (BATTERY_LVL < 30%), vozilo prelazi u `NAV_SLOW` (usporavanje), a pri kritičnoj blizini u `NAV_AVOID` (manevrisanje/izbjegavanje). Po izbjegavanju prepreke, vozilo se vraća u `NAV_CRUISE`;
-   * **Borbena mašina stanja (Top/Meta):** Ulazi u `SEARCH` (pretraga mete). Kada IR Distance Click senzor na kuli detektuje cilj, aktivira se `TRACK` (praćenje) i `AIM` (fino nišanjenje kule). Po zaključavanju mete u stanju `AIM`, sistem prelazi u `CHARGE` (punjenje preko RA3, mjerenje napona kondenzatora preko VCAP/RA0), vrši opaljenje (`FIRE`), prolazi kroz sigurnosnu fazu hlađenja (`COOLDOWN`) i nastavlja potragu. Ako se meta izgubi tokom praćenja ili nišanjenja, sistem se automatski vraća u `SEARCH`;
+      * **Borbena mašina stanja (Top/Meta):** Ulazi u `SEARCH` (pretraga mete). Kada IR Distance Click senzor na kuli detektuje cilj, prelazi u `TRACK`: vozilo staje, kula prati metu i paralelno počinje punjenje kondenzatora (preko RA3, uz mjerenje napona preko VCAP_SENSE na RA0). Punjenje traje i u stanju `AIM`, samo dok motori stoje. Kada je meta u liniji topa, sistem prelazi u `AIM`, a kada je meta zaključana, kondenzator napunjen i ispunjen minimalni razmak između ispaljivanja (FR-08), prelazi u `FIRE`. Zatim slijede `COOLDOWN` i nova pretraga. Ako meta izađe iz linije topa, ali je i dalje vidljiva, sistem se iz `AIM` vraća u `TRACK`, a ako se izgubi, iz `TRACK` ili `AIM` vraća se u `SEARCH`;
 
 3. **Arbitraža upravljanja motorima (Prioritizacija):**
    * Patrolna kontrola (motori prate cilj/pretragu) šalje zahtjeve za kretanje ka bloku ARBITER MOTORA;
