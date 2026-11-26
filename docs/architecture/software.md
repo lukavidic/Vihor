@@ -42,7 +42,7 @@ flowchart TD
         
         subgraph LOGIKA["Aplikacioni sloj (Logika i stanja)"]
             SM_VEH["Vozilo SM<br/>(NAV_IDLE, NAV_CRUISE, NAV_SLOW, NAV_AVOID)"]
-            SM_TUR["Meta/top SM<br/>(SEARCH, TRACK, AIM, CHARGE, FIRE, COOLDOWN)"]
+            SM_TUR["Meta/top SM<br/>(IDLE, SEARCH, TRACK, AIM, FIRE, COOLDOWN)"]
         end
         
         subgraph HAL["HAL - Upravljački programi"]
@@ -168,10 +168,10 @@ Format log poruka je strogo definisan radi lakšeg parsiranja na strani aplikaci
 **Format:** `[vrijeme_s] NIVO modul: poruka\n`
 
 **Definicija polja:**
-1. **vrijeme_s:** Float, sekunde od zadnjeg resetovanja ili START komande (npr. `12.4s`).
+1. **vrijeme_s:** Float, sekunde od zadnje START komande (npr. `12.4s`).
 2. **NIVO:** `INFO`, `WARN`, `ERROR`.
    - `INFO`: Normalne informacije o stanju sistema (promjena stanja, detekcija mete, ispaljivanje).
    - `WARN`: Upozorenja koja zahtijevaju pažnju ali ne zaustavljaju sistem (npr. niska baterija < 30%).
-   - `ERROR`: Kritične greške koje aktiviraju failsafe (npr. kritičan nivo baterije < 5%, gubitak WiFi veze, greška u komunikaciji sa senzorom).
-4. **modul:** Opciono, skraćenica modula (npr. `SYS`, `MOT`, `TUR`).
+   - `ERROR`: Kritične greške koje aktiviraju failsafe (npr. nivo baterije 5% ili niže, napon ispod 4.0 V, gubitak WiFi veze, greška u komunikaciji sa senzorom).
+4. **modul:** Opciono, skraćenica modula (npr. `SYS`, `NAV`, `MOT`,`BAT`, `TUR`).
 5. **poruka:** Slobodan tekst ili `KLJUČ=vrijednost` parovi.
