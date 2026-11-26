@@ -348,11 +348,12 @@ Poruke su tekstualne i završavaju znakom novog reda (`\n`).
  
 Primjeri:
 ```
+[10.1s] WARN  BAT: Baterija ispod 30%
+[10.2s] INFO  NAV: STATE=NAV_SLOW (Baterija < 30%)
 [12.4s] INFO  STATE=TRACK dist=830mm
 [13.1s] INFO  FIRE
 [13.2s] ERROR CAP voltage low
-[15.0s] WARN  BAT: Napon ispod 4.0V, ulazak u FAILSAFE
-[10.2s] INFO  NAV: STATE=NAV_SLOW (Baterija < 30%)
+[15.0s] ERROR BAT: Napon ispod 4.0V, ulazak u FAILSAFE
 ```
  
 | Polje   | Opis                                                        |
