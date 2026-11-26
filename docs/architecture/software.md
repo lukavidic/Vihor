@@ -97,7 +97,7 @@ Navigaciona mašina stanja funkcioniše potpuno nezavisno od borbene logike i up
 
 * **NAV_IDLE (Mirovanje):** Početno stanje u kojem su motori isključeni, a platforma miruje i čeka globalnu `START` komandu;
 * **NAV_CRUISE (Krstarenje):** Redovna vožnja i patroliranje terenom nakon pokretanja sistema;
-* **NAV_SLOW (Usporavanje):** Reakcija na uočenu prepreku na srednjoj distanci (`UOCENA PREPREKA`), gdje sistem smanjuje brzinu kretanja radi lakše kontrole;
+* **NAV_SLOW (Usporavanje):** Reakcija na uočenu prepreku na srednjoj distanci (`UOCENA PREPREKA`) ili je nivo baterije ispod 30%, gdje sistem smanjuje brzinu kretanja radi lakše kontrole;
 * **NAV_AVOID (Izbjegavanje):** Kritično stanje manevra kada je prepreka preblizu (`PREPREKA PREBLIZU`), gdje vozilo vrši korekciju smjera sve dok se put ponovo ne oslobodi (`PREPREKA IZBJEGNUTA` $\rightarrow$ povrat u `NAV_CRUISE`);
 * **STOP prekid:** Zajednička sigurnosna magistrala koja iz bilo kog stanja navigacije trenutno zaustavlja motore i vraća sistem u `NAV_IDLE`;
 
