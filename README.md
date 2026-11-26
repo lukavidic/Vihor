@@ -65,7 +65,7 @@ Aplikacija dobija svoj folder (npr. `app/`) kad se doda u repozitorij.
 
 ## Stanje projekta
 
-- **Dokumentacija:** specifikacija zahtjeva, HW/SW interfejs, hardverska arhitektura i spisak komponenti su usklađeni sa šemom i rezultatima mjerenja. Softverska arhitektura i imena stanja u specifikaciji usklađuju se nakon dogovora sa SW timom.
+- **Dokumentacija:** specifikacija zahtjeva, HW/SW interfejs, hardverska arhitektura i spisak komponenti su usklađeni sa šemom i rezultatima mjerenja. 
 - **Šema:** pripremljena za izradu ploče (PR #47); vrijednosti dijelova za top (R5, R7, D1, F1) još nisu određene.
 - **Ispitivanje dijelova:** na razvojnoj ploči EasyPIC Fusion v7 (umjesto našeg PIC-a) ispitani su ESP-01 (AT komande, WiFi, TCP, START i STOP), motori preko I2C i servo motor; testni programi su u `firmware/tests/`. IR senzor je izmjeren multimetrom (napon izlaza u zavisnosti od udaljenosti), a kod ultrazvučnog senzora su izmjereni signali TRIG i ECHO na JoyCar ploči. Rezultati su u `docs/architecture/hwsw-interface.md`.
 - **Top:** još nije isporučen; interfejs je predviđen na ploči.
