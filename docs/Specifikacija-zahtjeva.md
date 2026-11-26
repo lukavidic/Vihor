@@ -1,7 +1,7 @@
 # Specifikacija zahtjeva (Requirements specification)
  
 **Projekat:** Autonomna mobilna platforma sa integrisanim elektromagnetskim topom
-**Verzija:** 0.9 (nacrt)
+**Verzija:** 0.12 (nacrt)
 **Napomena:** Vrijednosti označene sa **TBD** treba potvrditi sa profesorom ili mjerenjem.
  
 ---
@@ -53,9 +53,9 @@ Vozilo autonomno traži i gađa **pokretnu metu** na suparničkom vozilu istog t
 ### 2.3 Detekcija i praćenje mete
 | ID | Zahtjev |
 |---|---|
-| FR-05 | Vozilo traži metu okretanjem kule (po potrebi i kretanjem vozila, **TBD**) i detektuje je senzorom na kuli. |
+| FR-05 | Vozilo traži metu okretanjem kule i detektuje je senzorom na kuli. Ako meta nije u opsegu okretanja kule, vozilo se kreće dok je senzor ne otkrije. |
 | FR-06 | Kada je meta detektovana, kula se okreće dok meta nije u liniji topa. Top i senzor su na kuli u istom smjeru, pa je poravnanje senzora ujedno i poravnanje topa. |
-| FR-12 | Kulu okreće servo motor SG90 u opsegu od **TBD** stepeni, a ploča zadaje željeni ugao. |
+| FR-12 | Kulu okreće servo motor SG90, a ploča zadaje željeni ugao. Izmjereni opseg servo motora je oko 90°, odnosno oko 45° lijevo i desno od sredine (`hwsw-interface.md`, 3.2). Van tog opsega meta se traži i kretanjem vozila (FR-05). |
  
 ### 2.4 Elektromagnetski top
 | ID | Zahtjev |
@@ -69,24 +69,38 @@ Vozilo autonomno traži i gađa **pokretnu metu** na suparničkom vozilu istog t
 | FR-09 | Vozilo se povezuje na WiFi mrežu i uspostavlja vezu sa aplikacijom. |
 | FR-10 | Aplikacija ima komande **START** i **STOP**. |
 | FR-11 | Vozilo šalje log poruke (stanje, udaljenost, ispaljivanje, greške), a aplikacija ih prikazuje u realnom vremenu. |
+| FR-13 |  Vozilo kontinuirano prati nivo baterije. Kada nivo padne ispod 30%, vozilo šalje WARN log poruku i ograničava PWM signal motora na najviše 50%. Kada nivo padne na 5% ili niže, ili napon baterije padne ispod 4.0 V, vozilo šalje ERROR log poruku i aktivira FAILSAFE: motori se zaustavljaju, top se razoružava, a obje mašine stanja prelaze u IDLE. |
  
 ### 2.6 Stanja sistema
 Sistem radi kao **dvije nezavisne mašine stanja**, koje rade istovremeno. Komanda START pokreće obje, a STOP ih vraća u stanje IDLE.
  
 **Vozilo (šasija)**, koristi senzor na šasiji i upravlja motorima:
  
-`IDLE → DRIVE ⇄ AVOID`
+`IDLE → NAV_CRUISE → NAV_SLOW ⇄ NAV_AVOID`
  
-- DRIVE: vozilo se kreće.
-- AVOID: prepreka je bliža od praga, pa se vozilo zaustavlja ili je zaobilazi, a zatim se vraća u DRIVE.
+- NAV_CRUISE: vozilo se kreće.
+- NAV_SLOW: detektovana je prepreka ili je nivo baterije ispod 30%, pa vozilo automatski usporava radi uštede energije.
+- NAV_AVOID: prepreka je bliža od praga koji govori da li vozilo treba da se kreće, pa se vozilo zaustavlja, okreće i na taj način zaobilazi prepreku čime se vraća u stanje NAV_CRUISE.
 **Meta i top**, koristi senzor na kuli i upravlja kulom i topom:
  
-`IDLE → SEARCH → TRACK → FIRE → SEARCH`
+`IDLE → SEARCH → TRACK → AIM → FIRE → COOLDOWN → SEARCH`
  
 - SEARCH: kula se okreće i traži metu.
-- TRACK: meta je pronađena, kula se okreće dok nije poravnata sa topom. Ako se meta izgubi, vraća se u SEARCH.
-- FIRE: meta je poravnata i kondenzator napunjen, pa top ispaljuje projektil, a zatim se vraća u SEARCH.
-Mašine su nezavisne jer upravljaju različitim dijelovima (motori i kula). Ako mašina mete traži i kretanje vozila (**TBD**), stanje AVOID ima prioritet nad tom komandom. Kondenzator se puni u pozadini, a minimalni razmak između ispaljivanja je uslov u zahtjevu FR-08.
+- TRACK: meta je pronađena, vozilo staje, kula prati metu i počinje punjenje kondenzatora. Ako se meta izgubi, vraća se u SEARCH.
+- AIM: meta je u liniji topa, kula fino poravnava, a punjenje se nastavlja. Ako meta izađe iz linije topa, ali je i dalje vidljiva, vraća se u TRACK.
+- FIRE: meta je zaključana, kondenzator napunjen i protekao je minimalni razmak između ispaljivanja (FR-08), pa top ispaljuje projektil i prelazi u COOLDOWN.
+
+`AIM → TRACK`
+- Ukoliko meta izađe iz linije topa, ali je i dalje vidljiva, vraća se u stanje TRACK.
+
+`TRACK → SEARCH`, `AIM → SEARCH`
+- Ukoliko je meta izgubljena, prelazi se u stanje SEARCH.   
+
+`COOLDOWN → SEARCH`
+- Nakon hladjenja prelazi se u stanje SEARCH.
+
+Ukoliko se pritisne taster STOP, kod obe mašine stanja se prelazi u stanje IDLE bez obzira u kojem se stanju trenutno nalazi sistem.
+Mašine su nezavisne jer upravljaju različitim dijelovima (motori i kula). Kad mašina mete traži metu kretanjem vozila (FR-05), stanje AVOID ima prioritet nad tom komandom. Kondenzator se puni tokom stanja TRACK i AIM dok vozilo stoji, a minimalni razmak između ispaljivanja je uslov u zahtjevu FR-08.
  
 ---
  
@@ -106,7 +120,7 @@ Mašine su nezavisne jer upravljaju različitim dijelovima (motori i kula). Ako 
 ### 3.3 Pouzdanost i otpornost na greške
 | ID | Zahtjev |
 |---|---|
-| NFR-04 | **Failsafe:** pri gubitku WiFi veze vozilo se zaustavlja, a top se razoružava. |
+| NFR-04 | **Failsafe:**  pri gubitku WiFi veze ili kritičnom nivou baterije (FR-13) vozilo se zaustavlja, top se razoružava, a obje mašine stanja prelaze u IDLE.  |
 | NFR-05 | **Pouzdanost:** greške se bilježe i šalju kao log poruke, a firmver koristi watchdog timer. |
  
 ### 3.4 Hardverska ograničenja
