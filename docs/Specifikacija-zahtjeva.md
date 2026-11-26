@@ -69,7 +69,7 @@ Vozilo autonomno traži i gađa **pokretnu metu** na suparničkom vozilu istog t
 | FR-09 | Vozilo se povezuje na WiFi mrežu i uspostavlja vezu sa aplikacijom. |
 | FR-10 | Aplikacija ima komande **START** i **STOP**. |
 | FR-11 | Vozilo šalje log poruke (stanje, udaljenost, ispaljivanje, greške), a aplikacija ih prikazuje u realnom vremenu. |
-| FR-13 |  Vozilo kontinuirano prati nivo baterije. Kada nivo padne ispod 30%, vozilo šalje WARN log poruku i automatski smanjuje brzinu motora na 30% radi produženja rada. Kada nivo padne na kritični minimum (softverski prag 5% ili hardverski pad napona ispod 4.0V), aktivira se FAILSAFE (NFR-04), vozilo se zaustavlja, kula se vraća u IDLE, a top se razoružava. |
+| FR-13 |  Vozilo kontinuirano prati nivo baterije. Kada nivo padne ispod 30%, vozilo šalje WARN log poruku i ograničava PWM signal motora na najviše 50%. Kada nivo padne na 5% ili niže, ili napon baterije padne ispod 4.0 V, vozilo šalje ERROR log poruku i aktivira FAILSAFE: motori se zaustavljaju, top se razoružava, a obje mašine stanja prelaze u IDLE. |
  
 ### 2.6 Stanja sistema
 Sistem radi kao **dvije nezavisne mašine stanja**, koje rade istovremeno. Komanda START pokreće obje, a STOP ih vraća u stanje IDLE.
@@ -116,7 +116,7 @@ Mašine su nezavisne jer upravljaju različitim dijelovima (motori i kula). Kad 
 ### 3.3 Pouzdanost i otpornost na greške
 | ID | Zahtjev |
 |---|---|
-| NFR-04 | **Failsafe:** pri gubitku WiFi veze vozilo se zaustavlja, a top se razoružava. |
+| NFR-04 | **Failsafe:**  pri gubitku WiFi veze ili kritičnom nivou baterije (FR-13) vozilo se zaustavlja, top se razoružava, a obje mašine stanja prelaze u IDLE.  |
 | NFR-05 | **Pouzdanost:** greške se bilježe i šalju kao log poruke, a firmver koristi watchdog timer. |
  
 ### 3.4 Hardverska ograničenja
