@@ -170,6 +170,6 @@ Format log poruka je strogo definisan radi lakšeg parsiranja na strani aplikaci
 2. **NIVO:** `INFO`, `WARN`, `ERROR`.
    - `INFO`: Normalne informacije o stanju sistema (promjena stanja, detekcija mete, ispaljivanje).
    - `WARN`: Upozorenja koja zahtijevaju pažnju ali ne zaustavljaju sistem (npr. niska baterija < 30%).
-   - `ERROR`: Kritične greške koje aktiviraju failsafe (npr. kritičan nivo baterije < 15%, gubitak WiFi veze, greška u komunikaciji sa senzorom).
+   - `ERROR`: Kritične greške koje aktiviraju failsafe (npr. kritičan nivo baterije < 5%, gubitak WiFi veze, greška u komunikaciji sa senzorom).
 4. **modul:** Opciono, skraćenica modula (npr. `SYS`, `MOT`, `TUR`).
 5. **poruka:** Slobodan tekst ili `KLJUČ=vrijednost` parovi.
