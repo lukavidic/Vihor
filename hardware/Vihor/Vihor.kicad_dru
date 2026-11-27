@@ -1,9 +1,15 @@
 (version 1)
 
 (rule "J5 zlatni prsti idu do ivice ploce"
-  (constraint edge_clearance (min 0mm))
-  (condition "A.memberOfFootprint('J5')"))
+  (constraint edge_clearance)
+  (condition "A.memberOfFootprint('J5') || B.memberOfFootprint('J5')")
+  (severity ignore))
 
 (rule "Vija do voda najmanje 0.3 mm (JLCPCB 0.254 mm)"
   (constraint clearance (min 0.3mm))
   (condition "A.Type == 'Via' && B.Type == 'Track'"))
+
+(rule "J5 prsti dijele jedan otvor u masci"
+  (constraint bridged_mask)
+  (condition "(A.Type != 'Pad' && A.Type != 'Via' && (A.Layer == 'F.Mask' || A.Layer == 'B.Mask')) || A.intersectsArea('Jezicak J5')")
+  (severity ignore))

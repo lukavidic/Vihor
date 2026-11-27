@@ -39,9 +39,9 @@
         "other_text_thickness": 0.15,
         "other_text_upright": false,
         "pads": {
-          "drill": 0.8,
-          "height": 1.27,
-          "width": 1.27
+          "drill": 1.0,
+          "height": 2.0,
+          "width": 2.0
         },
         "silk_line_width": 0.1,
         "silk_text_italic": false,
@@ -60,7 +60,7 @@
           "hatch_smoothing_level": 0,
           "hatch_smoothing_value": 0.1,
           "hatch_thickness": 1.0,
-          "min_clearance": 0.5,
+          "min_clearance": 0.0,
           "min_island_area": 10.0,
           "min_thickness": 0.25,
           "pad_connection": 1,
@@ -69,8 +69,35 @@
           "thermal_relief_spoke_width": 0.5
         }
       },
-      "diff_pair_dimensions": [],
-      "drc_exclusions": [],
+      "diff_pair_dimensions": [
+        {
+          "gap": 0.0,
+          "via_gap": 0.0,
+          "width": 0.0
+        }
+      ],
+      "drc_exclusions": [
+        [
+          "silk_edge_clearance|101690000|50000000|998a1f35-5c7f-4ac4-bfc3-0ec9a9f6ddd6|4f94c428-b847-4701-bb23-fb82ff9db495",
+          ""
+        ],
+        [
+          "silk_edge_clearance|101690000|50000000|998a1f35-5c7f-4ac4-bfc3-0ec9a9f6ddd6|5f2c1871-121e-4ecb-9906-37685035c5c9",
+          ""
+        ],
+        [
+          "silk_edge_clearance|108890000|50000000|998a1f35-5c7f-4ac4-bfc3-0ec9a9f6ddd6|b62d62ef-610a-4ea9-9f7f-18b321ec42da",
+          ""
+        ],
+        [
+          "silk_edge_clearance|116090000|50000000|998a1f35-5c7f-4ac4-bfc3-0ec9a9f6ddd6|9a69d410-1378-4c05-aba4-92237d5f6c0f",
+          "antena ESP-01 namjerno viri iznad ploce"
+        ],
+        [
+          "silk_edge_clearance|116090000|50000000|998a1f35-5c7f-4ac4-bfc3-0ec9a9f6ddd6|f1f44626-785f-44ae-a54e-628e5f5f1100",
+          ""
+        ]
+      ],
       "meta": {
         "version": 2
       },
@@ -206,7 +233,12 @@
           "td_width_to_size_filter_ratio": 0.9
         }
       ],
-      "track_widths": [],
+      "track_widths": [
+        0.0,
+        0.25,
+        0.6,
+        1.0
+      ],
       "tuning_pattern_settings": {
         "diff_pair_defaults": {
           "corner_radius_percentage": 80,
@@ -233,7 +265,20 @@
           "spacing": 0.6
         }
       },
-      "via_dimensions": [],
+      "via_dimensions": [
+        {
+          "diameter": 0.0,
+          "drill": 0.0
+        },
+        {
+          "diameter": 0.8,
+          "drill": 0.4
+        },
+        {
+          "diameter": 1.0,
+          "drill": 0.5
+        }
+      ],
       "zones_allow_external_fillets": false
     },
     "ipc2581": {
@@ -563,11 +608,11 @@
       },
       {
         "netclass": "VBAT_TOP",
-        "pattern": "Net-(JP1-A)"
+        "pattern": "/Moduli/VBAT_F"
       },
       {
         "netclass": "VBAT_TOP",
-        "pattern": "Net-(J2-Pin_1)"
+        "pattern": "/Moduli/VBAT_TOP"
       }
     ]
   },

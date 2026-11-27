@@ -4678,7 +4678,7 @@
 		(uuid "38d27055-ceb2-4a36-bf8e-2f077ab32954")
 	)
 	(junction
-		(at 267.97 87.63)
+		(at 264.16 87.63)
 		(diameter 0)
 		(color 0 0 0 0)
 		(uuid "5012945a-2475-43ed-bdf4-3b7be1de8716")
@@ -4909,6 +4909,16 @@
 	)
 	(wire
 		(pts
+			(xy 271.78 93.98) (xy 271.78 97.79)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "1780b43e-1932-4dc8-bbf7-83cea5afd592")
+	)
+	(wire
+		(pts
 			(xy 160.02 104.14) (xy 170.18 104.14)
 		)
 		(stroke
@@ -5089,7 +5099,7 @@
 	)
 	(wire
 		(pts
-			(xy 267.97 87.63) (xy 267.97 91.44)
+			(xy 264.16 87.63) (xy 264.16 91.44)
 		)
 		(stroke
 			(width 0)
@@ -5179,7 +5189,7 @@
 	)
 	(wire
 		(pts
-			(xy 267.97 99.06) (xy 267.97 102.87)
+			(xy 264.16 99.06) (xy 264.16 102.87)
 		)
 		(stroke
 			(width 0)
@@ -6277,6 +6287,26 @@
 		)
 		(uuid "fce61fdd-1335-4b2d-8633-8de8555ff6dc")
 	)
+	(label "VBAT_TOP"
+		(at 39.37 148.59 0)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left bottom)
+		)
+		(uuid "3de3bd14-9d32-4faa-b8c8-a9b9a6e6643e")
+	)
+	(label "VBAT_F"
+		(at 43.18 140.97 0)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left bottom)
+		)
+		(uuid "75d5d504-069c-4db6-b245-495238a8fffe")
+	)
 	(label "CAP_V"
 		(at 74.93 138.43 90)
 		(effects
@@ -7369,7 +7399,7 @@
 	)
 	(global_label "BTN"
 		(shape input)
-		(at 267.97 102.87 270)
+		(at 264.16 102.87 270)
 		(fields_autoplaced yes)
 		(effects
 			(font
@@ -7379,7 +7409,7 @@
 		)
 		(uuid "e423c0b5-ae71-4f03-a350-49b5149fc2d4")
 		(property "Intersheetrefs" "${INTERSHEET_REFS}"
-			(at 267.97 109.4233 90)
+			(at 264.16 109.4233 90)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -7717,7 +7747,7 @@
 	)
 	(symbol
 		(lib_id "power:+3.3V")
-		(at 267.97 87.63 0)
+		(at 264.16 87.63 0)
 		(unit 1)
 		(body_style 1)
 		(exclude_from_sim no)
@@ -7728,7 +7758,7 @@
 		(fields_autoplaced yes)
 		(uuid "125f06ec-e098-4874-a491-f9925ea147ec")
 		(property "Reference" "#PWR029"
-			(at 267.97 91.44 0)
+			(at 264.16 91.44 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -7739,7 +7769,7 @@
 			)
 		)
 		(property "Value" "+3.3V"
-			(at 267.97 82.55 0)
+			(at 264.16 82.55 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -7749,7 +7779,7 @@
 			)
 		)
 		(property "Footprint" ""
-			(at 267.97 87.63 0)
+			(at 264.16 87.63 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -7760,7 +7790,7 @@
 			)
 		)
 		(property "Datasheet" ""
-			(at 267.97 87.63 0)
+			(at 264.16 87.63 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -7771,7 +7801,7 @@
 			)
 		)
 		(property "Description" "Power symbol creates a global label with name \"+3.3V\""
-			(at 267.97 87.63 0)
+			(at 264.16 87.63 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -8894,7 +8924,7 @@
 	)
 	(symbol
 		(lib_id "Connector:TestPoint")
-		(at 267.97 87.63 0)
+		(at 264.16 87.63 0)
 		(unit 1)
 		(body_style 1)
 		(exclude_from_sim no)
@@ -8905,7 +8935,7 @@
 		(fields_autoplaced yes)
 		(uuid "3ddcf0ec-edb8-4643-b8a7-0da486852b64")
 		(property "Reference" "TP6"
-			(at 270.51 83.0579 0)
+			(at 266.7 83.0579 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -8916,7 +8946,7 @@
 			)
 		)
 		(property "Value" "TestPoint"
-			(at 270.51 85.5979 0)
+			(at 266.7 85.5979 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -8927,7 +8957,7 @@
 			)
 		)
 		(property "Footprint" "TestPoint:TestPoint_Pad_D1.5mm"
-			(at 273.05 87.63 0)
+			(at 269.24 87.63 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -8938,7 +8968,7 @@
 			)
 		)
 		(property "Datasheet" ""
-			(at 273.05 87.63 0)
+			(at 269.24 87.63 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -8949,7 +8979,7 @@
 			)
 		)
 		(property "Description" "test point"
-			(at 267.97 87.63 0)
+			(at 264.16 87.63 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -11718,6 +11748,84 @@
 	)
 	(symbol
 		(lib_id "power:GND")
+		(at 271.78 97.79 0)
+		(unit 1)
+		(body_style 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(in_pos_files yes)
+		(dnp no)
+		(fields_autoplaced yes)
+		(uuid "9e42ee44-3257-4e58-a14b-99a229dcc585")
+		(property "Reference" "#PWR036"
+			(at 271.78 104.14 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Value" "GND"
+			(at 271.78 102.87 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" ""
+			(at 271.78 97.79 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Datasheet" ""
+			(at 271.78 97.79 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Description" "Power symbol creates a global label with name \"GND\" , ground"
+			(at 271.78 97.79 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(pin "1"
+			(uuid "149b6cb3-ccb4-41c8-a384-f46758226603")
+		)
+		(instances
+			(project "Vihor"
+				(path "/c3223988-a4cb-4efe-9db0-2be337cad9e8/07afed60-22e8-4bc7-81fd-d37d69dd51d2"
+					(reference "#PWR036")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "power:GND")
 		(at 196.85 64.77 0)
 		(unit 1)
 		(body_style 1)
@@ -13646,7 +13754,7 @@
 	)
 	(symbol
 		(lib_id "Device:R")
-		(at 267.97 95.25 0)
+		(at 264.16 95.25 0)
 		(unit 1)
 		(body_style 1)
 		(exclude_from_sim no)
@@ -13657,7 +13765,7 @@
 		(fields_autoplaced yes)
 		(uuid "ddad3879-2d80-48f9-801c-fdb97c01b303")
 		(property "Reference" "R15"
-			(at 270.51 93.9799 0)
+			(at 266.7 93.9799 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -13668,7 +13776,7 @@
 			)
 		)
 		(property "Value" "10k"
-			(at 270.51 96.5199 0)
+			(at 266.7 96.5199 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -13679,7 +13787,7 @@
 			)
 		)
 		(property "Footprint" "Resistor_SMD:R_0805_2012Metric"
-			(at 266.192 95.25 90)
+			(at 262.382 95.25 90)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -13690,7 +13798,7 @@
 			)
 		)
 		(property "Datasheet" ""
-			(at 267.97 95.25 0)
+			(at 264.16 95.25 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -13701,7 +13809,7 @@
 			)
 		)
 		(property "Description" "Resistor"
-			(at 267.97 95.25 0)
+			(at 264.16 95.25 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -13721,6 +13829,85 @@
 			(project "Vihor"
 				(path "/c3223988-a4cb-4efe-9db0-2be337cad9e8/07afed60-22e8-4bc7-81fd-d37d69dd51d2"
 					(reference "R15")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "Connector:TestPoint")
+		(at 271.78 93.98 0)
+		(unit 1)
+		(body_style 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(in_pos_files yes)
+		(dnp no)
+		(fields_autoplaced yes)
+		(uuid "de16e23b-98be-47a2-9384-d974295f2ff6")
+		(property "Reference" "TP7"
+			(at 274.32 89.4079 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Value" "TestPoint"
+			(at 274.32 91.9479 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Footprint" "TestPoint:TestPoint_THTPad_D2.0mm_Drill1.0mm"
+			(at 276.86 93.98 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Datasheet" ""
+			(at 276.86 93.98 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Description" "test point"
+			(at 271.78 93.98 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(pin "1"
+			(uuid "6f039ed0-ce86-4504-967d-eaee14fd6b05")
+		)
+		(instances
+			(project "Vihor"
+				(path "/c3223988-a4cb-4efe-9db0-2be337cad9e8/07afed60-22e8-4bc7-81fd-d37d69dd51d2"
+					(reference "TP7")
 					(unit 1)
 				)
 			)
