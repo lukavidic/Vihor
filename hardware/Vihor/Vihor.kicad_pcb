@@ -11534,6 +11534,14 @@
 		(uuid "3c8f731c-687a-48c4-9f34-1aa26a46d2d5")
 	)
 	(segment
+		(start 140.157141 87.175)
+		(end 140.157141 86.25)
+		(width 0.25)
+		(layer "F.Cu")
+		(net "VCAP_SENSE")
+		(uuid "3da4e4d1-0ea4-4045-bbff-06400da6d36d")
+	)
+	(segment
 		(start 126.325 68.015)
 		(end 132.985 68.015)
 		(width 0.25)
@@ -11550,14 +11558,6 @@
 		(uuid "760facdc-ef33-4f0d-996d-a6bf8fe34f2d")
 	)
 	(segment
-		(start 140.157141 87.175)
-		(end 140.157141 86.407141)
-		(width 0.25)
-		(layer "F.Cu")
-		(net "VCAP_SENSE")
-		(uuid "7937edb5-9348-43af-900d-d1bfc87e2ad0")
-	)
-	(segment
 		(start 132.985 68.015)
 		(end 133 68)
 		(width 0.25)
@@ -11572,14 +11572,6 @@
 		(layer "F.Cu")
 		(net "VCAP_SENSE")
 		(uuid "b7f1b9c3-1fb3-4f5d-a9be-4a680687c51e")
-	)
-	(segment
-		(start 140.157141 86.407141)
-		(end 140 86.25)
-		(width 0.25)
-		(layer "F.Cu")
-		(net "VCAP_SENSE")
-		(uuid "cab26ee2-32e3-4725-a689-4926310c94c4")
 	)
 	(segment
 		(start 133 68)
