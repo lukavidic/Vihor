@@ -300,12 +300,14 @@ Ploča je projektovana u KiCadu 10 (`hardware/Vihor/Vihor.kicad_pcb`). Ulazi u m
 | Maska / natpisi | zelena / bijeli |
 | Proizvođač | JLCPCB (Kina) |
 | Verzija ploče | v1.0 |
+| Natpis (gore) | „VIHOR v1.0 RE/MKS 26/27“ i imena autora, iznad jezička |
+| Natpis (dolje) | „Designed in Republika Srpska“ |
 
-![Ploča odozgo](../images/pcb-gore.png)
+![Ploča odozgo](../images/pcb-gore.jpeg)
 
-![Ploča odozdo](../images/pcb-dolje.png)
+![Ploča odozdo](../images/pcb-dolje.jpeg)
 
-![3D prikaz](../images/pcb-3d.png)
+![3D prikaz](../images/pcb-3d.jpeg)
 
 ### 10.2 Slojevi
 
@@ -350,6 +352,8 @@ Gledano odozgo, sa jezičkom J5 dolje:
 | Lijevo | Konektor IR senzora J1 |
 | Dolje | Red otpornika prema J5 (R11–R18) i zlatni prsti J5 |
 
+Raspored pinova ESP-01 provjeren je papirnom probom 1:1 sa stvarnim modulom (#46).
+
 Odluke pri projektovanju:
 - **ESP-01 na gornjoj ivici:** antena je izvan ploče i što dalje od motora i baterija, a ispod antene nema bakra.
 - **Kondenzatori uz PIC:** C6 (100 nF) je uz AVDD/AVSS (pinovi 28 i 27), C5 (10 µF) uz VCAP (pin 20), C4 (100 nF) uz VDD (pin 13). Kod pina 27 masa ide redom: pin → C6 → vija.
@@ -366,7 +370,7 @@ Odluke pri projektovanju:
 | Prsti | 9 prstiju 1.0 × 7.0 mm, samo na gornjoj strani (F.Cu) |
 | Footprint | `vihor:MicroBit_EdgeFingers_9` |
 | Zazor u utoru | oko 1 mm (papirna proba) |
-| Strana prstiju u utoru | **TBD** (provjera u #46) |
+| Strana prstiju u utoru | gornja (F.Cu); kontakti u JoyCar utoru su samo s gornje strane (provjereno u #46) |
 
 Raspored signala na prstima je u odjeljku 6, a pozicije prema JoyCar kontaktima u `hwsw-interface.md`.
 
@@ -382,7 +386,7 @@ Raspored signala na prstima je u odjeljku 6, a pozicije prema JoyCar kontaktima 
 | J6 | Napajanje sa JoyCar zaglavlja | +3.3V, +5V, VBAT, GND | desna ivica, gore |
 | U1 | ESP-01 | utičnica 2 × 4 | gore lijevo |
 
-Oznaka pina 1 na natpisu ploče: **TBD** (#46).
+Pin 1 svakog konektora je označen na natpisu ploče (oznaka iz footprinta). Nazivi na ploči: ESP-01 (U1), IR (J1), TOP (J2), PICKIT (J3), DEBUG (J4), PWR (J6).
 
 ### 10.7 Test tačke
 
