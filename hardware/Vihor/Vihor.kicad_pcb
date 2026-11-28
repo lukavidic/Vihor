@@ -10134,7 +10134,7 @@
 		(layer "Edge.Cuts")
 		(uuid "998a1f35-5c7f-4ac4-bfc3-0ec9a9f6ddd6")
 	)
-	(gr_text "VIHOR v1.0\nLuka Jovetic\nAndjela Laketa\nZeljana Marinovic\nDejan Tomic"
+	(gr_text "VIHOR v1.0 RE/MKS 26/27\nLuka Jovetic\nAndjela Laketa\nZeljana Marinovic\nDejan Tomic"
 		(at 100.7 93.3 0)
 		(layer "F.SilkS")
 		(uuid "e2301609-82db-4646-b636-2ce6ea70b513")
