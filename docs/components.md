@@ -1,7 +1,7 @@
 # Spisak komponenti
  
 **Projekat:** Autonomna mobilna platforma sa integrisanim elektromagnetskim topom
-**Verzija:** 0.9 (nacrt)
+**Verzija:** 0.10 (nacrt)
 **Svrha:** Pregled svih komponenti sistema sa slikom, namjenom i osnovnim podacima. Detalji o pinovima su u `hwsw-interface.md`, a o napajanju i blokovima u `hardware.md`.
  
 **Slike:** fotografije se stavljaju u folder `docs/images/` pod nazivom iz oznake slike uz komponentu. Dok slika ne postoji, prikazuje se prazan okvir.
@@ -121,13 +121,13 @@ Vrijednosti označene sa **TBD** treba potvrditi.
 | J1 | IR Distance Click | +3.3V, GND, IR_OUT, IR_EN | Pinski konektor 1 × 4 |
 | J2 | Konektor topa | VBAT, GND, TOP_CHARGE, TOP_FIRE, CAP_V, TOP_RESERVE | Pinski konektor 1 × 6, rezervisano |
 | JP1 | Kratkospojnik | Odvajanje napajanja topa | Pinski konektor 1 × 2 |
-| TP1–TP6 | Test tačke | VBAT, UART_TX, UART_RX, SDA, SCL, +3.3V | Pad 1.5 mm |
+| TP1–TP7 | Test tačke | VBAT, UART_TX, UART_RX, SDA, SCL, +3.3V, GND | Pad 1.5 mm (TP7: pločica 2.0 mm sa rupom 1.0 mm) |
  
 ---
  
 ## 3. Dijelovi ploče (prema šemi)
  
-Izvor: šema `Vihor.kicad_sch`, list „Moduli“ (KiCad 10.0.8), stanje nakon PR #47 (22.11.2026). Ukupno **44 dijela**, od toga **4 neugrađena (DNP)**. Dijelovi su grupisani prema blokovima na listu „Moduli“.
+Izvor: šema `Vihor.kicad_sch`, list „Moduli“ (KiCad 10.0.8), stanje nakon PR #54 (27.11.2026). Ukupno **45 dijelova**, od toga **4 neugrađena (DNP)**. Dijelovi su grupisani prema blokovima na listu „Moduli“.
 
 Oznake: **DNP** = neugrađeno (mjesto na ploči postoji, dio se ne lemi). **TBD** = vrijednost još nije određena.
 
@@ -180,6 +180,7 @@ Oznake: **DNP** = neugrađeno (mjesto na ploči postoji, dio se ne lemi). **TBD*
 | TP4 | TestPoint | TestPoint:TestPoint_Pad_D1.5mm | Test tačka SDA |
 | TP5 | TestPoint | TestPoint:TestPoint_Pad_D1.5mm | Test tačka SCL |
 | TP6 | TestPoint | TestPoint:TestPoint_Pad_D1.5mm | Test tačka +3.3V |
+| TP7 | TestPoint | TestPoint:TestPoint_THTPad_D2.0mm_Drill1.0mm | Test tačka GND |
 
 ### 3.4 Senzori i top
 
@@ -206,9 +207,9 @@ Oznake: **DNP** = neugrađeno (mjesto na ploči postoji, dio se ne lemi). **TBD*
 | Kratkospojnik | 1 | JP1 |
 | Osigurač | 1 | F1 |
 | Dugme | 1 | SW1 |
-| Test tačke | 6 | TP1–TP6 |
+| Test tačke | 7 | TP1–TP7 |
 | Integrisana kola i moduli | 2 | IC1, U1 |
-| **Ukupno** | **44** | |
+| **Ukupno** | **45** | |
  
 Alat koji nije dio ploče: programator **PICkit 3**, spaja se na J3 (isti raspored pinova). Pri programiranju se ploča napaja sa JoyCar ploče, a ne iz programatora.
  
