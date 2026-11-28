@@ -10218,8 +10218,8 @@
 			(justify left bottom)
 		)
 	)
-	(gr_text "Made in Republika Srpska\n"
-		(at 120.9 93.2 0)
+	(gr_text "Designed in Republika Srpska\n"
+		(at 123.6 93.25 0)
 		(layer "B.SilkS")
 		(uuid "6c55d1d3-0008-449e-b9a1-975e51ec9d74")
 		(effects
