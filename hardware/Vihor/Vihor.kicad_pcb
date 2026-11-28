@@ -10171,7 +10171,7 @@
 		)
 	)
 	(gr_text "DEBUG"
-		(at 138.4 51.5 0)
+		(at 144.2 52.7 0)
 		(layer "F.SilkS")
 		(uuid "83bbd01b-4d24-4fd0-8c13-4ba74d99f8ff")
 		(effects
