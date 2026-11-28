@@ -76,28 +76,7 @@
           "width": 0.0
         }
       ],
-      "drc_exclusions": [
-        [
-          "silk_edge_clearance|101690000|50000000|998a1f35-5c7f-4ac4-bfc3-0ec9a9f6ddd6|4f94c428-b847-4701-bb23-fb82ff9db495",
-          ""
-        ],
-        [
-          "silk_edge_clearance|101690000|50000000|998a1f35-5c7f-4ac4-bfc3-0ec9a9f6ddd6|5f2c1871-121e-4ecb-9906-37685035c5c9",
-          ""
-        ],
-        [
-          "silk_edge_clearance|108890000|50000000|998a1f35-5c7f-4ac4-bfc3-0ec9a9f6ddd6|b62d62ef-610a-4ea9-9f7f-18b321ec42da",
-          ""
-        ],
-        [
-          "silk_edge_clearance|116090000|50000000|998a1f35-5c7f-4ac4-bfc3-0ec9a9f6ddd6|9a69d410-1378-4c05-aba4-92237d5f6c0f",
-          "antena ESP-01 namjerno viri iznad ploce"
-        ],
-        [
-          "silk_edge_clearance|116090000|50000000|998a1f35-5c7f-4ac4-bfc3-0ec9a9f6ddd6|f1f44626-785f-44ae-a54e-628e5f5f1100",
-          ""
-        ]
-      ],
+      "drc_exclusions": [],
       "meta": {
         "version": 2
       },
