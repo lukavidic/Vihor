@@ -1,10 +1,10 @@
 # Hardverska arhitektura
  
 **Projekat:** Autonomna mobilna platforma sa integrisanim elektromagnetskim topom
-**Verzija:** 0.8 (nacrt)
+**Verzija:** 0.9 (nacrt)
 **Svrha:** Opis hardverskih blokova ploče, njihovih veza, napajanja i konektora. Tačne pinove, I2C adrese i protokol definiše dokument `hwsw-interface.md`, pa se ovdje ne ponavljaju.
  
-**Šema:** KiCad 10, folder `hardware/Vihor` (opis u odjeljku 9), PDF u `docs/Vihor.pdf`.
+**Šema i PCB:** KiCad 10, folder `hardware/Vihor` (šema u odjeljku 9, ploča u odjeljku 10), PDF šeme u `docs/Vihor.pdf`.
  
 Vrijednosti označene sa **TBD** treba potvrditi mjerenjem ili datasheetom.
  
@@ -155,13 +155,8 @@ Pin za servo (RB14) je usklađen sa `software.md` i upisan u `hwsw-interface.md`
  
 Raspored zlatnih prstiju (J5) je sa micro:bita: jezičak 51.6 mm, dubina 7.62 mm, prsti 1.0 × 7.0 mm (mjere iz datasheeta utora, potvrđene papirnom probom; zazor oko 1 mm).
  
-PCB:
-- Dvoslojna ploča, KiCad 10, fabrikacija u Kini.
-- Ploča 1.6 mm, zlatni prsti sa ENIG površinom.
-- Jezičak za micro:bit utor ima mjere iz datasheeta utora (vidi J5 iznad). Ostale dimenzije ploče se prilagođavaju JoyCar platformi (**TBD**).
-- Pasivni dijelovi su u kućištu 0805 (lako se lemi ručno).
-- Neugrađena mjesta (DNP) za pull-up otpornike na SDA i SCL (R14, R16), djelitelj na VBAT_SENSE (R12) i premosnicu za 3V (R17), da se greške mogu popraviti bez nove ploče.
-- Test tačke: TP1 (VBAT), TP2 (UART_TX), TP3 (UART_RX), TP4 (SDA), TP5 (SCL) i TP6 (+3.3V).
+Opis štampane ploče (dimenzije, slojevi, raspored, sastavljanje i puštanje u rad) je u odjeljku 10.
+
 - Top, senzor za metu i servo su na kuli, pa kablovi do njih moraju biti savitljivi.
 ---
  
@@ -228,7 +223,7 @@ Za svaki blok je opisano šta radi, kako je riješen i zašto, te šta je još o
 - **Dugme SW1** je spojeno na BTN (RB5) i GND, sa pull-up otpornikom R15 (10k): nepritisnuto je „1“, pritisnuto „0“. Na ploči nema kola za debounce, pa se odskakivanje kontakata rješava u firmveru.
 - **Statusna LED D2** je na RA2, preko otpornika R9 (1k), koji ograničava struju na nekoliko mA.
 - **Debug konektor J4** (1 DEBUG_TX, 2 GND): PIC preko RB11 (UART2) šalje poruke na računar kroz USB-UART adapter. Tako se firmver može pratiti i bez WiFi-ja, npr. dok veza sa ESP-om još ne radi.
-- **Test tačke** TP1 (VBAT), TP2 (UART_TX), TP3 (UART_RX), TP4 (SDA), TP5 (SCL) i TP6 (+3.3V) služe za mjerenje na prototipu multimetrom, osciloskopom ili logičkim analizatorom.
+- **Test tačke** TP1 (VBAT), TP2 (UART_TX), TP3 (UART_RX), TP4 (SDA), TP5 (SCL), TP6 (+3.3V) i TP7 (GND) služe za mjerenje na prototipu multimetrom, osciloskopom ili logičkim analizatorom.
  
 **Otvoreno:** koliko struje daje JoyCar 3,3 V izlaz pod opterećenjem (**TBD**, mjerenje).
  
@@ -287,3 +282,182 @@ Za svaki blok je opisano šta radi, kako je riješen i zašto, te šta je još o
 Spisak svih dijelova sa vrijednostima i footprintima je u `components.md`, odjeljak 3.
  
 **Stanje:** footprinti su dodijeljeni svim dijelovima (ivični konektor J5: `vihor:MicroBit_EdgeFingers_9`). Privremen je footprint za D1 (zener dioda: napon i tačan model još nisu izabrani, pa je footprint SOD-123 privremen). ERC je ponovljen u PR #47 (22.11.2026): bez grešaka. Ranije upozorenje o četiri žice spojene u jednoj tački (kod C1) odnosi se samo na preglednost crteža; isključene su provjere SPICE modela (šema se ne simulira) i slaganja footprinta sa filterima simbola.
+
+---
+
+## 10. Štampana ploča (PCB)
+
+Ploča je projektovana u KiCadu 10 (`hardware/Vihor/Vihor.kicad_pcb`). Ulazi u micro:bit utor JoyCar ploče umjesto micro:bita, a napajanje dobija sa zaglavlja JoyCar ploče.
+
+### 10.1 Osnovni podaci
+
+| Stavka | Vrijednost |
+|---|---|
+| Dimenzije | 51.6 × 51.6 mm (donja ivica je jezičak za utor) |
+| Broj slojeva | 2 (F.Cu gore, B.Cu dolje) |
+| Debljina ploče | 1.6 mm (FR4), bakar 35 µm (1 oz) |
+| Završna obrada | ENIG (i na zlatnim prstima) |
+| Maska / natpisi | zelena / bijeli |
+| Proizvođač | JLCPCB (Kina) |
+| Verzija ploče | v1.0 |
+
+![Ploča odozgo](../images/pcb-gore.png)
+
+![Ploča odozdo](../images/pcb-dolje.png)
+
+![3D prikaz](../images/pcb-3d.png)
+
+### 10.2 Slojevi
+
+| Sloj | Šta je na njemu |
+|---|---|
+| Gornji (F.Cu) | Svi dijelovi, većina signalnih vodova i bakarna površina spojena na +3.3V |
+| Donji (B.Cu) | Bakarna površina spojena na GND i kratki prelazi vodova preko vija |
+
+Svaka SMD masa (kondenzatori, IC1, otpornici prema GND) ima kratak vod do vije, koja je spaja sa GND površinom na donjoj strani.
+
+### 10.3 Pravila izrade
+
+Pravila su prilagođena mogućnostima JLCPCB-a, uz rezervu.
+
+| Pravilo | Vrijednost |
+|---|---|
+| Najmanji razmak bakra | 0.2 mm |
+| Najmanja širina voda | 0.2 mm |
+| Najmanja vija | 0.7 mm (rupa 0.35 mm) |
+| Bakar do ivice ploče | 0.5 mm (osim prstiju J5, koji idu do ivice) |
+| Vija do voda | 0.3 mm |
+
+| Klasa vodova | Mreže | Širina voda | Vija |
+|---|---|---|---|
+| Default | svi signali | 0.25 mm | 0.8 / 0.4 mm |
+| Power | +3.3V, +5V, GND | 0.6 mm | 0.8 / 0.4 mm |
+| VBAT_TOP | VBAT, VBAT_F, VBAT_TOP | 1.0 mm | 1.0 / 0.5 mm |
+
+Dodatna pravila su u `hardware/Vihor/Vihor.kicad_dru`: prsti J5 smiju ići do ivice ploče i dijele jedan otvor u masci.
+
+### 10.4 Raspored blokova
+
+Gledano odozgo, sa jezičkom J5 dolje:
+
+| Dio ploče | Šta je tu |
+|---|---|
+| Gore lijevo | ESP-01 (U1) u utičnici 2 × 4, sa C2, C3 i pull-up otpornicima R1, R2, R6 i R8. Antena modula izlazi preko gornje ivice ploče. |
+| Gore u sredini | Programski konektor J3 i test tačke TP2, TP3, TP6 i TP7 (GND) |
+| Gore desno | Debug konektor J4, dugme SW1, LED D2, konektor napajanja J6 |
+| Sredina | PIC24FJ64GA702 (IC1) sa C4, C5 i C6 uz pinove napajanja i C1 (100 µF) |
+| Desno | Konektor topa J2, osigurač F1, kratkospojnik JP1, R3, R4, R5, R7 i D1 |
+| Lijevo | Konektor IR senzora J1 |
+| Dolje | Red otpornika prema J5 (R11–R18) i zlatni prsti J5 |
+
+Odluke pri projektovanju:
+- **ESP-01 na gornjoj ivici:** antena je izvan ploče i što dalje od motora i baterija, a ispod antene nema bakra.
+- **Kondenzatori uz PIC:** C6 (100 nF) je uz AVDD/AVSS (pinovi 28 i 27), C5 (10 µF) uz VCAP (pin 20), C4 (100 nF) uz VDD (pin 13). Kod pina 27 masa ide redom: pin → C6 → vija.
+- **Širi vodovi za VBAT:** napajanje topa ide vodovima od 1.0 mm (J6 → F1 → JP1 → J2).
+- **Otpornici uz J5:** serijski otpornici R13 (ECHO) i R18 (TRIG) i R11 (VBAT_SENSE) su odmah iznad prstiju, pa su vodovi prema JoyCar-u kratki.
+- **Na jezičku nema vija ni bakarnih površina,** samo prsti i kratki vodovi od njih.
+
+### 10.5 Ivični konektor J5
+
+| Stavka | Vrijednost |
+|---|---|
+| Širina jezička | 51.6 mm (utor 52.06 mm) |
+| Dubina jezička | 7.62 mm (do te linije nema dijelova) |
+| Prsti | 9 prstiju 1.0 × 7.0 mm, samo na gornjoj strani (F.Cu) |
+| Footprint | `vihor:MicroBit_EdgeFingers_9` |
+| Zazor u utoru | oko 1 mm (papirna proba) |
+| Strana prstiju u utoru | **TBD** (provjera u #46) |
+
+Raspored signala na prstima je u odjeljku 6, a pozicije prema JoyCar kontaktima u `hwsw-interface.md`.
+
+### 10.6 Konektori
+
+| Oznaka | Namjena | Pin 1 → zadnji pin | Položaj |
+|---|---|---|---|
+| J1 | IR Distance Click | +3.3V, GND, IR_OUT, IR_EN | lijeva ivica |
+| J2 | Top | VBAT_TOP, GND, TOP_CHARGE, TOP_FIRE, CAP_V, TOP_RESERVE | desna ivica, dolje |
+| J3 | PICkit 3 | MCLR, +3.3V, GND, PGD1, PGC1 | gornja ivica, sredina |
+| J4 | Debug UART | DEBUG_TX, GND | gornja ivica, desno |
+| J5 | JoyCar utor | vidi odjeljak 6 | donja ivica |
+| J6 | Napajanje sa JoyCar zaglavlja | +3.3V, +5V, VBAT, GND | desna ivica, gore |
+| U1 | ESP-01 | utičnica 2 × 4 | gore lijevo |
+
+Oznaka pina 1 na natpisu ploče: **TBD** (#46).
+
+### 10.7 Test tačke
+
+| Oznaka | Signal | Očekivano |
+|---|---|---|
+| TP1 | VBAT | oko 6.4 V sa punim baterijama (izmjereno 6.45 V) |
+| TP2 | UART_TX (PIC → ESP) | 3.3 V u mirovanju |
+| TP3 | UART_RX (ESP → PIC) | 3.3 V u mirovanju (samo sa ESP-01 u utičnici) |
+| TP4 | SDA | 3.3 V u mirovanju (pull-up na JoyCar ploči) |
+| TP5 | SCL | 3.3 V u mirovanju (pull-up na JoyCar ploči) |
+| TP6 | +3.3V | 3.3 V |
+| TP7 | GND | masa: tu se kači crna sonda (veća pločica sa rupom 1.0 mm) |
+
+### 10.8 Kratkospojnik JP1
+
+JP1 spaja napajanje topa (VBAT iza osigurača F1) sa konektorom J2. Bez kratkospojnika top nema napajanje, a ostatak ploče radi normalno.
+
+JP1 se **skida**:
+- kad top nije priključen,
+- pri programiranju i prvom uključenju,
+- pri bilo kakvom radu na topu (kondenzator topa može biti napunjen).
+
+### 10.9 Sastavljanje
+
+Redoslijed lemljenja:
+1. IC1 (SOIC-28), pazeći na pin 1.
+2. Otpornici i kondenzatori 0805, D2 (LED), F1 (1206).
+3. Provjera kratkog spoja između +3.3V i GND (prije daljeg lemljenja).
+4. SW1, konektori J1, J2, J3, J4, J6, JP1.
+5. C1 (100 µF, radijalni).
+6. Ženska letvica 2 × 4 za ESP-01.
+
+Ne ugrađuju se (DNP): R12, R14, R16 i R17 (razlozi u odjeljku 9.3). Dijelovi za top (F1, R5, R7, D1) ugrađuju se kad se odrede vrijednosti (**TBD**).
+
+Polaritet:
+| Dio | Oznaka |
+|---|---|
+| IC1 | tačka ili zarez na kućištu = pin 1 (MCLR) |
+| C1 | + na +3.3V (duža nožica) |
+| D2 | katoda prema GND |
+| D1 | katoda (traka) na VCAP_SENSE, anoda na GND |
+
+### 10.10 Puštanje u rad
+
+**Prije prvog napajanja** (multimetrom, ploča nije u JoyCar-u):
+1. Nema kratkog spoja između +3.3V (TP6) i GND (TP7).
+2. Nema kratkog spoja između VBAT (TP1) i GND (TP7).
+3. Nema kratkog spoja između +5V (J6, pin 2) i GND.
+
+**Prvo uključenje:**
+1. ESP-01 nije u utičnici, JP1 je skinut.
+2. Ploča u utoru JoyCar-a, kabl sa JoyCar zaglavlja na J6.
+3. Uključiti JoyCar i izmjeriti TP6 (3.3 V) i TP1 (napon baterije) prema TP7 (GND).
+
+**Programiranje:**
+- PICkit 3 na J3. Pin 1 (MCLR) je označen strelicom na PICkit-u; raspored J3 odgovara PICkit-u 3 (pinovi 1–5).
+- Ploča se napaja sa JoyCar-a, ne iz programatora (u MPLAB IPE isključiti napajanje iz alata).
+- Program se upisuje iz MPLAB IPE.
+
+**Priprema ESP-01** (prije stavljanja u utičnicu):
+- AT firmver (ESP8266 NonOS AT Bin V1.7.4) i brzina 9600 baud (`AT+UART_DEF=9600,8,1,0,0`).
+- Postupak je opisan u `hwsw-interface.md` (odjeljak o ESP-01).
+
+**Prvi testovi:**
+1. LED D2 (RA2) trepće.
+2. Dugme SW1 (RB5) mijenja stanje LED-a.
+3. I2C prema JoyCar-u: motori se okreću.
+4. WiFi: ESP-01 se spaja na mrežu i šalje poruku TCP serveru.
+
+Test programi u `firmware/tests/` su pisani za razvojnu ploču (dsPIC33), pa ih za PIC24 treba prilagoditi (**TBD**).
+
+### 10.11 Proizvodnja
+
+| Stavka | Vrijednost |
+|---|---|
+| Gerber i drill fajlovi | **TBD** (#42) |
+| BOM i pozicije dijelova | **TBD** (#32, #42) |
+| Postavke narudžbe | 2 sloja, 1.6 mm, ENIG, zelena maska, bijeli natpisi |
